@@ -1,5 +1,7 @@
 import React from 'react';
 import {render} from 'react-dom';
 
+import Like from './components/Like/Like';
+
 const mountNode = document.getElementById('root');
-render(<h1> Hello </h1>, mountNode);
+render(<Like/>, mountNode);
