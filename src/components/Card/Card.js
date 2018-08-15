@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Like from '../Like/Like';
 import './Card.css';
+import LikeButton from '../LikeButton/LikeButton';
 import EditButton from '../EditButton/EditButton';
 
 export default function Card(props) {
@@ -13,7 +13,7 @@ export default function Card(props) {
             <p className='card__description'>{props.description}</p>
             <div className={'card__buttons-container'}>
                 <EditButton clickHandler={props.editHandler}/>
-                <Like/>
+                <LikeButton/>
             </div>
         </div>
     );
