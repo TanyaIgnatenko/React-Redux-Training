@@ -5,8 +5,9 @@ import Card from './components/Card/Card';
 import Page from './components/Page/Page';
 
 const mountNode = document.getElementById('root');
-const description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                     Ut enim ad minim veniam, quis nostrud exercitation ullamco.`;
+const description = `Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.
+                     Por scientie, musica, sport etc, litot Europa usa li sam vocabular.
+                     Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.
+                     Omnicos directe al desirabilite de un nov lingua franca.`;
 const pageContent = <Card title='Card1' description={description} editHandler={() => {}}/>;
 render(<Page title='Card List' content={pageContent}/>, mountNode);
