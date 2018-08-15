@@ -1,7 +1,10 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-import Like from './components/Like/Like';
+import Card from './components/Card/Card';
 
 const mountNode = document.getElementById('root');
-render(<Like/>, mountNode);
+const description = `Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                     Ut enim ad minim veniam, quis nostrud exercitation ullamco.`;
+render(<Card title='Card1' description={description} editHandler={() => {}}/>, mountNode);
