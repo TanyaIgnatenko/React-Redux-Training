@@ -1,0 +1,19 @@
+{
+  "name": "react-training",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.noveogroup.com/tignatenko/react-training.git"
+  },
+  "author": "Tanya Ignatenko",
+  "license": "MIT",
+  "dependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}
