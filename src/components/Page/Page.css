@@ -1,0 +1,13 @@
+.page__container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.page__title {
+    font-size: 32pt;
+    font-family: Roboto, sans-serif;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
