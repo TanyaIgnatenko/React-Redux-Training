@@ -4,6 +4,7 @@ import {render} from 'react-dom';
 import Card from './components/Card/Card';
 import Page from './components/Page/Page';
 import Grid from './components/Grid/Grid';
+import AddNewCardButton from './components/AddNewCardButton/AddNewCardButton';
 
 const description = `Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.
                      Por scientie, musica, sport etc, litot Europa usa li sam vocabular.
@@ -12,7 +13,8 @@ const description = `Li Europan lingues es membres del sam familie. Lor separat 
 
 const mountNode = document.getElementById('root');
 const card = <Card title='Card1' description={description} editHandler={() => {}}/>;
-const cardList = [card, card, card, card, card, card, card, card];
+const addNewCardButton = <AddNewCardButton/>
+const cardList = [addNewCardButton, card, card, card, card, card, card, card, card];
 const grid = <Grid elems={cardList}/>;
 
 render(<Page title='Card List' content={grid}/>, mountNode);
