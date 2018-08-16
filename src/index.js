@@ -7,11 +7,10 @@ import Page from './components/Page/Page';
 import Grid from './components/Grid/Grid';
 import AddNewCardButton from './components/AddNewCardButton/AddNewCardButton';
 import CreateCardForm from './components/CreateCardForm/CreateCardForm';
+import EditCardForm from './components/EditCardForm/EditCardForm';
 
-const description = `Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.
-                     Por scientie, musica, sport etc, litot Europa usa li sam vocabular.
-                     Li lingues differe solmen in li grammatica, li pronunciation e li plu commun vocabules.
-                     Omnicos directe al desirabilite de un nov lingua franca.`;
+const description = `Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.\
+                     Por scientie, musica, sport etc, litot Europa.`;
 
 const mountNode = document.getElementById('root');
 const card = <Card title='Card1' description={description} editHandler={() => {}}/>;
@@ -19,5 +18,6 @@ const addNewCardButton = <AddNewCardButton/>
 const cardList = [addNewCardButton, card, card, card, card, card, card, card, card];
 const grid = <Grid elems={cardList}/>;
 // const createCardForm = <CreateCardForm/>;
+// const editCardForm = <EditCardForm title='My awesome card' description={description}/>;
 
-render(<Page title='New card' content={grid}/>, mountNode);
+render(<Page title='Card list' content={grid}/>, mountNode);
