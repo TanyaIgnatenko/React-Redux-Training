@@ -12,7 +12,7 @@ export default function Card(props) {
             <h2 className='card__title'>{props.title}</h2>
             <p className='card__description'>{description}</p>
             <div className={'card__buttons-container'}>
-                <EditButton clickHandler={props.editHandler}/>
+                <EditButton editFormURL={`/edit/${props.id}`}/>
                 <LikeButton/>
             </div>
         </div>
@@ -20,6 +20,7 @@ export default function Card(props) {
 }
 
 Card.propTypes = {
+    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired
 };
