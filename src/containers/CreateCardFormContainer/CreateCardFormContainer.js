@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateCardForm from '../../components/CreateCardForm/CreateCardForm';
+import CreateCardForm from '../../components/Pages/CreateCardPage/CreateCardForm/CreateCardForm';
 import PropTypes from 'prop-types';
 
 export default class CreateCardFormContainer extends React.Component {
@@ -8,13 +8,8 @@ export default class CreateCardFormContainer extends React.Component {
         this.saveCardHandler = this.saveCardHandler.bind(this);
     }
 
-    saveCardHandler() {
-        this.props.history.goBack();
-        event.preventDefault();
-    }
-
     render() {
-        return <CreateCardForm handleSubmit={this.saveCardHandler}/>;
+        return <CreateCardForm/>;
     }
 }
 

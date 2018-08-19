@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
 export default function EditButton(props) {
-    const image = require('../../assets/images/edit-icon.png');
+    const image = require('../../../../../assets/images/edit-icon.png');
     return (
         <Link to={props.editFormURL}>
             <input

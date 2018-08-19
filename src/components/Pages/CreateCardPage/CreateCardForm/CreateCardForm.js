@@ -47,7 +47,3 @@ export default class CreateCardForm extends React.Component {
         );
     }
 }
-
-CreateCardForm.propTypes = {
-    handleSubmit: PropTypes.func
-};
