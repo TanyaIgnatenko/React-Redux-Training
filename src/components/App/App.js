@@ -1,5 +1,6 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import Page from '../Page/Page';
 import Card from '../Card/Card';
@@ -24,7 +25,7 @@ export default function App(props) {
     const cardList = [addNewCardButton, card, card, card, card, card, card, card, card];
 
     const cardListGrid = <Grid elems={cardList}/>;
-    const createCardForm = <CreateCardFormContainer/>;
+    const createCardForm = <CreateCardFormContainer history={props.history}/>;
     const editCardForm = <EditCardForm title='My awesome card' description={description}/>;
 
     const cardListPage = () => <Page title='Card list' content={cardListGrid}/>;
@@ -41,3 +42,7 @@ export default function App(props) {
         </div>
     );
 }
+
+App.propTypes = {
+    history: PropTypes.object
+};

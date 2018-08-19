@@ -9,7 +9,8 @@ export default class CreateCardFormContainer extends React.Component {
     }
 
     saveCardHandler() {
-        this.props.history.pop();
+        this.props.history.goBack();
+        event.preventDefault();
     }
 
     render() {
