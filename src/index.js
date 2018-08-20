@@ -3,7 +3,7 @@ import {render} from 'react-dom';
 import {BrowserRouter} from 'react-router-dom';
 import createHistory from 'history/createBrowserHistory';
 
-import App from './components/App/App';
+import AppContainer from './containers/AppContainer/AppContainer';
 
 import './index.css';
 
@@ -12,6 +12,6 @@ const history = createHistory();
 
 render((
     <BrowserRouter>
-        <App history={history}/>
+        <AppContainer history={history}/>
     </BrowserRouter>
 ), mountNode);

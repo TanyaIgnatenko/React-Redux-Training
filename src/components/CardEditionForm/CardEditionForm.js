@@ -7,7 +7,7 @@ import Routes from '../../routes';
 import './CardEditionForm.css';
 
 export default function CardEditionForm(props) {
-    const deleteButton = props.id === null ?
+    const deleteButton = props.cardExist === false ?
         null :
         (
             <Link to={Routes.CARD_LIST}>
@@ -15,19 +15,19 @@ export default function CardEditionForm(props) {
                     type='button'
                     className='card-edition-form__delete-button'
                     value='Delete'
-                    onClick={props.deleteCardHandler}
+                    onClick={props.onDelete}
                 />
             </Link>
         );
 
     return (
-        <form className='card-edition-form__container' onSubmit={props.saveDataHandler}>
+        <form className='card-edition-form__container' onSubmit={props.onSave}>
             <input
                 type='text'
                 className='card-edition-form__title-field'
                 value={props.title}
                 placeholder='Enter title'
-                onChange={props.handleTitleInputChange}
+                onChange={props.onTitleInputChange}
                 required
             />
             <textarea
@@ -35,7 +35,7 @@ export default function CardEditionForm(props) {
                 className='card-edition-form__description-field'
                 value={props.description}
                 placeholder='Enter text'
-                onChange={props.handleDescriptionInputChange}
+                onChange={props.onDescriptionInputChange}
                 required
             />
 
@@ -58,12 +58,12 @@ CardEditionForm.defaultProps = {
 };
 
 CardEditionForm.propTypes = {
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    saveDataHandler: PropTypes.func.isRequired,
-    deleteCardHandler: PropTypes.func.isRequired,
-    handleTitleInputChange: PropTypes.func.isRequired,
-    handleDescriptionInputChange: PropTypes.func.isRequired
+    cardExist: PropTypes.boolean.isRequired,
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    onSave: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired,
+    onTitleInputChange: PropTypes.func.isRequired,
+    onDescriptionInputChange: PropTypes.func.isRequired
 };
 

@@ -2,10 +2,10 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import CardListPage from '../Pages/CardListPage/CardListPage';
-import EditCardPage from '../../containers/CardEditionPageContainer/EditCardPage';
-import CreateCardPage from '../../containers/CardCreationPageContainer/CreateCardPage';
 import Routes from '../../routes';
+import CardCreationPageContainer from '../../containers/CardCreationPageContainer/CardCreationPageContainer';
+import CardEditionPageContainer from '../../containers/CardEditionPageContainer/CardEditionPageContainer';
+import CardListPageContainer from '../../containers/CardListPageContainer/CardListPageContainer';
 
 
 export default function App(props) {
@@ -13,13 +13,13 @@ export default function App(props) {
         <div>
             <Switch>
                 <Route exact path={Routes.CARD_LIST} component={
-                    <CardListPage cards={props.cards} history={props.history}/>
+                    <CardListPageContainer history={props.history}/>
                 }/>
                 <Route path={Routes.CREATE_CARD} component={
-                    <CreateCardPage history={props.history}/>
+                    <CardCreationPageContainer history={props.history}/>
                 }/>
                 <Route path={Routes.EDIT_CARD} component={
-                    EditCardPage
+                    <CardEditionPageContainer history={props.history}/>
                 }/>
             </Switch>
         </div>
@@ -27,6 +27,5 @@ export default function App(props) {
 }
 
 App.propTypes = {
-    history: PropTypes.object,
-    cards: PropTypes.arrayOf(PropTypes.element)
+    history: PropTypes.object.isRequired
 };

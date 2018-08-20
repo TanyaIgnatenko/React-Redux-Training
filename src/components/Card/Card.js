@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './Card.css';
 import LikeButton from '../LikeButton/LikeButton';
 import EditButton from '../EditButton/EditButton';
+
+import './Card.css';
 
 export default function Card(props) {
     const description = props.description.length <= 123 ? props.description : props.description.slice(0, 123);
@@ -12,16 +13,18 @@ export default function Card(props) {
             <h2 className='card__title'>{props.title}</h2>
             <p className='card__description'>{description}</p>
             <div className={'card__buttons-container'}>
-                <EditButton editFormURL={`/edit/${props.id}`}/>
-                <LikeButton/>
+                <EditButton onClick={props.onEditClick}/>
+                <LikeButton isLiked={props.isLiked} onClick={props.onLikeClick}/>
             </div>
         </div>
     );
 }
 
 Card.propTypes = {
-    id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired
+    description: PropTypes.string.isRequired,
+    isLiked: PropTypes.boolean.isRequired,
+    onLikeClick: PropTypes.func.isRequired,
+    onEditClick: PropTypes.func.isRequired
 };
 
