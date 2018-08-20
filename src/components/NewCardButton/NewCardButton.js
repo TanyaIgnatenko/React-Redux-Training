@@ -7,7 +7,7 @@ export default function NewCardButton(props) {
     const image = require('../../assets/images/plus-icon.png');
     return (
         <div className='new-card-button__container'>
-            <input type='image' src={image} onClick={this.props.onClick}/>
+            <input type='image' src={image} onClick={props.onClick}/>
         </div>
     );
 }

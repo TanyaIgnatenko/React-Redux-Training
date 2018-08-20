@@ -7,12 +7,9 @@ import Routes from '../../routes';
 export default class NewCardButtonContainer extends React.Component {
     constructor(props) {
         super(props);
-        this.handleClick = this.handleClick.bind(this);
     }
 
-    handleClick(event) {
-        this.props.history.push(Routes.CREATE_CARD);
-    }
+    handleClick = () => this.props.history.push(Routes.CREATE_CARD);
 
     render() {
         return (

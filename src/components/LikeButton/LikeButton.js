@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import './LikeButton.css';
 
 export default function LikeButton(props) {
-    const image = this.props.isLiked ?
+    const image = props.isLiked ?
         require('../../assets/images/clicked-like.png') :
         require('../../assets/images/not-clicked-like.png');
 
@@ -19,7 +19,7 @@ export default function LikeButton(props) {
 }
 
 LikeButton.propTypes = {
-    isLiked: PropTypes.boolean.isRequired,
+    isLiked: PropTypes.bool.isRequired,
     onClick: PropTypes.func.isRequired
 };
 

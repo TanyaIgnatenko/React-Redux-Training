@@ -4,10 +4,10 @@ import Page from '../../components/Page/Page';
 import CardEditionFormContainer from '../CardEditionFormContainer/CardEditionFormContainer';
 
 export default function CardEditionPageContainer(props) {
-    const cardId = props.match.params.id;
+    const cardId = parseInt(props.match.params.id, 10);
     return (
         <Page title='Edit card' content={
-            <CardEditionFormContainer id={cardId} history={props.history}/>
+            <CardEditionFormContainer cardExist={true} id={cardId} history={props.history}/>
         }/>
     );
 }
@@ -18,5 +18,5 @@ CardEditionPageContainer.propTypes = {
             id: PropTypes.string.isRequired
         })
     }),
-    history: PropTypes.history.isRequired
+    history: PropTypes.object.isRequired
 };

@@ -5,13 +5,13 @@ import App from '../../components/App/App';
 
 
 export default class AppContainer extends React.Component {
-    render() {
+    render(props) {
         return (
-            <App history={this.props.history}/>
+            <App  history={this.props.history}/>
         );
     }
 }
 
 AppContainer.propTypes = {
-    history: PropTypes.history.isRequired
+    history: PropTypes.object.isRequired
 };

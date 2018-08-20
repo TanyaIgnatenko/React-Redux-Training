@@ -7,7 +7,7 @@ export default function EditButton(props) {
         <input
             type='image'
             src={image}
-            onClick={this.props.onClick}
+            onClick={props.onClick}
         />
     );
 }

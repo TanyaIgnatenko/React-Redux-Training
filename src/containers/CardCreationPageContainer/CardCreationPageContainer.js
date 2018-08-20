@@ -7,7 +7,7 @@ import CardEditionFormContainer from '../CardEditionFormContainer/CardEditionFor
 export default function CardCreationPageContainer(props) {
     return (
         <Page title='Create card' content={
-            <CardEditionFormContainer history={props.history}/>
+            <CardEditionFormContainer cardExist={false} history={props.history}/>
         }/>
     );
 }

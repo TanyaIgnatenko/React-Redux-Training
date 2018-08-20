@@ -26,6 +26,7 @@ export default function CardEditionForm(props) {
                 type='text'
                 className='card-edition-form__title-field'
                 value={props.title}
+                name='title'
                 placeholder='Enter title'
                 onChange={props.onTitleInputChange}
                 required
@@ -34,19 +35,18 @@ export default function CardEditionForm(props) {
                 rows='5'
                 className='card-edition-form__description-field'
                 value={props.description}
+                name='description'
                 placeholder='Enter text'
                 onChange={props.onDescriptionInputChange}
                 required
             />
 
             <div className='card-edition-form__buttons-container'>
-                <Link to={Routes.CARD_LIST}>
-                    <input
-                        type='submit'
-                        className='card-edition-form__save-button'
-                        value='Save'
-                    />
-                </Link>
+                <input
+                    type='submit'
+                    className='card-edition-form__save-button'
+                    value='Save'
+                />
                 {deleteButton}
             </div>
         </form>
@@ -58,7 +58,7 @@ CardEditionForm.defaultProps = {
 };
 
 CardEditionForm.propTypes = {
-    cardExist: PropTypes.boolean.isRequired,
+    cardExist: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     onSave: PropTypes.func.isRequired,

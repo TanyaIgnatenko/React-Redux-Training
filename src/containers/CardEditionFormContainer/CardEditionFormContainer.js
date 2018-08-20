@@ -2,66 +2,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import CardEditionForm from '../../components/CardEditionForm/CardEditionForm';
-import * as localHistoryStorageController from '../../CardStorageController';
+import * as CardsStorageController from '../../CardStorageController';
+import Routes from '../../routes';
 
 export default class CardEditionFormContainer extends React.Component {
     constructor(props) {
         super(props);
-
-        this.handleInputChange = this.handleInputChange.bind(this);
-        this.handleDataSave = this.handleDataSave.bind(this);
-        this.handleCardDeletion = this.handleCardDeletion.bind(this);
-
         this.state = {
             title: '',
             description: ''
         };
     }
 
-    handleInputChange(event) {
-        this.setState = {
+    handleInputChange = (event) => {
+        this.setState({
             [event.target.name]: event.target.value
-        };
-    }
+        });
+    };
 
-    handleDataSave(event) {
+    handleSaveClick = (event) => {
+        event.preventDefault();
+
         const card = {
             title: this.state.title,
             description: this.state.description
         };
-
-        if (this.cardExist) {
+        if (this.props.cardExist) {
             card.isLiked = this.card.isLiked;
-            localHistoryStorageController.replaceCard(this.props.id, card);
+            CardsStorageController.replaceCard(this.props.id, card);
         } else {
             card.isLiked = false;
-            localHistoryStorageController.addCard(card);
+            CardsStorageController.addCard(card);
         }
-    }
 
-    handleCardDeletion(event) {
-        localHistoryStorageController.removeCard(this.props.id);
-    }
+        this.props.history.push(Routes.CARD_LIST);
+    };
+
+    handleCardDeletion = () => CardsStorageController.removeCard(this.props.id);
 
     componentDidMount() {
-        if (this.props.id !== null) {
-            this.cardExist = true;
-            this.card = localHistoryStorageController.fetchCard(this.props.id);
+        if (this.props.cardExist) {
+            this.card = CardsStorageController.fetchCard(this.props.id);
             this.setState({
                 title: this.card.title,
                 description: this.card.description
             });
         }
-        this.cardExist = false;
     }
 
     render() {
         return (
             <CardEditionForm
-                cardExist={this.cardExist}
+                cardExist={this.props.cardExist}
                 title={this.state.title}
                 description={this.state.description}
-                onSave={this.handleDataSave}
+                onSave={this.handleSaveClick}
                 onDelete={this.handleCardDeletion}
                 onTitleInputChange={this.handleInputChange}
                 onDescriptionInputChange={this.handleInputChange}
@@ -70,12 +65,9 @@ export default class CardEditionFormContainer extends React.Component {
     }
 }
 
-CardEditionFormContainer.defaultProps = {
-    id: null
-};
-
 CardEditionFormContainer.propTypes = {
     id: PropTypes.number,
+    cardExist: PropTypes.bool.isRequired,
     history: PropTypes.object.isRequired
 };
 

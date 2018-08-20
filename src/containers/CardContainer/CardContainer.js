@@ -11,17 +11,11 @@ export default class CardContainer extends React.Component {
         this.state = {
             isLiked: this.props.card.isLiked
         };
-        this.toggleLikeHandler = this.toggleLikeHandler.bind(this);
-        this.editClickHandler = this.editClickHandler.bind(this);
     }
 
-    toggleLikeHandler(event) {
-        this.setState({isLiked: !this.state.isLiked});
-    }
+    toggleLikeHandler = () => this.setState({isLiked: !this.state.isLiked});
 
-    editClickHandler(event) {
-        this.history.push(Routes.EDIT_CARD.replace(':id', this.props.card.id));
-    }
+    editClickHandler = () => this.props.history.push(Routes.EDIT_CARD.replace(':id', this.props.card.id));
 
     componentWillUnmount() {
         const card = this.props.card;

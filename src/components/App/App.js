@@ -12,14 +12,14 @@ export default function App(props) {
     return (
         <div>
             <Switch>
-                <Route exact path={Routes.CARD_LIST} component={
-                    <CardListPageContainer history={props.history}/>
+                <Route exact path={Routes.CARD_LIST} render={
+                    props => <CardListPageContainer {...props} history={props.history}/>
                 }/>
-                <Route path={Routes.CREATE_CARD} component={
-                    <CardCreationPageContainer history={props.history}/>
+                <Route path={Routes.CREATE_CARD} render={
+                    props => <CardCreationPageContainer {...props} history={props.history}/>
                 }/>
-                <Route path={Routes.EDIT_CARD} component={
-                    <CardEditionPageContainer history={props.history}/>
+                <Route path={Routes.EDIT_CARD} render={
+                    props => <CardEditionPageContainer {...props} history={props.history}/>
                 }/>
             </Switch>
         </div>

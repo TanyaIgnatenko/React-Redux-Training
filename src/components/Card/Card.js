@@ -23,7 +23,7 @@ export default function Card(props) {
 Card.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    isLiked: PropTypes.boolean.isRequired,
+    isLiked: PropTypes.bool.isRequired,
     onLikeClick: PropTypes.func.isRequired,
     onEditClick: PropTypes.func.isRequired
 };

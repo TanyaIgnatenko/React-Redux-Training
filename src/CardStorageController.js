@@ -1,22 +1,18 @@
 let nextCardId = getInitialNextCardId();
 
 export function fetchCards() {
-    return JSON.parse(localStorage.getItem('cards'));
+    const cards = JSON.parse(localStorage.getItem('cards')) || [];
+    return cards;
 }
 
 export function fetchCard(id) {
-    const cards = JSON.parse(localStorage.getItem('cards'));
+    const cards = JSON.parse(localStorage.getItem('cards')) || [];
     return cards.find(card => card.id === id);
 }
 
 export function addCard(card) {
     let cards;
-    try {
-        cards = JSON.parse(localStorage.getItem('cards'));
-    } catch (e) {
-        cards = [];
-    }
-
+    cards = JSON.parse(localStorage.getItem('cards')) || [];
     card.id = nextCardId;
     ++nextCardId;
     cards.push(card);
@@ -25,35 +21,29 @@ export function addCard(card) {
 }
 
 export function replaceCard(id, card) {
-    const cards = JSON.parse(localStorage.getItem('cards'));
-    const cardIdx = this.getCardIdx(id);
+    const cards = JSON.parse(localStorage.getItem('cards')) || [];
+    const cardIdx = getCardIdx(id);
     cards.splice(cardIdx, 1, card);
 
     localStorage.setItem('cards', JSON.stringify(cards));
 }
 
 export function removeCard(id) {
-    const cards = JSON.parse(localStorage.getItem('cards'));
-    const cardIdx = this.getCardIdx(id);
+    const cards = JSON.parse(localStorage.getItem('cards')) || [];
+    const cardIdx = getCardIdx(id);
     cards.splice(cardIdx, 1);
 
     localStorage.setItem('cards', JSON.stringify(cards));
 }
 
 function getCardIdx(id) {
-    const cards = JSON.parse(localStorage.getItem('cards'));
+    const cards = JSON.parse(localStorage.getItem('cards')) || [];
     return cards.find(card => card.id === id);
 }
 
 function getLastCardId() {
-    let cards;
-    try {
-        cards = JSON.parse(localStorage.getItem('cards'));
-    } catch {
-        cards = [];
-    }
-    const lastCardIdx = cards.length - 1;
-    return cards[lastCardIdx].id;
+    let cards = JSON.parse(localStorage.getItem('cards'));
+    return cards === null ? -1 : cards[cards.length -1].id;
 }
 
 function getInitialNextCardId() {
