@@ -19,12 +19,20 @@ export default class CardContainer extends React.Component {
 
     editClickHandler = () => this.props.history.push(Routes.EDIT_CARD.replace(':id', this.props.card.id));
 
-    componentWillUnmount() {
+    saveLikeState = () => {
         if (this.props.card.isLiked !== this.state.isLiked) {
             const card = this.props.card;
             card.isLiked = this.state.isLiked;
             CardStorageController.replaceCard(card.id, card);
         }
+    };
+
+    componentDidMount() {
+        window.addEventListener('beforeunload', this.saveLikeState);
+    }
+
+    componentWillUnmount() {
+        this.saveLikeState();
     }
 
     render() {
