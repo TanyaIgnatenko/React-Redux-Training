@@ -2,47 +2,30 @@ import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import Page from '../Page/Page';
-import Card from '../Card/Card';
-import AddNewCardButton from '../AddNewCardButton/AddNewCardButton';
-import Grid from '../Grid/Grid';
-import CreateCardForm from '../CreateCardForm/CreateCardForm';
-import EditCardForm from '../EditCardForm/EditCardForm';
-import CreateCardFormContainer from '../../containers/CreateCardFormContainer/CreateCardFormContainer';
+import Routes from '../../routes';
+import CardCreationPageContainer from '../../containers/CardCreationPageContainer/CardCreationPageContainer';
+import CardEditionPageContainer from '../../containers/CardEditionPageContainer/CardEditionPageContainer';
+import CardListPageContainer from '../../containers/CardListPageContainer/CardListPageContainer';
 
 
 export default function App(props) {
-    const description = `Li Europan lingues es membres del sam familie. Lor separat existentie es un myth.\
-                     Por scientie, musica, sport etc, litot Europa.`;
-    const card = (<Card
-        id={1}
-        title='Card1'
-        description={description}
-        editHandler={() => {}}
-    />
-    );
-    const addNewCardButton = <AddNewCardButton/>;
-    const cardList = [addNewCardButton, card, card, card, card, card, card, card, card];
-
-    const cardListGrid = <Grid elems={cardList}/>;
-    const createCardForm = <CreateCardFormContainer history={props.history}/>;
-    const editCardForm = <EditCardForm title='My awesome card' description={description}/>;
-
-    const cardListPage = () => <Page title='Card list' content={cardListGrid}/>;
-    const createCardPage = () => <Page title='Create card' content={createCardForm}/>;
-    const editCardPage = () => <Page title='Edit card' content={editCardForm}/>;
-
     return (
         <div>
             <Switch>
-                <Route exact path='/' component={cardListPage}/>
-                <Route path='/create' component={createCardPage}/>
-                <Route path='/edit/:id' component={editCardPage}/>
+                <Route exact path={Routes.CARD_LIST} render={
+                    props => <CardListPageContainer {...props} history={props.history}/>
+                }/>
+                <Route path={Routes.CREATE_CARD} render={
+                    props => <CardCreationPageContainer {...props} history={props.history}/>
+                }/>
+                <Route path={Routes.EDIT_CARD} render={
+                    props => <CardEditionPageContainer {...props} history={props.history}/>
+                }/>
             </Switch>
         </div>
     );
 }
 
 App.propTypes = {
-    history: PropTypes.object
+    history: PropTypes.object.isRequired
 };

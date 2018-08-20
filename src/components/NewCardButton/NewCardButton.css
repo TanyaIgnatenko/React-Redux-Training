@@ -1,7 +1,9 @@
-.add-new-card-button__container {
+.new-card-button__container {
     border: dashed 4px #414141;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 310px;
+    height: 320px;
+    width: 350px;
+    box-sizing: border-box;
 }

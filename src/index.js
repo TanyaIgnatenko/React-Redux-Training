@@ -1,9 +1,9 @@
 import React from 'react';
 import {render} from 'react-dom';
-import {BrowserRouter} from 'react-router-dom';
+import {Router} from 'react-router';
 import createHistory from 'history/createBrowserHistory';
 
-import App from './components/App/App';
+import AppContainer from './containers/AppContainer/AppContainer';
 
 import './index.css';
 
@@ -11,7 +11,7 @@ const mountNode = document.getElementById('root');
 const history = createHistory();
 
 render((
-    <BrowserRouter>
-        <App history={history}/>
-    </BrowserRouter>
+    <Router history={history}>
+        <AppContainer history={history}/>
+    </Router>
 ), mountNode);

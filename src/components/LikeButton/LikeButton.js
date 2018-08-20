@@ -1,25 +1,25 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import './LikeButton.css';
 
-export default class LikeButton extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {clicked: false};
-    }
+export default function LikeButton(props) {
+    const image = props.isLiked ?
+        require('../../assets/images/clicked-like.png') :
+        require('../../assets/images/not-clicked-like.png');
 
-    render() {
-        const image = this.state.clicked ?
-            require('../../assets/images/clicked-like.png') :
-            require('../../assets/images/not-clicked-like.png');
-
-        return (
-            <input
-                type='image'
-                src={image}
-                className='like'
-                onClick={() => this.setState({clicked: !this.state.clicked})}
-            />
-        );
-    }
+    return (
+        <input
+            type='image'
+            src={image}
+            className='like'
+            onClick={props.onClick}
+        />
+    );
 }
+
+LikeButton.propTypes = {
+    isLiked: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired
+};
 
