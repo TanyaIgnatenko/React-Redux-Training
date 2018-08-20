@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import CardEditionForm from '../../components/CardEditionForm/CardEditionForm';
 import * as CardsStorageController from '../../CardStorageController';
 import Routes from '../../routes';
+import isEqual from '../../utils/CardComparator';
 
 export default class CardEditionFormContainer extends React.Component {
     constructor(props) {
@@ -28,8 +29,12 @@ export default class CardEditionFormContainer extends React.Component {
             description: this.state.description
         };
         if (this.props.cardExist) {
+            card.id = this.props.id;
             card.isLiked = this.card.isLiked;
-            CardsStorageController.replaceCard(this.props.id, card);
+
+            if (!isEqual(card, this.card)) {
+                CardsStorageController.replaceCard(card.id, card);
+            }
         } else {
             card.isLiked = false;
             CardsStorageController.addCard(card);

@@ -38,7 +38,7 @@ export function removeCard(id) {
 
 function getCardIdx(id) {
     const cards = JSON.parse(localStorage.getItem('cards')) || [];
-    return cards.find(card => card.id === id);
+    return cards.findIndex(card => card.id === id);
 }
 
 function getLastCardId() {
