@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Page from '../Page/Page';
-import AddNewCardButton from './AddNewCardButton/AddNewCardButton';
+import AddNewCardButton from './NewCardButton/NewCardButton';
 import Grid from '../Grid/Grid';
 
 export default function CardListPage(props) {
@@ -14,5 +14,5 @@ export default function CardListPage(props) {
 }
 
 CardListPage.propTypes = {
-    cards: PropTypes.arrayOf(PropTypes.element).isRequired
+    cards: PropTypes.arrayOf(PropTypes.element)
 };

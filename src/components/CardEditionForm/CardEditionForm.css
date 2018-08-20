@@ -1,4 +1,4 @@
-.edit-card-form__container {
+.card-edition-form__container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -9,7 +9,7 @@
     padding: 0;
 }
 
-.edit-card-form__title-field {
+.card-edition-form__title-field {
     height: 40px;
     width: 290px;
     margin-top: 30px;
@@ -23,7 +23,7 @@
     color: #414141;
 }
 
-.edit-card-form__description-field {
+.card-edition-form__description-field {
     height: 160px;
     width: 290px;
     margin-bottom: 20px;
@@ -37,14 +37,14 @@
     color: #414141;
 }
 
-.edit-card-form__buttons-container {
+.card-edition-form__buttons-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
 }
 
-.edit-card-form__save-button {
+.card-edition-form__save-button {
     height: 40px;
     width: 150px;
     border-radius: 5px;
@@ -57,7 +57,7 @@
     font-weight: bold;
 }
 
-.edit-card-form__delete-button {
+.card-edition-form__delete-button {
     height: 40px;
     width: 150px;
     border-radius: 5px;
@@ -70,46 +70,46 @@
     font-weight: bold;
 }
 
-  .edit-card-form__title-field::-webkit-input-placeholder {
+.card-edition-form__title-field::-webkit-input-placeholder {
     font-family: Roboto, sans-serif;
     font-size: 16px;
 }
 
-.edit-card-form__title-field:-ms-input-placeholder {
+.card-edition-form__title-field:-ms-input-placeholder {
     font-family: Roboto, sans-serif;
     font-size: 20px;
     font-weight: bold;
 }
 
-.edit-card-form__title-field:-moz-placeholder {
+.card-edition-form__title-field:-moz-placeholder {
     font-family: Roboto, sans-serif;
     font-size: 20px;
     font-weight: bold;
 }
 
-.edit-card-form__title-field::-moz-placeholder {
+.card-edition-form__title-field::-moz-placeholder {
     font-family: Roboto, sans-serif;
     font-size: 20px;
     font-weight: bold;
 }
 
-.edit-card-form__description-field::-webkit-input-placeholder {
+.card-edition-form__description-field::-webkit-input-placeholder {
     font-family: Roboto, sans-serif;
     font-size: 16px;
     font-weight: bold;
 }
 
-.edit-card-form__description-field:-ms-input-placeholder {
+.card-edition-form__description-field:-ms-input-placeholder {
     font-family: Roboto, sans-serif;
     font-size: 16px;
 }
 
-.edit-card-form__description-field:-moz-placeholder {
+.card-edition-form__description-field:-moz-placeholder {
     font-family: Roboto, sans-serif;
     font-size: 16px;
 }
 
-.edit-card-form__description-field::-moz-placeholder {
+.card-edition-form__description-field::-moz-placeholder {
     font-family: Roboto, sans-serif;
     font-size: 16px;
 }

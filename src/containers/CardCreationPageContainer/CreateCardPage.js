@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Page from '../Page/Page';
+import Page from '../../components/Pages/Page/Page';
 import CreateCardForm from './CreateCardForm/CreateCardForm';
 
 export default function CreateCardPage(props) {

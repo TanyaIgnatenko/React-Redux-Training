@@ -4,9 +4,9 @@ import Card from '../../components/Pages/CardListPage/Card/Card';
 import CardContainer from '../../components/CardContainer/CardContainer';
 import Grid from '../../components/Pages/Grid/Grid';
 import Page from '../../components/Pages/Page/Page';
-import AddNewCardButton from '../../components/Pages/CardListPage/AddNewCardButton/AddNewCardButton';
-import CreateCardFormContainer from '../../components/CreateCardFormContainer/CreateCardFormContainer';
-import EditCardForm from '../../components/Pages/EditCardPage/EditCardForm/EditCardForm';
+import AddNewCardButton from '../../components/Pages/CardListPage/NewCardButton/NewCardButton';
+import CreateCardFormContainer from '../../components/CardEditionFormContainer/CardEditionFormContainer';
+import EditCardForm from '../../components/Pages/EditCardForm/EditCardForm';
 
 export default class AppContainer extends React.Component {
     constructor(props) {
