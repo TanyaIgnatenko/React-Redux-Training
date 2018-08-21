@@ -55,6 +55,7 @@
     font-family: Roboto, sans-serif;
     font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .card-edition-form__delete-button {
@@ -68,6 +69,7 @@
     font-family: Roboto, sans-serif;
     font-size: 18px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .card-edition-form__title-field::-webkit-input-placeholder {
@@ -113,3 +115,4 @@
     font-family: Roboto, sans-serif;
     font-size: 16px;
 }
+
