@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Routes from '../../routes';
 
-import './CardEditionForm.css';
+import './CardEditionForm.scss';
 
 export default function CardEditionForm(props) {
     const deleteButton = props.cardExist === false ?

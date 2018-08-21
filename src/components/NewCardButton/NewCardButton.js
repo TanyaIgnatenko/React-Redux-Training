@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './NewCardButton.css';
+import './NewCardButton.scss';
 
 export default function NewCardButton(props) {
     const image = require('../../assets/images/plus-icon.png');

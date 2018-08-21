@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './LikeButton.css';
+import './LikeButton.scss';
 
 export default function LikeButton(props) {
     const image = props.isLiked ?

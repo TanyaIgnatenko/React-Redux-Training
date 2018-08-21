@@ -1,3 +1,5 @@
+@import '../../index';
+
 .card__container {
     display: flex;
     flex-direction: column;
@@ -10,15 +12,17 @@
 
 .card__title {
     font-size: 24pt;
-    font-family: Roboto, sans-serif;
+    font-family: $font-stack;
     font-weight: bold;
+    color: $card-title-color;
     margin: 0;
 }
 
 .card__description {
     font-size: 20pt;
-    font-family: Roboto, sans-serif;
+    font-family: $font-stack;
     hyphens: manual;
+    color: $card-description-color;
 
     height: 160px;
     overflow: hidden;

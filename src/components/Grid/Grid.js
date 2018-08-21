@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Grid.css';
+import './Grid.scss';
 
 export default function Grid(props) {
     const elems = props.elems.map((elem, idx) => <div key={idx} display='inline'> {elem} </div>);

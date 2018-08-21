@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import LikeButton from '../LikeButton/LikeButton';
 import EditButton from '../EditButton/EditButton';
 
-import './Card.css';
+import './Card.scss';
 
 export default function Card(props) {
     const description = props.description.length <= 123 ? props.description : props.description.slice(0, 123);
