@@ -36,6 +36,19 @@ export function removeCard(id) {
     localStorage.setItem('cards', JSON.stringify(cards));
 }
 
+export function saveTempCard(card) {
+    const temporalCards = JSON.parse(localStorage.getItem('temporalCards'));
+    lastVersionCard = temporalCards.find(elem => elem.id === card.id);
+}
+
+export function getTempCard(id) {
+
+}
+
+export function deleteTempCard(card) {
+
+}
+
 function getCardIdx(id) {
     const cards = JSON.parse(localStorage.getItem('cards')) || [];
     return cards.findIndex(card => card.id === id);

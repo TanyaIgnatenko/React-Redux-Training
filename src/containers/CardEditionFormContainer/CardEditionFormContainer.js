@@ -15,6 +15,11 @@ export default class CardEditionFormContainer extends React.Component {
         };
     }
 
+    handlePageReload = () => {
+        const card = this.getCurrentCardByState();
+        CardsStorageController.saveTempCard(card);
+    };
+
     handleInputChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value
@@ -24,34 +29,39 @@ export default class CardEditionFormContainer extends React.Component {
     handleSaveClick = (event) => {
         event.preventDefault();
 
-        const card = {
-            title: this.state.title,
-            description: this.state.description
-        };
-        if (this.props.cardExist) {
-            card.id = this.props.id;
-            card.isLiked = this.card.isLiked;
-
-            if (!isEqual(card, this.card)) {
-                CardsStorageController.replaceCard(card.id, card);
-            }
+        const card = this.getCurrentCardByState();
+        if (this.props.cardExist && !isEqual(card, this.card)) {
+            CardsStorageController.replaceCard(card.id, card);
         } else {
-            card.isLiked = false;
             CardsStorageController.addCard(card);
         }
-
+        CardsStorageController.deleteTempCard();
         this.props.history.push(Routes.CARD_LIST);
     };
 
     handleCardDeletion = () => CardsStorageController.removeCard(this.props.id);
 
+    getCurrentCardByState() {
+        const card = {
+            id: this.card.id,
+            title: this.state.title,
+            description: this.state.description,
+            isLiked: this.card.isLiked
+        };
+    }
+
     componentDidMount() {
-        if (this.props.cardExist) {
-            this.card = CardsStorageController.fetchCard(this.props.id);
-            this.setState({
-                title: this.card.title,
-                description: this.card.description
-            });
+        this.card = CardsStorageController.getTempCard(this.props.id);
+        if (this.card === null) {
+            if (this.props.cardExist) {
+                this.card = CardsStorageController.fetchCard(this.props.id);
+                this.setState({
+                    title: this.card.title,
+                    description: this.card.description
+                });
+            } else {
+                this.card = {isLiked: false};
+            }
         }
     }
 
