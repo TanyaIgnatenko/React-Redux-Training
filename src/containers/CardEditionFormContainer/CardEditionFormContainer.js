@@ -67,8 +67,6 @@ export default class CardEditionFormContainer extends React.Component {
             this.previousCard = CardsStorageController.fetchCard(this.props.id);
         }
         const tempCard = CardsStorageController.fetchTempCard(this.props.id);
-        console.log(`tempCard`);
-        console.log(tempCard);
         if (tempCard !== undefined) {
             this.setState({
                 title: tempCard.title,
