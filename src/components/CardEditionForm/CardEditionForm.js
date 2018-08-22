@@ -13,7 +13,7 @@ export default function CardEditionForm(props) {
             <Link to={Routes.CARD_LIST}>
                 <input
                     type='button'
-                    className='card-edition-form__delete-button'
+                    className={'card-edition-form__delete-button'}
                     value='Delete'
                     onClick={props.onDelete}
                 />
@@ -21,10 +21,10 @@ export default function CardEditionForm(props) {
         );
 
     return (
-        <form className='card-edition-form__container' onSubmit={props.onSave}>
+        <form className={'card-edition-form__container'} onSubmit={props.onSave}>
             <input
                 type='text'
-                className='card-edition-form__title-field'
+                className={'card-edition-form__title-field'}
                 value={props.title}
                 name='title'
                 placeholder='Enter title'
@@ -33,7 +33,7 @@ export default function CardEditionForm(props) {
             />
             <textarea
                 rows='5'
-                className='card-edition-form__description-field'
+                className={'card-edition-form__description-field'}
                 value={props.description}
                 name='description'
                 placeholder='Enter text'
@@ -41,10 +41,10 @@ export default function CardEditionForm(props) {
                 required
             />
 
-            <div className='card-edition-form__buttons-container'>
+            <div className={'card-edition-form__buttons-container'}>
                 <input
                     type='submit'
-                    className='card-edition-form__save-button'
+                    className={'card-edition-form__save-button'}
                     value='Save'
                 />
                 {deleteButton}

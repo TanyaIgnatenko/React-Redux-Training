@@ -5,9 +5,9 @@ import './Page.scss';
 
 export default function Page(props) {
     return (
-        <div className='page__container'>
-            <h1 className='page__title'>{props.title}</h1>
-            <div className='page__content-container'>
+        <div className={'page__container'}>
+            <h1 className={'page__title'}>{props.title}</h1>
+            <div className={'page__content-container'}>
                 {props.content}
             </div>
         </div>

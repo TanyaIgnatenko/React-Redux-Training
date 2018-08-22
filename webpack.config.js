@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const Dotenv = require('dotenv-webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const NODE_ENV = process.env.NODE_ENV;
 
 const publicFolder = path.resolve(__dirname, 'public');
 const srcFolder = path.resolve(__dirname, 'src');
@@ -42,13 +43,13 @@ const config = {
      * Define configuration mode
      * https://webpack.js.org/concepts/mode/
      */
-    mode: process.env.NODE_ENV,
+    mode: NODE_ENV,
 
     /**
      * Source maps
      * https://webpack.js.org/configuration/devtool/
      */
-    devtool: process.env.NODE_ENV !== 'production' ? 'source-map' : false,
+    devtool: NODE_ENV !== 'production' ? 'source-map' : false,
 
     /**
      * Entry application point
@@ -64,7 +65,7 @@ const config = {
     output: {
         publicPath: '/',
         path: publicFolder,
-        filename: process.env.NODE_ENV !== 'production' ? '[hash].bundle.js' : '[hash].bundle.min.js'
+        filename: NODE_ENV !== 'production' ? '[hash].bundle.js' : '[hash].bundle.min.js'
     },
 
     /**
@@ -147,7 +148,7 @@ const config = {
                         {
                             loader: 'css-loader',
                             options: {
-                                minimize: process.env.NODE_ENV === 'production'
+                                minimize: NODE_ENV === 'production'
                             }
                         }
                     ]
@@ -163,10 +164,10 @@ const config = {
                         {
                             loader: 'css-loader',
                             options: {
-                                minimize: process.env.NODE_ENV === 'production',
+                                minimize: NODE_ENV === 'production',
                                 modules: true,
                                 importLoaders: 2,
-                                localIdentName: '[local]-[hash:base64:5]'
+                                localIdentName: '[local]'
                             }
                         },
                         ...defaultStyleLoaders
@@ -183,7 +184,7 @@ const config = {
                         {
                             loader: 'css-loader',
                             options: {
-                                minimize: process.env.NODE_ENV === 'production'
+                                minimize: NODE_ENV === 'production'
                             }
                         },
                         ...defaultStyleLoaders
@@ -223,9 +224,9 @@ const config = {
         }),
 
         new ExtractTextPlugin({
-            filename: process.env.NODE_ENV !== 'production' ? '[hash].styles.css' : '[hash].style.min.css',
+            filename: NODE_ENV !== 'production' ? '[hash].styles.css' : '[hash].style.min.css',
             allChunks: true,
-            disable: process.env.NODE_ENV === 'development'
+            disable: NODE_ENV === 'development'
         }),
 
         new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ru/),

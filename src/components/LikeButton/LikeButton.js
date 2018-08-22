@@ -1,18 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import filledLikeIcon from '../../assets/images/filled-like.png';
+import notFilledLikeIcon from '../../assets/images/not-filled-like.png';
+
 import './LikeButton.scss';
 
 export default function LikeButton(props) {
-    const image = props.isLiked ?
-        require('../../assets/images/clicked-like.png') :
-        require('../../assets/images/not-clicked-like.png');
+    const image = props.isLiked ? filledLikeIcon : notFilledLikeIcon;
 
     return (
         <input
             type='image'
             src={image}
-            className='like'
+            className={'like'}
             onClick={props.onClick}
         />
     );

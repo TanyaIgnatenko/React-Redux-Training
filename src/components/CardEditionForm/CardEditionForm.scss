@@ -59,6 +59,7 @@ $card-color: antiquewhite;
     font-family: $font-stack;
     font-size: 16px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .card-edition-form__delete-button {
@@ -72,6 +73,7 @@ $card-color: antiquewhite;
     font-family: $font-stack;
     font-size: 18px;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .card-edition-form__title-field::-webkit-input-placeholder {
@@ -117,3 +119,4 @@ $card-color: antiquewhite;
     font-family: $font-stack;
     font-size: 16px;
 }
+

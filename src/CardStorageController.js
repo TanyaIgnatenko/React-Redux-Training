@@ -1,53 +1,90 @@
+let cards = JSON.parse(localStorage.getItem('cards')) || [];
+let tempCards = JSON.parse(localStorage.getItem('tempCards')) || [];
 let nextCardId = getInitialNextCardId();
 
 export function fetchCards() {
-    const cards = JSON.parse(localStorage.getItem('cards')) || [];
     return cards;
 }
 
 export function fetchCard(id) {
-    const cards = JSON.parse(localStorage.getItem('cards')) || [];
     return cards.find(card => card.id === id);
 }
 
 export function addCard(card) {
-    let cards;
-    cards = JSON.parse(localStorage.getItem('cards')) || [];
-    card.id = nextCardId;
-    ++nextCardId;
+    card.id = getNextCardId();
     cards.push(card);
-
-    localStorage.setItem('cards', JSON.stringify(cards));
+    storeCards(cards);
 }
 
 export function replaceCard(id, card) {
-    const cards = JSON.parse(localStorage.getItem('cards')) || [];
     const cardIdx = getCardIdx(id);
-    cards.splice(cardIdx, 1, card);
-
-    localStorage.setItem('cards', JSON.stringify(cards));
+    if (cardIdx === -1) {
+        addCard(card);
+    } else {
+        cards.splice(cardIdx, 1, card);
+        storeCards(cards);
+    }
 }
 
 export function removeCard(id) {
-    const cards = JSON.parse(localStorage.getItem('cards')) || [];
     const cardIdx = getCardIdx(id);
-    cards.splice(cardIdx, 1);
+    if (cardIdx === -1) {
+        return;
+    }
 
-    localStorage.setItem('cards', JSON.stringify(cards));
+    cards.splice(cardIdx, 1);
+    storeCards(cards);
+}
+
+export function fetchTempCard(id) {
+    return tempCards.find(card => card.id === id);
+}
+
+export function addTempCard(card) {
+    tempCards.push(card);
+    storeTempCards(tempCards);
+}
+
+export function deleteTempCard(id) {
+    const cardIdx = getTempCardIdx(id);
+    if (cardIdx === -1) {
+        return;
+    }
+
+    tempCards.splice(cardIdx, 1);
+    storeTempCards(tempCards);
+}
+
+export function deleteTempCards() {
+    tempCards.length = 0;
+    storeTempCards(tempCards);
 }
 
 function getCardIdx(id) {
-    const cards = JSON.parse(localStorage.getItem('cards')) || [];
     return cards.findIndex(card => card.id === id);
 }
 
 function getLastCardId() {
-    let cards = JSON.parse(localStorage.getItem('cards'));
-    return cards === null ? -1 : cards[cards.length -1].id;
+    return cards.length === 0 ? -1 : cards[cards.length - 1].id;
 }
 
 function getInitialNextCardId() {
     const lastCardId = getLastCardId();
-    return lastCardId !== undefined ? lastCardId + 1 : 0;
+    return lastCardId === -1 ? 0 : lastCardId + 1;
 }
 
+function getNextCardId() {
+    return nextCardId++;
+}
+
+function storeCards(cards) {
+    localStorage.setItem('cards', JSON.stringify(cards));
+}
+
+function getTempCardIdx(id) {
+    return tempCards.findIndex(card => card.id === id);
+}
+
+function storeTempCards(cards) {
+    localStorage.setItem('tempCards', JSON.stringify(tempCards));
+}

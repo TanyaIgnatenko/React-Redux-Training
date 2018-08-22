@@ -1,12 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import editIcon from '../../assets/images/edit-icon.png';
+
 export default function EditButton(props) {
-    const image = require('../../assets/images/edit-icon.png');
     return (
         <input
             type='image'
-            src={image}
+            src={editIcon}
             onClick={props.onClick}
         />
     );
