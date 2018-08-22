@@ -4,21 +4,36 @@ import PropTypes from 'prop-types';
 import CardEditionForm from '../../components/CardEditionForm/CardEditionForm';
 import * as CardsStorageController from '../../CardStorageController';
 import Routes from '../../routes';
-import isEqual from '../../utils/CardComparator';
 
 export default class CardEditionFormContainer extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             title: '',
             description: ''
         };
     }
 
-    handlePageReload = () => {
-        const card = this.getCurrentCardByState();
-        CardsStorageController.saveTempCard(card);
-    };
+    getChangedCard() {
+        let card;
+        if (this.props.cardExist) {
+            card = {
+                id: this.previousCard.id,
+                title: this.state.title,
+                description: this.state.description,
+                isLiked: this.previousCard.isLiked
+            };
+        } else {
+            card = {
+                id: null,
+                title: this.state.title,
+                description: this.state.description,
+                isLiked: false
+            };
+        }
+        return card;
+    }
 
     handleInputChange = (event) => {
         this.setState({
@@ -29,40 +44,41 @@ export default class CardEditionFormContainer extends React.Component {
     handleSaveClick = (event) => {
         event.preventDefault();
 
-        const card = this.getCurrentCardByState();
-        if (this.props.cardExist && !isEqual(card, this.card)) {
-            CardsStorageController.replaceCard(card.id, card);
+        const changedCard = this.getChangedCard();
+        if (this.props.cardExist) {
+            CardsStorageController.replaceCard(changedCard.id, changedCard);
         } else {
-            CardsStorageController.addCard(card);
+            CardsStorageController.addCard(changedCard);
         }
-        CardsStorageController.deleteTempCard();
+        CardsStorageController.deleteTempCard(changedCard.id);
         this.props.history.push(Routes.CARD_LIST);
     };
 
     handleCardDeletion = () => CardsStorageController.removeCard(this.props.id);
 
-    getCurrentCardByState() {
-        const card = {
-            id: this.card.id,
-            title: this.state.title,
-            description: this.state.description,
-            isLiked: this.card.isLiked
-        };
-    }
+    handlePageReload = () => {
+        const changedCard = this.getChangedCard();
+        CardsStorageController.addTempCard(changedCard);
+    };
 
     componentDidMount() {
-        this.card = CardsStorageController.getTempCard(this.props.id);
-        if (this.card === null) {
-            if (this.props.cardExist) {
-                this.card = CardsStorageController.fetchCard(this.props.id);
-                this.setState({
-                    title: this.card.title,
-                    description: this.card.description
-                });
-            } else {
-                this.card = {isLiked: false};
-            }
+        if (this.props.cardExist) {
+            this.previousCard = CardsStorageController.fetchCard(this.props.id);
         }
+        const tempCard = CardsStorageController.fetchTempCard(this.props.id);
+        if (tempCard !== undefined) {
+            this.setState({
+                title: tempCard.title,
+                description: tempCard.description
+            });
+        } else if (this.props.cardExist) {
+            this.setState({
+                title: this.previousCard.title,
+                description: this.previousCard.description
+            });
+        }
+
+        window.addEventListener('beforeunload', this.handlePageReload);
     }
 
     render() {
@@ -79,6 +95,10 @@ export default class CardEditionFormContainer extends React.Component {
         );
     }
 }
+
+CardEditionFormContainer.defaultProps = {
+    id: null
+};
 
 CardEditionFormContainer.propTypes = {
     id: PropTypes.number,
