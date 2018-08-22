@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Page from '../../components/Page/Page';
+
 import CardEditionFormContainer from '../CardEditionFormContainer/CardEditionFormContainer';
+import Page from '../../components/Page/Page';
 
 export default function CardEditionPageContainer(props) {
     const cardId = parseInt(props.match.params.id, 10);

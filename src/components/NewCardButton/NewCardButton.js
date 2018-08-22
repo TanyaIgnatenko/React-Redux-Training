@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './NewCardButton.css';
 import plusIcon from '../../assets/images/plus-icon.png';
+
+import './NewCardButton.css';
 
 export default function NewCardButton(props) {
     return (
