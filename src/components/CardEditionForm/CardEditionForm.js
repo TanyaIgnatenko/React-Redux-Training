@@ -35,6 +35,7 @@ export default function CardEditionForm(props) {
             />
             <textarea
                 rows='10'
+                cols='33'
                 className={'card-edition-form__description-field'}
                 value={props.description}
                 name='description'
@@ -42,7 +43,7 @@ export default function CardEditionForm(props) {
                 onChange={props.onDescriptionInputChange}
                 required
                 minLength='5'
-                maxLength='180'
+                maxLength='90'
             />
 
             <div className={'card-edition-form__buttons-container'}>

@@ -21,9 +21,9 @@
 .card__description {
     font-size: 20pt;
     font-family: $font-stack;
-    hyphens: manual;
     color: $card-description-color;
 
+    word-break: break-all;
     height: 160px;
     overflow: hidden;
     margin: 20px 0 0 0;
