@@ -4,7 +4,7 @@
 ## Installation
 
 Install the dependencies.
-Go to the directory with the repository and run:
+Go to the directory with the repository and run
 
 ```
 npm install
@@ -12,13 +12,13 @@ npm install
 
 
 ## Use
-For development run
+For development build run
 
 ```
 npm start
 ```
 
-For production run
+For production build run
 
 ```
 npm run build
