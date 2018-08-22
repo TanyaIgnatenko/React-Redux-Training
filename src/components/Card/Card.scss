@@ -23,7 +23,7 @@
     font-family: $font-stack;
     color: $card-description-color;
 
-    word-break: break-all;
+    overflow-wrap: break-word;
     height: 160px;
     overflow: hidden;
     margin: 20px 0 0 0;
