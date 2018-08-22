@@ -55,6 +55,11 @@ export function deleteTempCard(id) {
     storeTempCards(tempCards);
 }
 
+export function deleteTempCards() {
+    tempCards.length = 0;
+    storeTempCards(tempCards);
+}
+
 function getCardIdx(id) {
     return cards.findIndex(card => card.id === id);
 }

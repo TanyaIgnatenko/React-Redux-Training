@@ -1,6 +1,7 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React from 'react';
 import PropTypes from 'prop-types';
+
 import CardEditionForm from '../../components/CardEditionForm/CardEditionForm';
 import * as CardsStorageController from '../../CardStorageController';
 import Routes from '../../routes';
@@ -66,6 +67,8 @@ export default class CardEditionFormContainer extends React.Component {
             this.previousCard = CardsStorageController.fetchCard(this.props.id);
         }
         const tempCard = CardsStorageController.fetchTempCard(this.props.id);
+        console.log(`tempCard`);
+        console.log(tempCard);
         if (tempCard !== undefined) {
             this.setState({
                 title: tempCard.title,

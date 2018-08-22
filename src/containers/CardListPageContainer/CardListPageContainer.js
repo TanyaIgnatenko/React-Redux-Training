@@ -14,7 +14,7 @@ export default class CardListPageContainer extends React.Component {
         this.cards = [];
     }
     componentDidMount() {
-
+        CardsStorageController.deleteTempCards();
     }
 
     render() {
