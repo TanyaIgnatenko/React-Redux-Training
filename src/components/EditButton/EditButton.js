@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import * as editIcon from '../../assets/images/edit-icon.png';
+import editIcon from '../../assets/images/edit-icon.png';
 
 export default function EditButton(props) {
     return (

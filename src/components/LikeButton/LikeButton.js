@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './LikeButton.css';
-import * as filledLikeIcon from '../../assets/images/filled-like.png';
-import * as notFilledLikeIcon from '../../assets/images/not-filled-like.png';
+import filledLikeIcon from '../../assets/images/filled-like.png';
+import notFilledLikeIcon from '../../assets/images/not-filled-like.png';
 
 export default function LikeButton(props) {
     const image = props.isLiked ? filledLikeIcon : notFilledLikeIcon;
