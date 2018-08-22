@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 import LikeButton from '../LikeButton/LikeButton';
 import EditButton from '../EditButton/EditButton';
 
-import './Card.css';
+import './Card.scss';
 
 export default function Card(props) {
     const description = props.description.length <= 123 ? props.description : props.description.slice(0, 123);
     return (
-        <div className='card__container'>
-            <h2 className='card__title'>{props.title}</h2>
-            <p className='card__description'>{description}</p>
+        <div className={'card__container'}>
+            <h2 className={'card__title'}>{props.title}</h2>
+            <p className={'card__description'}>{description}</p>
             <div className={'card__buttons-container'}>
                 <EditButton onClick={props.onEditClick}/>
                 <LikeButton isLiked={props.isLiked} onClick={props.onLikeClick}/>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import filledLikeIcon from '../../assets/images/filled-like.png';
 import notFilledLikeIcon from '../../assets/images/not-filled-like.png';
 
-import './LikeButton.css';
+import './LikeButton.scss';
 
 export default function LikeButton(props) {
     const image = props.isLiked ? filledLikeIcon : notFilledLikeIcon;
@@ -13,7 +13,7 @@ export default function LikeButton(props) {
         <input
             type='image'
             src={image}
-            className='like'
+            className={'like'}
             onClick={props.onClick}
         />
     );

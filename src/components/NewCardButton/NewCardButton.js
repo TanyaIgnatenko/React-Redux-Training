@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 
 import plusIcon from '../../assets/images/plus-icon.png';
 
-import './NewCardButton.css';
+import './NewCardButton.scss';
 
 export default function NewCardButton(props) {
     return (
-        <div className='new-card-button__container'>
+        <div className={'new-card-button__container'}>
             <input type='image' src={plusIcon} onClick={props.onClick}/>
         </div>
     );

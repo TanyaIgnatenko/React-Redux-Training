@@ -1,0 +1,12 @@
+$primary-color: white;
+$page-title-color: #383838;
+$card-title-color: #414141;
+$card-description-color: #414141;
+$placeholder-color: #414141;
+
+$font-stack: Roboto, sans-serif;
+
+html, body, #root {
+    height: 100%;
+    background-color: $primary-color;
+}
