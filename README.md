@@ -12,13 +12,13 @@ npm install
 
 
 ## Use
-For development build run
+For development usage run
 
 ```
 npm start
 ```
 
-For production build run
+For production usage run
 
 ```
 npm run build
