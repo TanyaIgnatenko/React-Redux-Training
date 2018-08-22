@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './NewCardButton.css';
+import * as plusIcon from '../../assets/images/plus-icon.png';
 
 export default function NewCardButton(props) {
-    const image = require('../../assets/images/plus-icon.png');
     return (
         <div className='new-card-button__container'>
-            <input type='image' src={image} onClick={props.onClick}/>
+            <input type='image' src={plusIcon} onClick={props.onClick}/>
         </div>
     );
 }
