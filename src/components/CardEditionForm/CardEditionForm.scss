@@ -76,47 +76,27 @@ $card-color: antiquewhite;
     cursor: pointer;
 }
 
-.card-edition-form__title-field::-webkit-input-placeholder {
+
+@mixin title-placeholder {
+    .card-edition-form__title-field::-webkit-input-placeholder {@content}
+    .card-edition-form__title-field:-moz-placeholder           {@content}
+    .card-edition-form__title-field::-moz-placeholder          {@content}
+    .card-edition-form__title-field:-ms-input-placeholder      {@content}
+}
+
+@mixin description-placeholder {
+    .card-edition-form__description-field::-webkit-input-placeholder {@content}
+    .card-edition-form__description-field:-moz-placeholder           {@content}
+    .card-edition-form__description-field::-moz-placeholder          {@content}
+    .card-edition-form__description-field:-ms-input-placeholder      {@content}
+}
+
+@include title-placeholder {
     font-family: $font-stack;
     font-size: 16px;
 }
 
-.card-edition-form__title-field:-ms-input-placeholder {
-    font-family: $font-stack;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.card-edition-form__title-field:-moz-placeholder {
-    font-family: $font-stack;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.card-edition-form__title-field::-moz-placeholder {
-    font-family: $font-stack;
-    font-size: 20px;
-    font-weight: bold;
-}
-
-.card-edition-form__description-field::-webkit-input-placeholder {
-    font-family: $font-stack;
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.card-edition-form__description-field:-ms-input-placeholder {
+@include description-placeholder{
     font-family: $font-stack;
     font-size: 16px;
 }
-
-.card-edition-form__description-field:-moz-placeholder {
-    font-family: $font-stack;
-    font-size: 16px;
-}
-
-.card-edition-form__description-field::-moz-placeholder {
-    font-family: $font-stack;
-    font-size: 16px;
-}
-
