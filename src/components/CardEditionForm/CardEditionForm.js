@@ -30,15 +30,19 @@ export default function CardEditionForm(props) {
                 placeholder='Enter title'
                 onChange={props.onTitleInputChange}
                 required
+                minLength='4'
+                maxLength='15'
             />
             <textarea
-                rows='5'
+                rows='10'
                 className={'card-edition-form__description-field'}
                 value={props.description}
                 name='description'
                 placeholder='Enter text'
                 onChange={props.onDescriptionInputChange}
                 required
+                minLength='5'
+                maxLength='180'
             />
 
             <div className={'card-edition-form__buttons-container'}>
