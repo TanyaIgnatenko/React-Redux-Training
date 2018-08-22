@@ -24,6 +24,3 @@ For production usage run
 npm run build
 ```
 
-## Authors
-
-**Tatiana Ignatenko**
