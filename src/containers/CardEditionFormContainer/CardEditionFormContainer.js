@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CardEditionForm from '../../components/CardEditionForm/CardEditionForm';
-import * as CardsStorageController from '../../CardStorageController';
+import * as CardsStorageController from '../../utils/CardStorageController';
 import Routes from '../../config';
 
 export default class CardEditionFormContainer extends React.Component {

@@ -5,7 +5,7 @@ import Page from '../../components/Page/Page';
 import Grid from '../../components/Grid/Grid';
 import CardContainer from '../CardContainer/CardContainer';
 import NewCardButtonContainer from '../NewCardButtonContainer/NewCardButtonContainer';
-import * as CardsStorageController from '../../CardStorageController';
+import * as CardsStorageController from '../../utils/CardStorageController';
 
 
 export default class CardListPageContainer extends React.Component {
