@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
-const Dotenv = require('dotenv-webpack');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const NODE_ENV = process.env.NODE_ENV;
 
@@ -230,8 +229,7 @@ const config = {
         }),
 
         new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /ru/),
-        new webpack.HotModuleReplacementPlugin(),
-        new Dotenv()
+        new webpack.HotModuleReplacementPlugin()
     ],
 
     /**
