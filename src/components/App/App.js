@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import CardCreationPageContainer from '../../containers/CardCreationPageContainer/CardCreationPageContainer';
 import CardEditionPageContainer from '../../containers/CardEditionPageContainer/CardEditionPageContainer';
 import CardListPageContainer from '../../containers/CardListPageContainer/CardListPageContainer';
-import Routes from '../../routes';
+import Routes from '../../config';
 
 
 export default function App(props) {
