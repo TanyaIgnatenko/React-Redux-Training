@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../components/Card/Card';
-import * as CardStorageController from '../../utils/CardStorageController';
 import Routes from '../../config';
+import CardStorageController from '../../utils/CardStorageController';
 
 export default class CardContainer extends React.Component {
     constructor(props) {
