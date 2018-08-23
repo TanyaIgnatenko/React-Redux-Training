@@ -1,23 +1,18 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import PropTypes from 'prop-types';
-
-import Routes from '../../routes';
 
 import './CardEditionForm.scss';
 
 export default function CardEditionForm(props) {
-    const deleteButton = props.cardExist === false ?
+    const deleteButton = !props.cardExist ?
         null :
         (
-            <Link to={Routes.CARD_LIST}>
-                <input
-                    type='button'
-                    className={'card-edition-form__delete-button'}
-                    value='Delete'
-                    onClick={props.onDelete}
-                />
-            </Link>
+            <input
+                type='button'
+                className={'card-edition-form__delete-button'}
+                value='Delete'
+                onClick={props.onDelete}
+            />
         );
 
     return (

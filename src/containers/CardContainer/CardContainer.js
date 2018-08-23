@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Card from '../../components/Card/Card';
-import * as CardStorageController from '../../CardStorageController';
-import Routes from '../../routes';
+import Routes from '../../config';
+import CardStorageController from '../../utils/CardStorageController';
 
 export default class CardContainer extends React.Component {
     constructor(props) {
@@ -11,6 +11,14 @@ export default class CardContainer extends React.Component {
         this.state = {
             isLiked: this.props.card.isLiked
         };
+    }
+
+    componentDidMount() {
+        window.addEventListener('beforeunload', this.saveLikeState);
+    }
+
+    componentWillUnmount() {
+        this.saveLikeState();
     }
 
     toggleLikeHandler = () => {
@@ -26,14 +34,6 @@ export default class CardContainer extends React.Component {
             CardStorageController.replaceCard(card.id, card);
         }
     };
-
-    componentDidMount() {
-        window.addEventListener('beforeunload', this.saveLikeState);
-    }
-
-    componentWillUnmount() {
-        this.saveLikeState();
-    }
 
     render() {
         return (

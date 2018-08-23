@@ -30,11 +30,11 @@
       "warn",
       {
         "order": [
-          "constructor",
           "static-methods",
-          "everything-else",
-          "/^handle.+$/",
+          "constructor",
           "lifecycle",
+          "/^handle.+$/",
+          "everything-else",
           "render"
         ]
       }

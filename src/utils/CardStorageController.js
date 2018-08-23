@@ -2,21 +2,21 @@ let cards = JSON.parse(localStorage.getItem('cards')) || [];
 let tempCards = JSON.parse(localStorage.getItem('tempCards')) || [];
 let nextCardId = getInitialNextCardId();
 
-export function fetchCards() {
+function fetchCards() {
     return cards;
 }
 
-export function fetchCard(id) {
+function fetchCard(id) {
     return cards.find(card => card.id === id);
 }
 
-export function addCard(card) {
+function addCard(card) {
     card.id = getNextCardId();
     cards.push(card);
     storeCards(cards);
 }
 
-export function replaceCard(id, card) {
+function replaceCard(id, card) {
     const cardIdx = getCardIdx(id);
     if (cardIdx === -1) {
         addCard(card);
@@ -26,7 +26,7 @@ export function replaceCard(id, card) {
     }
 }
 
-export function removeCard(id) {
+function removeCard(id) {
     const cardIdx = getCardIdx(id);
     if (cardIdx === -1) {
         return;
@@ -36,16 +36,16 @@ export function removeCard(id) {
     storeCards(cards);
 }
 
-export function fetchTempCard(id) {
+function fetchTempCard(id) {
     return tempCards.find(card => card.id === id);
 }
 
-export function addTempCard(card) {
+function addTempCard(card) {
     tempCards.push(card);
     storeTempCards(tempCards);
 }
 
-export function deleteTempCard(id) {
+function deleteTempCard(id) {
     const cardIdx = getTempCardIdx(id);
     if (cardIdx === -1) {
         return;
@@ -55,7 +55,7 @@ export function deleteTempCard(id) {
     storeTempCards(tempCards);
 }
 
-export function deleteTempCards() {
+function deleteTempCards() {
     tempCards.length = 0;
     storeTempCards(tempCards);
 }
@@ -88,3 +88,15 @@ function getTempCardIdx(id) {
 function storeTempCards(cards) {
     localStorage.setItem('tempCards', JSON.stringify(tempCards));
 }
+
+export default {
+    fetchCards,
+    fetchCard,
+    addCard,
+    replaceCard,
+    removeCard,
+    fetchTempCard,
+    addTempCard,
+    deleteTempCard,
+    deleteTempCards
+};
