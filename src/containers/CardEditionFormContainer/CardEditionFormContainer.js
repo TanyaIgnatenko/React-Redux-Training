@@ -55,7 +55,10 @@ export default class CardEditionFormContainer extends React.Component {
         this.props.history.push(Routes.CARD_LIST);
     };
 
-    handleCardDeletion = () => CardsStorageController.removeCard(this.props.id);
+    handleCardDeletion = () => {
+        CardsStorageController.removeCard(this.props.id);
+        this.props.history.push(Routes.CARD_LIST);
+    }
 
     handlePageReload = () => {
         const changedCard = this.getChangedCard();
