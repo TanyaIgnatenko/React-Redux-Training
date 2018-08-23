@@ -13,6 +13,14 @@ export default class CardContainer extends React.Component {
         };
     }
 
+    componentDidMount() {
+        window.addEventListener('beforeunload', this.saveLikeState);
+    }
+
+    componentWillUnmount() {
+        this.saveLikeState();
+    }
+
     toggleLikeHandler = () => {
         this.setState({isLiked: !this.state.isLiked});
     };
@@ -26,14 +34,6 @@ export default class CardContainer extends React.Component {
             CardStorageController.replaceCard(card.id, card);
         }
     };
-
-    componentDidMount() {
-        window.addEventListener('beforeunload', this.saveLikeState);
-    }
-
-    componentWillUnmount() {
-        this.saveLikeState();
-    }
 
     render() {
         return (

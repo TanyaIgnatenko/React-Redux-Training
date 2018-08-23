@@ -16,24 +16,24 @@ export default class CardEditionFormContainer extends React.Component {
         };
     }
 
-    getChangedCard() {
-        let card;
+    componentDidMount() {
         if (this.props.cardExist) {
-            card = {
-                id: this.previousCard.id,
-                title: this.state.title,
-                description: this.state.description,
-                isLiked: this.previousCard.isLiked
-            };
-        } else {
-            card = {
-                id: null,
-                title: this.state.title,
-                description: this.state.description,
-                isLiked: false
-            };
+            this.previousCard = CardsStorageController.fetchCard(this.props.id);
         }
-        return card;
+        const tempCard = CardsStorageController.fetchTempCard(this.props.id);
+        if (tempCard !== undefined) {
+            this.setState({
+                title: tempCard.title,
+                description: tempCard.description
+            });
+        } else if (this.props.cardExist) {
+            this.setState({
+                title: this.previousCard.title,
+                description: this.previousCard.description
+            });
+        }
+
+        window.addEventListener('beforeunload', this.handlePageReload);
     }
 
     handleInputChange = (event) => {
@@ -62,24 +62,24 @@ export default class CardEditionFormContainer extends React.Component {
         CardsStorageController.addTempCard(changedCard);
     };
 
-    componentDidMount() {
+    getChangedCard() {
+        let card;
         if (this.props.cardExist) {
-            this.previousCard = CardsStorageController.fetchCard(this.props.id);
+            card = {
+                id: this.previousCard.id,
+                title: this.state.title,
+                description: this.state.description,
+                isLiked: this.previousCard.isLiked
+            };
+        } else {
+            card = {
+                id: null,
+                title: this.state.title,
+                description: this.state.description,
+                isLiked: false
+            };
         }
-        const tempCard = CardsStorageController.fetchTempCard(this.props.id);
-        if (tempCard !== undefined) {
-            this.setState({
-                title: tempCard.title,
-                description: tempCard.description
-            });
-        } else if (this.props.cardExist) {
-            this.setState({
-                title: this.previousCard.title,
-                description: this.previousCard.description
-            });
-        }
-
-        window.addEventListener('beforeunload', this.handlePageReload);
+        return card;
     }
 
     render() {
