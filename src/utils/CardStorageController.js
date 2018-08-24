@@ -1,3 +1,4 @@
+const CARD_START_ID = 100;
 let cards = JSON.parse(localStorage.getItem('cards')) || [];
 let tempCards = JSON.parse(localStorage.getItem('tempCards')) || [];
 let nextCardId = getInitialNextCardId();
@@ -70,7 +71,7 @@ function getLastCardId() {
 
 function getInitialNextCardId() {
     const lastCardId = getLastCardId();
-    return lastCardId === -1 ? 0 : lastCardId + 1;
+    return lastCardId === -1 ? CARD_START_ID : lastCardId + 1;
 }
 
 function getNextCardId() {

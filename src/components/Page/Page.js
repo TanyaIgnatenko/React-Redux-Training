@@ -8,7 +8,7 @@ export default function Page(props) {
         <div className={'page__container'}>
             <h1 className={'page__title'}>{props.title}</h1>
             <div className={'page__content-container'}>
-                {props.content}
+                {props.children}
             </div>
         </div>
     );
@@ -21,5 +21,5 @@ PropTypes.default = {
 
 Page.propTypes = {
     title: PropTypes.string,
-    content: PropTypes.element
+    children: PropTypes.element
 };
