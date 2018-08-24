@@ -15,12 +15,12 @@ npm install
 For development usage run
 
 ```
-npm start
+npm run start:dev
 ```
 
 For production usage run
 
 ```
-npm run build
+npm run start:prod
 ```
 
