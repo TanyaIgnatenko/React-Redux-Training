@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Page from '../../components/Page/Page';
-import LoginForm from '../../components/LoginForm/LoginForm';
+import SignUpForm from '../../components/SignUpForm/SignUpForm';
 
-class LoginPageContainer extends Component {
+class SignUpPageContainer extends Component {
     state = {
         email: '',
-        password: ''
+        password: '',
+        confirmPassword: ''
     };
 
     onChange = (event) => {
@@ -15,24 +16,25 @@ class LoginPageContainer extends Component {
         });
     };
 
-    onLoginClick = (event) => {
+    onSignUpClick = (event) => {
         event.preventDefault();
-        //save credentials
+        //check credentials
     };
 
     render() {
         return (
-            <Page title='Login'>
-                <LoginForm
+            <Page title='Sign up'>
+                <SignUpForm
                     email={this.state.email}
                     password={this.state.password}
-                    onLoginClick={this.onLoginClick}
+                    confirmPassword={this.state.confirmPassword}
                     onChange={this.onChange}
+                    onSignUpClick={this.onSignUpClick}
                 />
             </Page>
         );
     }
 }
 
-export default LoginPageContainer;
+export default SignUpPageContainer;
 

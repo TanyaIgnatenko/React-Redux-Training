@@ -7,6 +7,7 @@ import CardListPageContainer from '../../containers/CardListPageContainer/CardLi
 import Routes from '../../config';
 import NavBar from '../../components/NavBar/NavBar';
 import LoginPageContainer from '../LoginPageContainer/LoginPageContainer';
+import SignUpPageContainer from '../SignUpPageContainer/SignUpPageContainer';
 
 
 export default function AppContainer(props) {
@@ -17,6 +18,7 @@ export default function AppContainer(props) {
                 <Switch>
                     <Route exact path={Routes.CARD_LIST} component={CardListPageContainer}/>
                     <Route path={Routes.LOGIN} component={LoginPageContainer}/>
+                    <Route path={Routes.SIGN_UP} component={SignUpPageContainer}/>
                     <Route path={Routes.CREATE_CARD} component={CardCreationPageContainer}/>
                     <Route path={Routes.EDIT_CARD} component={CardEditionPageContainer}/>
                 </Switch>

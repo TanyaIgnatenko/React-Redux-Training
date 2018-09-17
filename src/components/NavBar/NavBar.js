@@ -17,7 +17,7 @@ function NavBar(props) {
                     <NavItem eventKey={1} href={Routes.LOGIN}>
                         Login
                     </NavItem>
-                    <NavItem eventKey={2} href='#'>
+                    <NavItem eventKey={2} href={Routes.SIGN_UP}>
                         Sign up
                     </NavItem>
                 </Nav>
