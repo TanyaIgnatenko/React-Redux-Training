@@ -42,9 +42,9 @@ function SignUpForm(props) {
                 <Col sm={10}>
                     <FormControl
                         type='password'
-                        name='password'
+                        name='confirmPassword'
                         value={props.confirmPassword}
-                        placeholder='Password'
+                        placeholder='Confirm password'
                         onChange={props.onChange}
                     />
                 </Col>
