@@ -2,8 +2,13 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Page from '../../components/Page/Page';
 import LoginForm from '../../components/LoginForm/LoginForm';
+import {login} from '../../ducks/auth/actions';
 
 class LoginPageContainer extends Component {
+    static props = {
+        login: PropTypes.func
+    };
+
     state = {
         email: '',
         password: ''
@@ -17,7 +22,7 @@ class LoginPageContainer extends Component {
 
     onLoginClick = (event) => {
         event.preventDefault();
-        //save credentials
+        this.props.login();
     };
 
     render() {
@@ -33,6 +38,10 @@ class LoginPageContainer extends Component {
         );
     }
 }
+
+const mapDispatchToProps = dispatch => ({
+    login: () => dispatch(login(this.state.email, this.state.password))
+});
 
 export default LoginPageContainer;
 

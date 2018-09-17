@@ -1,7 +1,13 @@
-import {ADD_CARD, FETCH_CARDS_SUCCESS, REMOVE_CARD} from './actionTypes';
+import {ADD_CARD, EDIT_CARD, FETCH_CARDS_SUCCESS, REMOVE_CARD} from './actionTypes';
 
 const addCard = (card) => ({
     type: ADD_CARD,
+    card
+});
+
+const editCard = (id, card) => ({
+    type: EDIT_CARD,
+    id,
     card
 });
 
@@ -16,6 +22,7 @@ const fetchCardsSuccess = () => ({
 
 export {
     addCard,
+    editCard,
     removeCard,
     fetchCardsSuccess
 };

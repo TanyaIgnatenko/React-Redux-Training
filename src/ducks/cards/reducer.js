@@ -1,4 +1,4 @@
-import {ADD_CARD, FETCH_CARDS_SUCCESS, REMOVE_CARD} from './actionTypes';
+import {ADD_CARD, EDIT_CARD, FETCH_CARDS_SUCCESS, REMOVE_CARD} from './actionTypes';
 
 const cards = (state = [], action) => {
     switch (action.type) {
@@ -7,14 +7,18 @@ const cards = (state = [], action) => {
                 ...state,
                 action.card
             ];
+        case EDIT_CARD:
+            return state.map(card => {
+                return card.id === action.id ? card : action.card;
+            });
         case REMOVE_CARD:
             return state.filter(card => card.id !== action.id);
         case FETCH_CARDS_SUCCESS:
-            return cards;
+            return cardsData;
     }
 };
 
-const cards = [
+const cardsData = [
     {
         title: 'Tanya Ignatenko',
         description: 'JS Developer'

@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, SIGN_UP} from './actionTypes';
+import {LOGIN, LOGIN_SUCCESS, LOGOUT, SIGN_UP, SIGN_UP_SUCCESS} from './actionTypes';
 
 const login = (email, password) => ({
     type: LOGIN,
@@ -6,7 +6,12 @@ const login = (email, password) => ({
         email,
         password
     }
-})
+});
+
+const loginSuccess = (role) => ({
+    type: LOGIN_SUCCESS,
+    role
+});
 
 const logout = () => ({
     type: LOGOUT
@@ -18,4 +23,9 @@ const signup = (email, password) => ({
         email,
         password
     }
+});
+
+const signupSuccess = (role) => ({
+    type: SIGN_UP_SUCCESS,
+    role
 });

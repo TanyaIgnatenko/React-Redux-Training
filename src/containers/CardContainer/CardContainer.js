@@ -50,9 +50,12 @@ export default class CardContainer extends React.Component {
     }
 }
 
+
+
 CardContainer.propTypes = {
     card: PropTypes.shape(
         {
+            id: PropTypes.number.isRequired,
             title: PropTypes.string.isRequired,
             description: PropTypes.string.isRequired,
             likeCount: PropTypes.number.isRequired

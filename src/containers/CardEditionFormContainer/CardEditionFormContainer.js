@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import CardEditionForm from '../../components/CardEditionForm/CardEditionForm';
 import Routes from '../../config';
 import CardsStorageController from '../../utils/CardStorageController';
+import {addCard, editCard, removeCard} from '../../ducks/cards/actions';
 
 export default class CardEditionFormContainer extends React.Component {
     constructor(props) {
@@ -47,16 +48,16 @@ export default class CardEditionFormContainer extends React.Component {
 
         const changedCard = this.getChangedCard();
         if (this.props.cardExist) {
-            CardsStorageController.replaceCard(changedCard.id, changedCard);
+            this.props.replaceCard(changedCard.id, changedCard);
         } else {
-            CardsStorageController.addCard(changedCard);
+            this.props.addCard(changedCard);
         }
         CardsStorageController.deleteTempCard(changedCard.id);
         this.props.history.push(Routes.CARD_LIST);
     };
 
     handleCardDeletion = () => {
-        CardsStorageController.removeCard(this.props.id);
+        this.props.removeCard(this.props.id);
         this.props.history.push(Routes.CARD_LIST);
     };
 
@@ -107,6 +108,14 @@ CardEditionFormContainer.defaultProps = {
 CardEditionFormContainer.propTypes = {
     id: PropTypes.number,
     cardExist: PropTypes.bool.isRequired,
+    addCard: PropTypes.func.isRequired,
+    replaceCard: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired
 };
+
+const mapDispatchToProps = dispatch => ({
+    addCard: card => dispatch(addCard(card)),
+    replaceCard: (id, card) => dispatch(editCard(id, card)),
+    removeCard: id => dispatch(removeCard(id))
+});
 

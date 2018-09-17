@@ -1,26 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 
 import Page from '../../components/Page/Page';
 import Grid from '../../components/Grid/Grid';
 import CardContainer from '../CardContainer/CardContainer';
 import NewCardButtonContainer from '../NewCardButtonContainer/NewCardButtonContainer';
-import CardsStorageController from '../../utils/CardStorageController';
+import {fetchCardsSuccess} from '../../ducks/cards/actions';
 
 
-export default class CardListPageContainer extends React.Component {
+class CardListPageContainer extends React.Component {
     constructor(props) {
         super(props);
         this.cards = [];
     }
 
     componentDidMount() {
-        CardsStorageController.deleteTempCards();
+        this.props.fetchCards();
     }
 
     render() {
-        const cards = CardsStorageController.fetchCards();
-        this.cards = cards.map((card) =>
+        this.cards = this.props.cards.map((card) =>
             <CardContainer
                 key={card.id}
                 card={card}
@@ -39,5 +39,22 @@ export default class CardListPageContainer extends React.Component {
 }
 
 CardListPageContainer.propTypes = {
+    cards: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        likeCount: PropTypes.number.isRequired
+    })),
+    fetchCards: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired
 };
+
+const mapStateToProps = state => ({
+    cards: state.cards
+});
+
+const mapDispatchToProps = dispatch => ({
+    fetchCards: dispatch(fetchCardsSuccess)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardListPageContainer);

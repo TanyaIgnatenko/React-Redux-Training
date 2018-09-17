@@ -35,7 +35,7 @@ function SignUpForm(props) {
                 </Col>
             </FormGroup>
 
-            <FormGroup controlId='formHorizontalPassword'>
+            <FormGroup controlId='formHorizontalConfirmPassword'>
                 <Col componentClass={ControlLabel} sm={2}>
                     ConfirmPassword
                 </Col>
