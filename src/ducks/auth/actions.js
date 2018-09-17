@@ -6,7 +6,7 @@ const login = (email, password) => ({
         email,
         password
     }
-});
+})
 
 const logout = () => ({
     type: LOGOUT
