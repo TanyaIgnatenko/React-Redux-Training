@@ -6,7 +6,6 @@ import Grid from '../../components/Grid/Grid';
 import CardContainer from '../CardContainer/CardContainer';
 import NewCardButtonContainer from '../NewCardButtonContainer/NewCardButtonContainer';
 import CardsStorageController from '../../utils/CardStorageController';
-import NewCardButton from '../../components/NewCardButton/NewCardButton';
 
 
 export default class CardListPageContainer extends React.Component {
@@ -14,6 +13,7 @@ export default class CardListPageContainer extends React.Component {
         super(props);
         this.cards = [];
     }
+
     componentDidMount() {
         CardsStorageController.deleteTempCards();
     }
@@ -27,11 +27,11 @@ export default class CardListPageContainer extends React.Component {
                 history={this.props.history}
             />);
 
+        const elems = [<NewCardButtonContainer key={0} history={this.props.history}/>, ...this.cards];
         return (
             <Page title='Card List'>
                 <Grid>
-                    <NewCardButtonContainer history={this.props.history}/>
-                    {this.cards}
+                    {elems}
                 </Grid>
             </Page>
         );
