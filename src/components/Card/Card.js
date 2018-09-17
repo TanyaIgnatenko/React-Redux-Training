@@ -14,7 +14,7 @@ export default function Card(props) {
             <p className={'card__description'}>{description}</p>
             <div className={'card__buttons-container'}>
                 <EditButton onClick={props.onEditClick}/>
-                <LikeButton isLiked={props.isLiked} onClick={props.onLikeClick}/>
+                <LikeButton likeCount={props.likeCount} onClick={props.onLikeClick}/>
             </div>
         </div>
     );
@@ -23,7 +23,7 @@ export default function Card(props) {
 Card.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
-    isLiked: PropTypes.bool.isRequired,
+    likeCount: PropTypes.number.isRequired,
     onLikeClick: PropTypes.func.isRequired,
     onEditClick: PropTypes.func.isRequired
 };

@@ -6,9 +6,9 @@ import Page from '../../components/Page/Page';
 
 export default function CardCreationPageContainer(props) {
     return (
-        <Page title='Create card' content={
+        <Page title='Create card'>
             <CardEditionFormContainer cardExist={false} history={props.history}/>
-        }/>
+        </Page>
     );
 }
 

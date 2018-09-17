@@ -58,7 +58,7 @@ export default class CardEditionFormContainer extends React.Component {
     handleCardDeletion = () => {
         CardsStorageController.removeCard(this.props.id);
         this.props.history.push(Routes.CARD_LIST);
-    }
+    };
 
     handlePageReload = () => {
         const changedCard = this.getChangedCard();
@@ -72,14 +72,14 @@ export default class CardEditionFormContainer extends React.Component {
                 id: this.previousCard.id,
                 title: this.state.title,
                 description: this.state.description,
-                isLiked: this.previousCard.isLiked
+                likeCount: this.previousCard.likeCount
             };
         } else {
             card = {
                 id: null,
                 title: this.state.title,
                 description: this.state.description,
-                isLiked: false
+                likeCount: 0
             };
         }
         return card;

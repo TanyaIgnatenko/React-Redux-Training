@@ -7,9 +7,9 @@ import Page from '../../components/Page/Page';
 export default function CardEditionPageContainer(props) {
     const cardId = parseInt(props.match.params.id, 10);
     return (
-        <Page title='Edit card' content={
+        <Page title='Edit card'>
             <CardEditionFormContainer cardExist={true} id={cardId} history={props.history}/>
-        }/>
+        </Page>
     );
 }
 

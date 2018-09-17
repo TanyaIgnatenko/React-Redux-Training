@@ -9,7 +9,7 @@ export default class CardContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLiked: this.props.card.isLiked
+            likeCount: this.props.card.likeCount
         };
     }
 
@@ -21,16 +21,18 @@ export default class CardContainer extends React.Component {
         this.saveLikeState();
     }
 
-    toggleLikeHandler = () => {
-        this.setState({isLiked: !this.state.isLiked});
+    likeHandler = () => {
+        this.setState(prevState => ({
+            likeCount: ++prevState.likeCount
+        }));
     };
 
     editClickHandler = () => this.props.history.push(Routes.EDIT_CARD.replace(':id', this.props.card.id));
 
     saveLikeState = () => {
-        if (this.props.card.isLiked !== this.state.isLiked) {
+        if (this.props.card.likeCount !== this.state.likeCount) {
             const card = this.props.card;
-            card.isLiked = this.state.isLiked;
+            card.likeCount = this.state.likeCount;
             CardStorageController.replaceCard(card.id, card);
         }
     };
@@ -40,8 +42,8 @@ export default class CardContainer extends React.Component {
             <Card
                 title={this.props.card.title}
                 description={this.props.card.description}
-                isLiked={this.state.isLiked}
-                onLikeClick={this.toggleLikeHandler}
+                likeCount={this.state.likeCount}
+                onLikeClick={this.likeHandler}
                 onEditClick={this.editClickHandler}
             />
         );
@@ -49,6 +51,11 @@ export default class CardContainer extends React.Component {
 }
 
 CardContainer.propTypes = {
-    card: PropTypes.object.isRequired,
+    card: PropTypes.shape(
+        {
+            title: PropTypes.string.isRequired,
+            description: PropTypes.string.isRequired,
+            likeCount: PropTypes.number.isRequired
+        }).isRequired,
     history: PropTypes.object.isRequired
 };
