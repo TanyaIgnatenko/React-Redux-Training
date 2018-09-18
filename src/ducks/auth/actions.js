@@ -1,31 +1,51 @@
-import {LOGIN, LOGIN_SUCCESS, LOGOUT, SIGN_UP, SIGN_UP_SUCCESS} from './actionTypes';
+import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, SIGN_UP_REQUEST, SIGN_UP_SUCCESS} from './actionTypes';
 
-const login = (email, password) => ({
-    type: LOGIN,
+const loginRequest = (email, password) => ({
+    type: LOGIN_REQUEST,
     credentials: {
         email,
         password
     }
 });
 
-const loginSuccess = (role) => ({
+const loginSuccess = (user) => ({
     type: LOGIN_SUCCESS,
-    role
+    user
+});
+
+const loginError = (message) => ({
+    type: LOGIN_REQUEST,
+    message
 });
 
 const logout = () => ({
     type: LOGOUT
 });
 
-const signup = (email, password) => ({
-    type: SIGN_UP,
+const signupRequest = (email, password) => ({
+    type: SIGN_UP_REQUEST,
     credentials: {
+        name,
         email,
         password
     }
 });
 
-const signupSuccess = (role) => ({
-    type: SIGN_UP_SUCCESS,
-    role
+const signupSuccess = (user) => ({
+    type: SIGN_UP_SUCCESS
 });
+
+const signupError = (message) => ({
+    type: SIGN_UP_SUCCESS,
+    message
+});
+
+export default {
+    loginRequest,
+    loginSuccess,
+    loginError,
+    signupRequest,
+    signupSuccess,
+    signupError,
+    logout
+};

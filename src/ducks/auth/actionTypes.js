@@ -1,15 +1,19 @@
-const LOGIN = '@@auth/LOGIN';
+const LOGIN_REQUEST = '@@auth/LOGIN_REQUEST';
 const LOGIN_SUCCESS = '@@auth/LOGIN_SUCCESS';
+const LOGIN_ERROR = '@@auth/LOGIN_ERROR';
 
-const SIGN_UP = '@@auth/SIGN_UP';
+const SIGN_UP_REQUEST = '@@auth/SIGN_UP_REQUEST';
 const SIGN_UP_SUCCESS = '@@auth/SIGN_UP_SUCCESS';
+const SIGN_UP_ERROR = '@@auth/SIGN_UP_ERROR';
 
 const LOGOUT = '@@auth/LOGOUT';
 
+
 export {
-    LOGIN,
+    LOGIN_REQUEST,
     LOGIN_SUCCESS,
-    SIGN_UP,
+    LOGIN_ERROR,
+    SIGN_UP_REQUEST,
     SIGN_UP_SUCCESS,
     LOGOUT
 };
