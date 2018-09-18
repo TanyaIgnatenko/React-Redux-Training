@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 import CardEditionForm from '../../components/CardEditionForm/CardEditionForm';
 import Routes from '../../config';
-import CardsStorageController from '../../utils/CardStorageController';
 import {addCard, editCard, removeCard} from '../../ducks/cards/actions';
+import {connect} from 'react-redux';
 
-export default class CardEditionFormContainer extends React.Component {
+class CardEditionFormContainer extends React.Component {
     constructor(props) {
         super(props);
 
@@ -19,9 +19,9 @@ export default class CardEditionFormContainer extends React.Component {
 
     componentDidMount() {
         if (this.props.cardExist) {
-            this.previousCard = CardsStorageController.fetchCard(this.props.id);
+            this.previousCard = fetchCard(this.props.id);
         }
-        const tempCard = CardsStorageController.fetchTempCard(this.props.id);
+        const tempCard = fetchTempCard(this.props.id);
         if (tempCard !== undefined) {
             this.setState({
                 title: tempCard.title,
@@ -118,4 +118,6 @@ const mapDispatchToProps = dispatch => ({
     replaceCard: (id, card) => dispatch(editCard(id, card)),
     removeCard: id => dispatch(removeCard(id))
 });
+
+export default connect(null, mapDispatchToProps)(CardEditionFormContainer);
 

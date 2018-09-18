@@ -54,7 +54,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchCards: dispatch(fetchCardsSuccess)
+    fetchCards: () => dispatch(fetchCardsSuccess())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardListPageContainer);

@@ -1,6 +1,6 @@
 import {LOGIN, LOGIN_SUCCESS, LOGOUT, SIGN_UP, SIGN_UP_SUCCESS} from './actionTypes';
 
-const auth = (state = {}, action) => {
+export const auth = (state = {}, action) => {
     switch (action.type) {
         case LOGIN:
             return {

@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import Page from '../../components/Page/Page';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import {login} from '../../ducks/auth/actions';
+import {connect} from 'react-redux';
 
 class LoginPageContainer extends Component {
     static props = {
-        login: PropTypes.func
+        login: PropTypes.func.isRequired
     };
 
     state = {
@@ -43,5 +44,5 @@ const mapDispatchToProps = dispatch => ({
     login: () => dispatch(login(this.state.email, this.state.password))
 });
 
-export default LoginPageContainer;
+export default connect(null, mapDispatchToProps)(LoginPageContainer);
 

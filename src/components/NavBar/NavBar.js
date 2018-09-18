@@ -8,7 +8,7 @@ function NavBar(props) {
         <Navbar inverse collapseOnSelect>
             <Navbar.Header>
                 <Navbar.Brand>
-                    <a href='#'>LadyBug404 Blog</a>
+                    <a href={Routes.ROOT}>LadyBug404 Blog</a>
                 </Navbar.Brand>
                 <Navbar.Toggle />
             </Navbar.Header>
