@@ -4,7 +4,7 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import CardCreationPageContainer from '../../containers/CardCreationPageContainer/CardCreationPageContainer';
 import CardEditionPageContainer from '../../containers/CardEditionPageContainer/CardEditionPageContainer';
 import CardListPageContainer from '../../containers/CardListPageContainer/CardListPageContainer';
-import Routes from '../../config';
+import {Routes} from '../../config';
 import NavBar from '../../components/NavBar/NavBar';
 import LoginPageContainer from '../LoginPageContainer/LoginPageContainer';
 import SignUpPageContainer from '../SignUpPageContainer/SignUpPageContainer';

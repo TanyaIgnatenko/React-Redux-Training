@@ -3,7 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import CardEditionForm from '../../components/CardEditionForm/CardEditionForm';
-import Routes from '../../config';
+import {Routes} from '../../config';
 import {addCard, editCard, removeCard} from '../../ducks/cards/actions';
 import {connect} from 'react-redux';
 

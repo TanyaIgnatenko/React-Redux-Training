@@ -1,10 +1,10 @@
-import request from 'helpers/request';
+import API from 'api';
 
-const login = (credentials) => request.post('/login', credentials);
+const login = (credentials) => API.post('/login', credentials);
 
-const register = (credentials) => request.post('/register', credentials);
+const register = (credentials) => API.post('/register', credentials);
 
-const fetchUser = () => request.get('/user');
+const fetchUser = () => API.get('/user');
 
 export {
     login,

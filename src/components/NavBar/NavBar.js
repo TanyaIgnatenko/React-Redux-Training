@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Nav, Navbar, NavItem} from 'react-bootstrap';
-import Routes from '../../config';
+import {Routes} from '../../config';
 
 function NavBar(props) {
     return (

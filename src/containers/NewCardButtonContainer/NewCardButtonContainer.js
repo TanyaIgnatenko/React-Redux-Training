@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import NewCardButton from '../../components/NewCardButton/NewCardButton';
-import Routes from '../../config';
+import {Routes} from '../../config';
 
 export default class NewCardButtonContainer extends React.Component {
     constructor(props) {

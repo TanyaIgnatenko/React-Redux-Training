@@ -1,3 +1,5 @@
+const API_URL = '';
+
 const Routes = {
     ROOT: '/',
     CARD_LIST: '/',
@@ -7,4 +9,7 @@ const Routes = {
     SIGN_UP: '/signup'
 };
 
-export default Routes;
+export {
+    API_URL,
+    Routes
+};
