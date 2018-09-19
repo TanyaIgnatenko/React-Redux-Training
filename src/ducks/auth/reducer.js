@@ -1,50 +1,52 @@
-import {LOGIN_ERROR, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, SIGN_UP_REQUEST, SIGN_UP_SUCCESS} from './actionTypes';
+import {LOGIN, LOGOUT, REGISTER} from './actionTypes';
 
 const initialState = {
     isRequesting: false,
-    name: '',
-    email: '',
-    password: '',
     user: null,
     error: null
 };
 
 export const auth = (state = initialState, action) => {
     switch (action.type) {
-        case LOGIN_REQUEST:
+        case LOGIN.REQUEST:
             return {
                 ...state,
-                isRequesting: true,
-                email: action.credentials.email,
-                password: action.credentials.password
+                isRequesting: true
             };
-        case LOGIN_SUCCESS:
+        case LOGIN.SUCCESS:
             return {
                 ...state,
                 isRequesting: false,
                 user: action.user
             };
-        case LOGIN_ERROR:
+        case LOGIN.ERROR:
             return {
                 ...state,
                 isRequesting: false,
                 error: action.error
             };
-        case SIGN_UP_REQUEST:
+        case REGISTER.REQUEST:
             return {
                 ...state,
-                isRequesting: true,
-                name: action.name,
-                email: action.credentials.email,
-                password: action.credentials.password
+                isRequesting: true
             };
-        case SIGN_UP_SUCCESS:
+        case REGISTER.SUCCESS:
             return {
                 ...state,
                 isRequesting: false
             };
+        case REGISTER.ERROR:
+            return {
+                ...state,
+                isRequesting: false,
+                error: action.error
+            };
         case LOGOUT:
-            return initialState;
+            return {
+                ...state,
+                user: null,
+                error: null
+            };
         default:
             return state;
     }

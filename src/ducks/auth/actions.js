@@ -1,21 +1,34 @@
-import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, SIGN_UP_REQUEST, SIGN_UP_SUCCESS} from './actionTypes';
+import {LOGIN, LOGOUT, SIGN_UP, FETCH_USER} from './actionTypes';
 
 const loginRequest = (email, password) => ({
-    type: LOGIN_REQUEST,
+    type: LOGIN.REQUEST,
     credentials: {
         email,
         password
     }
 });
 
-const loginSuccess = (user) => ({
-    type: LOGIN_SUCCESS,
+const loginSuccess = () => ({
+    type: LOGIN.SUCCESS
+});
+
+const loginError = (error) => ({
+    type: LOGIN.REQUEST,
+    error
+});
+
+const fetchUserRequest = () => ({
+    type: FETCH_USER.REQUEST
+});
+
+const fetchUserSuccess = (user) => ({
+    type: FETCH_USER.SUCCESS,
     user
 });
 
-const loginError = (message) => ({
-    type: LOGIN_REQUEST,
-    message
+const fetchUserError = (error) => ({
+    type: FETCH_USER.ERROR,
+    error
 });
 
 const logout = () => ({
@@ -23,7 +36,7 @@ const logout = () => ({
 });
 
 const signupRequest = (email, password) => ({
-    type: SIGN_UP_REQUEST,
+    type: SIGN_UP.REQUEST,
     credentials: {
         name,
         email,
@@ -32,18 +45,21 @@ const signupRequest = (email, password) => ({
 });
 
 const signupSuccess = (user) => ({
-    type: SIGN_UP_SUCCESS
+    type: SIGN_UP.SUCCESS
 });
 
-const signupError = (message) => ({
-    type: SIGN_UP_SUCCESS,
-    message
+const signupError = (error) => ({
+    type: SIGN_UP.ERROR,
+    error
 });
 
 export default {
     loginRequest,
     loginSuccess,
     loginError,
+    fetchUserRequest,
+    fetchUserSuccess,
+    fetchUserError,
     signupRequest,
     signupSuccess,
     signupError,

@@ -4,7 +4,10 @@ const login = (credentials) => request.post('/login', credentials);
 
 const register = (credentials) => request.post('/register', credentials);
 
-export default {
+const fetchUser = () => request.get('/user');
+
+export {
     login,
-    register
+    register,
+    fetchUser
 };

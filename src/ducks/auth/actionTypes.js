@@ -1,19 +1,19 @@
-const LOGIN_REQUEST = '@@auth/LOGIN_REQUEST';
-const LOGIN_SUCCESS = '@@auth/LOGIN_SUCCESS';
-const LOGIN_ERROR = '@@auth/LOGIN_ERROR';
+const LOGIN = {
+    REQUEST: '@@auth/LOGIN_REQUEST',
+    SUCCESS: '@@auth/LOGIN_SUCCESS',
+    ERROR: '@@auth/LOGIN_ERROR'
+};
 
-const SIGN_UP_REQUEST = '@@auth/SIGN_UP_REQUEST';
-const SIGN_UP_SUCCESS = '@@auth/SIGN_UP_SUCCESS';
-const SIGN_UP_ERROR = '@@auth/SIGN_UP_ERROR';
+const REGISTER = {
+    REQUEST: '@@auth/REGISTER_REQUEST',
+    SUCCESS: '@@auth/REGISTER_SUCCESS',
+    ERROR: '@@auth/REGISTER_ERROR'
+};
 
 const LOGOUT = '@@auth/LOGOUT';
 
-
 export {
-    LOGIN_REQUEST,
-    LOGIN_SUCCESS,
-    LOGIN_ERROR,
-    SIGN_UP_REQUEST,
-    SIGN_UP_SUCCESS,
-    LOGOUT
+    LOGIN,
+    LOGOUT,
+    REGISTER
 };
