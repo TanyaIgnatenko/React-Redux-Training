@@ -51,7 +51,6 @@ export default class CardContainer extends React.Component {
 }
 
 
-
 CardContainer.propTypes = {
     card: PropTypes.shape(
         {

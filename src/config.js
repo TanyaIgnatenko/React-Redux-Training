@@ -6,7 +6,7 @@ const Routes = {
     CREATE_CARD: '/create',
     EDIT_CARD: '/edit/:id',
     LOGIN: '/login',
-    SIGN_UP: '/signup'
+    SIGN_UP: '/register'
 };
 
 export {

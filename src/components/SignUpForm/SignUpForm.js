@@ -7,6 +7,21 @@ function SignUpForm(props) {
         <Form horizontal>
             <FormGroup controlId='formHorizontalEmail'>
                 <Col componentClass={ControlLabel} sm={2}>
+                    Name
+                </Col>
+                <Col sm={10}>
+                    <FormControl
+                        type='name'
+                        name='name'
+                        value={props.name}
+                        placeholder='Name'
+                        onChange={props.onChange}
+                    />
+                </Col>
+            </FormGroup>
+
+            <FormGroup controlId='formHorizontalEmail'>
+                <Col componentClass={ControlLabel} sm={2}>
                     Email
                 </Col>
                 <Col sm={10}>
@@ -60,6 +75,7 @@ function SignUpForm(props) {
 }
 
 SignUpForm.propTypes = {
+    name: PropTypes.string,
     email: PropTypes.string,
     password: PropTypes.string,
     confirmPassword: PropTypes.string,

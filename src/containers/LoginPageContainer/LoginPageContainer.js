@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Page from '../../components/Page/Page';
 import LoginForm from '../../components/LoginForm/LoginForm';
-import {login} from '../../ducks/auth/actions';
+import {loginRequest} from '../../ducks/auth/actions';
 import {connect} from 'react-redux';
 
 class LoginPageContainer extends Component {
@@ -41,7 +41,7 @@ class LoginPageContainer extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    login: () => dispatch(login(this.state.email, this.state.password))
+    login: () => dispatch(loginRequest(this.state.email, this.state.password))
 });
 
 export default connect(null, mapDispatchToProps)(LoginPageContainer);

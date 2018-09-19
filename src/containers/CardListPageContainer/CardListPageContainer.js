@@ -6,7 +6,7 @@ import Page from '../../components/Page/Page';
 import Grid from '../../components/Grid/Grid';
 import CardContainer from '../CardContainer/CardContainer';
 import NewCardButtonContainer from '../NewCardButtonContainer/NewCardButtonContainer';
-import {fetchCardsSuccess} from '../../ducks/cards/actions';
+import {fetchCardsRequest} from '../../ducks/cards/actions';
 
 
 class CardListPageContainer extends React.Component {
@@ -54,7 +54,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchCards: () => dispatch(fetchCardsSuccess())
+    fetchCards: () => dispatch(fetchCardsRequest())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardListPageContainer);

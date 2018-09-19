@@ -18,10 +18,11 @@ class CardEditionFormContainer extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.cardExist) {
-            this.previousCard = fetchCard(this.props.id);
-        }
-        const tempCard = fetchTempCard(this.props.id);
+        // if (this.props.cardExist) {
+        //     this.previousCard = fetchCard(this.props.id);
+        // }
+        // const tempCard = fetchTempCard(this.props.id);
+        const tempCard = undefined;
         if (tempCard !== undefined) {
             this.setState({
                 title: tempCard.title,
@@ -52,7 +53,7 @@ class CardEditionFormContainer extends React.Component {
         } else {
             this.props.addCard(changedCard);
         }
-        CardsStorageController.deleteTempCard(changedCard.id);
+        //CardsStorageController.deleteTempCard(changedCard.id);
         this.props.history.push(Routes.CARD_LIST);
     };
 
@@ -63,7 +64,7 @@ class CardEditionFormContainer extends React.Component {
 
     handlePageReload = () => {
         const changedCard = this.getChangedCard();
-        CardsStorageController.addTempCard(changedCard);
+        //CardsStorageController.addTempCard(changedCard);
     };
 
     getChangedCard() {
@@ -107,11 +108,21 @@ CardEditionFormContainer.defaultProps = {
 
 CardEditionFormContainer.propTypes = {
     id: PropTypes.number,
+    previousCard: PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired
+    }),
     cardExist: PropTypes.bool.isRequired,
     addCard: PropTypes.func.isRequired,
     replaceCard: PropTypes.func.isRequired,
+    removeCard: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired
 };
+
+const mapStateToProps = (state, ownPorps) => ({
+    previousCard: state.cards[ownPorps.id]
+});
 
 const mapDispatchToProps = dispatch => ({
     addCard: card => dispatch(addCard(card)),

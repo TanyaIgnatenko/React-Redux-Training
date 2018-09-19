@@ -2,14 +2,15 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Page from '../../components/Page/Page';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
-import {login} from '../../ducks/auth/actions';
+import {registerRequest} from '../../ducks/auth/actions';
 
 class SignUpPageContainer extends Component {
     static props = {
-        signup: PropTypes.func
+        register: PropTypes.func.isRequired
     };
 
     state = {
+        name: '',
         email: '',
         password: '',
         confirmPassword: ''
@@ -23,13 +24,14 @@ class SignUpPageContainer extends Component {
 
     onSignUpClick = (event) => {
         event.preventDefault();
-        this.props.signup(this.state.email, this.state.password);
+        this.props.register(this.state.name, this.state.email, this.state.password);
     };
 
     render() {
         return (
             <Page title='Sign up'>
                 <SignUpForm
+                    name={this.state.name}
                     email={this.state.email}
                     password={this.state.password}
                     confirmPassword={this.state.confirmPassword}
@@ -42,7 +44,7 @@ class SignUpPageContainer extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    signup: () => dispatch(signup(this.state.email, this.state.password))
+    register: (name, email, password) => dispatch(registerRequest({name, email, password}))
 });
 
 export default SignUpPageContainer;
