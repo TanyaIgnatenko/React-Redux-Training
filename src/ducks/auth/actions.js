@@ -65,3 +65,6 @@ export {
     registerError,
     logout
 };
+
+export * from 'actions';
+

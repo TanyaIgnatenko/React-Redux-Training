@@ -1,47 +1,65 @@
-import {
-    ADD_CARD, DELETE_TEMP_CARDS, EDIT_CARD, FETCH_CARD_SUCCESS, FETCH_CARDS_SUCCESS, FETCH_TEMP_CARD_SUCCESS,
-    REMOVE_CARD
-} from './actionTypes';
+import {ADD_CARD, EDIT_CARD, REMOVE_CARD, FETCH_CARDS} from './actionTypes';
 
-const addCard = (card) => ({
-    type: ADD_CARD,
+const addCardRequest = (card) => ({
+    type: ADD_CARD.REQUEST,
     card
 });
 
-const editCard = (id, card) => ({
-    type: EDIT_CARD,
+const addCardSuccess = (card) => ({
+    type: ADD_CARD.SUCCESS,
+    card
+});
+
+const addCardError = (error) => ({
+    type: ADD_CARD.REQUEST,
+    error
+});
+
+const editCardRequest = (id, card) => ({
+    type: EDIT_CARD.REQUEST,
     id,
     card
 });
 
-const removeCard = (id) => ({
-    REMOVE_CARD,
-    id
-});
-
-const fetchCardsSuccess = () => ({
-    type: FETCH_CARDS_SUCCESS
-});
-
-const fetchCardSuccess = (id) => ({
-    type: FETCH_CARD_SUCCESS,
+const editCardSuccess = (id, card) => ({
+    type: EDIT_CARD.SUCCESS,
+    id,
     card
 });
 
-const fetchTempCardSuccess = () => ({
-    type: FETCH_TEMP_CARD_SUCCESS
+const editCardError = (error) => ({
+    type: EDIT_CARD.ERROR,
+    error
 });
 
-const deleteTempCards = () => ({
-    type: DELETE_TEMP_CARDS
+const removeCardRequest = (id) => ({
+    type: REMOVE_CARD.REQUEST,
+    id
 });
 
-export {
-    addCard,
-    editCard,
-    removeCard,
-    fetchCardSuccess,
-    fetchTempCardSuccess,
-    deleteTempCards,
-    fetchCardsSuccess
-};
+const removeCardSuccess = (id) => ({
+    type: REMOVE_CARD.SUCCESS,
+    id
+});
+
+const removeCardError = (error) => ({
+    type: REMOVE_CARD.ERROR,
+    error
+});
+
+const fetchCardsRequest = () => ({
+    type: FETCH_CARDS.REQUEST
+});
+
+const fetchCardsSuccess = (cards) => ({
+    type: FETCH_CARDS.SUCCESS,
+    cards
+});
+
+const fetchCardsError = (error) => ({
+    type: FETCH_CARDS.ERROR,
+    error
+});
+
+export * from './actions';
+

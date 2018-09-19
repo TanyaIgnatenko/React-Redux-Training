@@ -1,24 +1,62 @@
-import {ADD_CARD, EDIT_CARD, FETCH_CARDS_SUCCESS, REMOVE_CARD} from './actionTypes';
+import {ADD_CARD, EDIT_CARD, FETCH_CARDS, REMOVE_CARD} from './actionTypes';
 
-export const cards = (state = [], action) => {
+const initialState = {
+    isFetching: false,
+    cards: [],
+    error: null
+};
+
+export const cards = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_CARD:
-            let card = action.card;
-            const lastCardId = state[state.length - 1].id;
-            card.id = lastCardId + 1;
-            cardsData.push(card);
-            return [
+        case ADD_CARD.SUCCESS:
+            return {
                 ...state,
-                card
-            ];
-        case EDIT_CARD:
-            return state.map(card => {
-                return card.id === action.id ? card : action.card;
-            });
-        case REMOVE_CARD:
-            return state.filter(card => card.id !== action.id);
-        case FETCH_CARDS_SUCCESS:
-            return cardsData;
+                cards: [
+                    ...state.cards,
+                    action.card
+                ]
+            };
+        case EDIT_CARD.SUCCESS:
+            return {
+                ...state,
+                cards: state.cards.map(card => card.id === action.id ? card : action.card)
+            };
+        case REMOVE_CARD.SUCCESS:
+            return {
+                ...state,
+                cards: state.filter(card => card.id !== action.id)
+            };
+        case FETCH_CARDS.REQUEST:
+            return {
+                ...state,
+                isFetching: true
+            };
+        case FETCH_CARDS.SUCCESS:
+            return {
+                isFetching: false,
+                cards: action.cards
+            };
+        case FETCH_CARDS.ERROR:
+            return {
+                isFetching: false,
+                cards: [],
+                error: action.error
+            };
+        case ADD_CARD.ERROR:
+            return {
+                ...state,
+                error: action.error
+            };
+        case EDIT_CARD.ERROR:
+            return {
+                ...state,
+                error: action.error
+            };
+        case REMOVE_CARD.ERROR:
+            return {
+                ...state,
+                error: action.error
+            };
         default:
             return state;
     }

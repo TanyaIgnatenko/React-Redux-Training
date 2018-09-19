@@ -22,17 +22,10 @@ const FETCH_CARDS = {
     ERROR: '@@cards/FETCH_CARDS_ERROR'
 };
 
-const FETCH_CARD = {
-    REQUEST: '@@cards/FETCH_CARD_REQUEST',
-    SUCCESS: '@@cards/FETCH_CARD_SUCCESS',
-    ERROR: '@@cards/FETCH_CARD_ERROR'
-};
-
 export {
     ADD_CARD,
     EDIT_CARD,
     REMOVE_CARD,
-    FETCH_CARDS,
-    FETCH_CARD
+    FETCH_CARDS
 };
 
