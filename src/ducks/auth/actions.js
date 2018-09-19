@@ -35,7 +35,7 @@ const logout = () => ({
     type: LOGOUT
 });
 
-const signupRequest = (email, password) => ({
+const registerRequest = (email, password) => ({
     type: SIGN_UP.REQUEST,
     credentials: {
         name,
@@ -44,24 +44,24 @@ const signupRequest = (email, password) => ({
     }
 });
 
-const signupSuccess = (user) => ({
+const registerSuccess = (user) => ({
     type: SIGN_UP.SUCCESS
 });
 
-const signupError = (error) => ({
+const registerError = (error) => ({
     type: SIGN_UP.ERROR,
     error
 });
 
-export default {
+export {
     loginRequest,
     loginSuccess,
     loginError,
     fetchUserRequest,
     fetchUserSuccess,
     fetchUserError,
-    signupRequest,
-    signupSuccess,
-    signupError,
+    registerRequest,
+    registerSuccess,
+    registerError,
     logout
 };
