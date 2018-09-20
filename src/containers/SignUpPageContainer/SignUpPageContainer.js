@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Page from '../../components/Page/Page';
 import SignUpForm from '../../components/SignUpForm/SignUpForm';
 import {registerRequest} from '../../ducks/auth/actions';
+import {connect} from 'react-redux';
 
 class SignUpPageContainer extends Component {
     static props = {
@@ -47,5 +48,5 @@ const mapDispatchToProps = dispatch => ({
     register: (name, email, password) => dispatch(registerRequest({name, email, password}))
 });
 
-export default SignUpPageContainer;
+export default connect(null, mapDispatchToProps)(SignUpPageContainer);
 

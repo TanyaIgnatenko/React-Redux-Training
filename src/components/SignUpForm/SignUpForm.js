@@ -5,7 +5,7 @@ import {Button, Col, ControlLabel, Form, FormControl, FormGroup} from 'react-boo
 function SignUpForm(props) {
     return (
         <Form horizontal>
-            <FormGroup controlId='formHorizontalEmail'>
+            <FormGroup controlId='formHorizontalName'>
                 <Col componentClass={ControlLabel} sm={2}>
                     Name
                 </Col>
