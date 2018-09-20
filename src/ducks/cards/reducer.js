@@ -66,25 +66,25 @@ const cardsData = [
     {
         id: 1,
         title: 'Tanya Ignatenko',
-        description: 'JS Developer',
-        likeCount: 5
+        content: 'JS Developer',
+        totalLikes: 5
     },
     {
         id: 2,
         title: 'Tanya Ignatenko 2',
-        description: 'JS Developer',
-        likeCount: 3
+        content: 'JS Developer',
+        totalLikes: 3
     },
     {
         id: 3,
         title: 'Tanya Ignatenko 3',
-        description: 'JS Developer',
-        likeCount: 1
+        content: 'JS Developer',
+        totalLikes: 1
     },
     {
         id: 4,
         title: 'Tanya Ignatenko 4',
-        description: 'JS Developer',
-        likeCount: 0
+        content: 'JS Developer',
+        totalLikes: 0
     }
 ];

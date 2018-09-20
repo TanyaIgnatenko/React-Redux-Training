@@ -9,7 +9,7 @@ export default class CardContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            likeCount: this.props.card.likeCount
+            totalLikes: this.props.card.totalLikes
         };
     }
 
@@ -23,17 +23,17 @@ export default class CardContainer extends React.Component {
 
     likeHandler = () => {
         this.setState(prevState => ({
-            likeCount: ++prevState.likeCount
+            totalLikes: ++prevState.totalLikes
         }));
     };
 
     editClickHandler = () => this.props.history.push(Routes.EDIT_CARD.replace(':id', this.props.card.id));
 
     saveLikeState = () => {
-        if (this.props.card.likeCount !== this.state.likeCount) {
+        if (this.props.card.totalLikes !== this.state.totalLikes) {
             const card = this.props.card;
-            card.likeCount = this.state.likeCount;
-            CardStorageController.replaceCard(card.id, card);
+            card.totalLikes = this.state.totalLikes;
+            // CardStorageController.replaceCard(card.id, card);
         }
     };
 
@@ -41,8 +41,8 @@ export default class CardContainer extends React.Component {
         return (
             <Card
                 title={this.props.card.title}
-                description={this.props.card.description}
-                likeCount={this.state.likeCount}
+                content={this.props.card.content}
+                likeCount={this.state.totalLikes}
                 onLikeClick={this.likeHandler}
                 onEditClick={this.editClickHandler}
             />
@@ -56,8 +56,8 @@ CardContainer.propTypes = {
         {
             id: PropTypes.number.isRequired,
             title: PropTypes.string.isRequired,
-            description: PropTypes.string.isRequired,
-            likeCount: PropTypes.number.isRequired
+            content: PropTypes.string.isRequired,
+            totalLikes: PropTypes.number.isRequired
         }).isRequired,
     history: PropTypes.object.isRequired
 };

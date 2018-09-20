@@ -7,14 +7,14 @@ import EditButton from '../EditButton/EditButton';
 import './Card.scss';
 
 export default function Card(props) {
-    const description = props.description.length <= 123 ? props.description : props.description.slice(0, 123);
+    const description = props.content.length <= 123 ? props.content : props.content.slice(0, 123);
     return (
         <div className={'card__container'}>
             <h2 className={'card__title'}>{props.title}</h2>
             <p className={'card__description'}>{description}</p>
             <div className={'card__buttons-container'}>
                 <EditButton onClick={props.onEditClick}/>
-                <LikeButton likeCount={props.likeCount} onClick={props.onLikeClick}/>
+                <LikeButton likeCount={props.totalLikes} onClick={props.onLikeClick}/>
             </div>
         </div>
     );
@@ -22,8 +22,8 @@ export default function Card(props) {
 
 Card.propTypes = {
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    likeCount: PropTypes.number.isRequired,
+    content: PropTypes.string.isRequired,
+    totalLikes: PropTypes.number.isRequired,
     onLikeClick: PropTypes.func.isRequired,
     onEditClick: PropTypes.func.isRequired
 };

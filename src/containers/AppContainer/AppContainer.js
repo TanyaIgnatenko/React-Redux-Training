@@ -8,14 +8,7 @@ import {connect} from 'react-redux';
 import CardListPageContainer from '../CardListPageContainer/CardListPageContainer';
 import CardCreationPageContainer from '../CardCreationPageContainer/CardCreationPageContainer';
 import CardEditionPageContainer from '../CardEditionPageContainer/CardEditionPageContainer';
-import Page from '../../components/Page/Page';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
-
-const AuthorizedPage = () => (
-    <Page title='Authorized page'>
-        <h1>Congrats! You have logged! :)</h1>
-    </Page>
-);
 
 function AppContainer(props) {
     return (
@@ -26,9 +19,9 @@ function AppContainer(props) {
                     <Switch>
                         <Route path={Routes.LOGIN} component={LoginPageContainer}/>
                         <Route path={Routes.SIGN_UP} component={SignUpPageContainer}/>
-                        <Route exact path={Routes.CARD_LIST} component={() => <h1> Card List</h1>}/>
-                        <PrivateRoute path={Routes.CREATE_CARD} component={AuthorizedPage}/>
-                        <PrivateRoute path={Routes.EDIT_CARD} component={AuthorizedPage}/>
+                        <Route exact path={Routes.CARD_LIST} component={CardListPageContainer}/>
+                        <PrivateRoute path={Routes.CREATE_CARD} component={CardCreationPageContainer}/>
+                        <PrivateRoute path={Routes.EDIT_CARD} component={CardEditionPageContainer}/>
                     </Switch>
                 </Fragment>
             </BrowserRouter>

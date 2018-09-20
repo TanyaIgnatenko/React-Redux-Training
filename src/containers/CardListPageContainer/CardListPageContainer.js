@@ -42,15 +42,15 @@ CardListPageContainer.propTypes = {
     cards: PropTypes.arrayOf(PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired,
-        likeCount: PropTypes.number.isRequired
+        content: PropTypes.string.isRequired,
+        totalLikes: PropTypes.number.isRequired
     })),
     fetchCards: PropTypes.func.isRequired,
     history: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-    cards: state.cards
+    cards: state.cards.cards
 });
 
 const mapDispatchToProps = dispatch => ({

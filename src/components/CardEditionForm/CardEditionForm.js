@@ -32,7 +32,7 @@ export default function CardEditionForm(props) {
                 rows='10'
                 cols='33'
                 className={'card-edition-form__description-field'}
-                value={props.description}
+                value={props.content}
                 name='description'
                 placeholder='Enter text'
                 onChange={props.onDescriptionInputChange}
@@ -60,7 +60,7 @@ CardEditionForm.defaultProps = {
 CardEditionForm.propTypes = {
     cardExist: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
+    content: PropTypes.string.isRequired,
     onSave: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onTitleInputChange: PropTypes.func.isRequired,

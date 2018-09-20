@@ -1,11 +1,12 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React from 'react';
+import {Routes} from '../../config';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import CardEditionForm from '../../components/CardEditionForm/CardEditionForm';
-import {Routes} from '../../config';
-import {addCard, editCard, removeCard} from '../../ducks/cards/actions';
-import {connect} from 'react-redux';
+import {addCardRequest, editCardRequest, removeCardRequest} from '../../ducks/cards/actions';
+
 
 class CardEditionFormContainer extends React.Component {
     constructor(props) {
@@ -13,7 +14,7 @@ class CardEditionFormContainer extends React.Component {
 
         this.state = {
             title: '',
-            description: ''
+            content: ''
         };
     }
 
@@ -26,12 +27,12 @@ class CardEditionFormContainer extends React.Component {
         if (tempCard !== undefined) {
             this.setState({
                 title: tempCard.title,
-                description: tempCard.description
+                content: tempCard.content
             });
         } else if (this.props.cardExist) {
             this.setState({
                 title: this.previousCard.title,
-                description: this.previousCard.description
+                content: this.previousCard.content
             });
         }
 
@@ -73,15 +74,15 @@ class CardEditionFormContainer extends React.Component {
             card = {
                 id: this.previousCard.id,
                 title: this.state.title,
-                description: this.state.description,
-                likeCount: this.previousCard.likeCount
+                content: this.state.content,
+                totalLikes: this.previousCard.totalLikes
             };
         } else {
             card = {
                 id: null,
                 title: this.state.title,
-                description: this.state.description,
-                likeCount: 0
+                content: this.state.content,
+                totalLikes: 0
             };
         }
         return card;
@@ -92,7 +93,7 @@ class CardEditionFormContainer extends React.Component {
             <CardEditionForm
                 cardExist={this.props.cardExist}
                 title={this.state.title}
-                description={this.state.description}
+                content={this.state.content}
                 onSave={this.handleSaveClick}
                 onDelete={this.handleCardDeletion}
                 onTitleInputChange={this.handleInputChange}
@@ -111,7 +112,7 @@ CardEditionFormContainer.propTypes = {
     previousCard: PropTypes.shape({
         id: PropTypes.number.isRequired,
         title: PropTypes.string.isRequired,
-        description: PropTypes.string.isRequired
+        content: PropTypes.string.isRequired
     }),
     cardExist: PropTypes.bool.isRequired,
     addCard: PropTypes.func.isRequired,
@@ -125,9 +126,9 @@ const mapStateToProps = (state, ownPorps) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    addCard: card => dispatch(addCard(card)),
-    replaceCard: (id, card) => dispatch(editCard(id, card)),
-    removeCard: id => dispatch(removeCard(id))
+    addCard: card => dispatch(addCardRequest(card)),
+    replaceCard: (id, card) => dispatch(editCardRequest(id, card)),
+    removeCard: id => dispatch(removeCardRequest(id))
 });
 
 export default connect(null, mapDispatchToProps)(CardEditionFormContainer);
