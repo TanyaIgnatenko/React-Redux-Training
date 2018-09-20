@@ -36,7 +36,7 @@ function* registerSaga({credentials}) {
     }
 }
 
-export function* watchAuthRequests() {
+function* initSaga() {
     const apiToken = yield call(services.findApiToken);
     if (apiToken) {
         try {
@@ -47,6 +47,10 @@ export function* watchAuthRequests() {
             yield call(services.removeApiToken);
         }
     }
+}
+
+export function* watchAuthRequests() {
+    yield call(initSaga);
     while (true) {
         const {login, register} = yield race({
             login: take(LOGIN.REQUEST),
