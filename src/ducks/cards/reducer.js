@@ -1,4 +1,4 @@
-import {ADD_CARD, EDIT_CARD, FETCH_CARDS, REMOVE_CARD} from './actionTypes';
+import {ADD_CARD, EDIT_CARD, FETCH_CARDS, REMOVE_CARD, TOGGLE_LIKE} from './actionTypes';
 
 const initialState = {
     isFetching: false,
@@ -53,6 +53,16 @@ export const cards = (state = initialState, action) => {
                 error: action.error
             };
         case REMOVE_CARD.ERROR:
+            return {
+                ...state,
+                error: action.error
+            };
+        case TOGGLE_LIKE.SUCCESS:
+            return {
+                ...state,
+                cards: state.cards.map(card => card.id === action.card.id ? action.card : card)
+            };
+        case TOGGLE_LIKE.ERROR:
             return {
                 ...state,
                 error: action.error

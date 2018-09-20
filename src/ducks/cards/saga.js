@@ -1,5 +1,5 @@
-import {all, call, put, takeLatest} from 'redux-saga/effects';
-import {ADD_CARD, EDIT_CARD, FETCH_CARDS, REMOVE_CARD} from './actionTypes';
+import {all, call, put, takeEvery, takeLatest} from 'redux-saga/effects';
+import {ADD_CARD, EDIT_CARD, FETCH_CARDS, REMOVE_CARD, TOGGLE_LIKE} from './actionTypes';
 import * as services from './services';
 import {
     addCardError,
@@ -9,7 +9,9 @@ import {
     fetchCardsError,
     fetchCardsSuccess,
     removeCardError,
-    removeCardSuccess
+    removeCardSuccess,
+    toggleLikeError,
+    toggleLikeSuccess
 } from './actions';
 
 
@@ -42,11 +44,19 @@ function* removeCardSaga({id}) {
 
 function* fetchCardsSaga() {
     try {
-        const response = yield call(services.fetchCards);
-        const cards = response.posts;
-        yield put(fetchCardsSuccess(cards));
+        const {posts} = yield call(services.fetchCards);
+        yield put(fetchCardsSuccess(posts));
     } catch (e) {
         yield put(fetchCardsError(e));
+    }
+}
+
+function* toggleLikeSaga({id}) {
+    try {
+        const {post} = yield call(services.toggleLike, id);
+        yield put(toggleLikeSuccess(post));
+    } catch (e) {
+        yield put(toggleLikeError(e));
     }
 }
 
@@ -55,6 +65,7 @@ export function* watchCardRequests() {
         takeLatest(ADD_CARD.REQUEST, addCardSaga),
         takeLatest(EDIT_CARD.REQUEST, editCardSaga),
         takeLatest(REMOVE_CARD.REQUEST, removeCardSaga),
-        takeLatest(FETCH_CARDS.REQUEST, fetchCardsSaga)
+        takeLatest(FETCH_CARDS.REQUEST, fetchCardsSaga),
+        takeEvery(TOGGLE_LIKE.REQUEST, toggleLikeSaga)
     ]);
 }

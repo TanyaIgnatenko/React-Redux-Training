@@ -10,10 +10,16 @@ import {fetchCardsRequest} from '../../ducks/cards/actions';
 
 
 class CardListPageContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.cards = [];
-    }
+    static propTypes = {
+        cards: PropTypes.arrayOf(PropTypes.shape({
+            id: PropTypes.number.isRequired,
+            title: PropTypes.string.isRequired,
+            content: PropTypes.string.isRequired,
+            totalLikes: PropTypes.number.isRequired
+        })),
+        fetchCards: PropTypes.func.isRequired,
+        history: PropTypes.object.isRequired
+    };
 
     componentDidMount() {
         this.props.fetchCards();
@@ -37,17 +43,6 @@ class CardListPageContainer extends React.Component {
         );
     }
 }
-
-CardListPageContainer.propTypes = {
-    cards: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        content: PropTypes.string.isRequired,
-        totalLikes: PropTypes.number.isRequired
-    })),
-    fetchCards: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired
-};
 
 const mapStateToProps = state => ({
     cards: state.cards.cards

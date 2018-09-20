@@ -14,11 +14,12 @@ const removeCard = (id) => API.delete(`/posts/${id}`);
 
 const fetchCards = () => API.get('/posts');
 
-const like = () => API.post('/like');
+const toggleLike = (id) => API.post(`/posts/${id}/like`);
 
 export {
     addCard,
     editCard,
     removeCard,
-    fetchCards
+    fetchCards,
+    toggleLike
 };

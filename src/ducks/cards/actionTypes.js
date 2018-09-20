@@ -22,10 +22,17 @@ const FETCH_CARDS = {
     ERROR: '@@cards/FETCH_CARDS_ERROR'
 };
 
+const TOGGLE_LIKE = {
+    REQUEST: '@@cards/TOGGLE_LIKE_REQUEST',
+    SUCCESS: '@@cards/TOGGLE_LIKE_SUCCESS',
+    ERROR: '@@cards/TOGGLE_LIKE_ERROR'
+};
+
 export {
     ADD_CARD,
     EDIT_CARD,
     REMOVE_CARD,
-    FETCH_CARDS
+    FETCH_CARDS,
+    TOGGLE_LIKE
 };
 

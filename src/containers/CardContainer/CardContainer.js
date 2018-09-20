@@ -3,61 +3,42 @@ import PropTypes from 'prop-types';
 
 import Card from '../../components/Card/Card';
 import {Routes} from '../../config';
-import CardStorageController from '../../utils/CardStorageController';
+import {toggleLikeRequest} from '../../ducks/cards/actions';
+import {connect} from 'react-redux';
 
-export default class CardContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            totalLikes: this.props.card.totalLikes
-        };
-    }
-
-    componentDidMount() {
-        window.addEventListener('beforeunload', this.saveLikeState);
-    }
-
-    componentWillUnmount() {
-        this.saveLikeState();
-    }
-
-    likeHandler = () => {
-        this.setState(prevState => ({
-            totalLikes: ++prevState.totalLikes
-        }));
+class CardContainer extends React.Component {
+    static propTypes = {
+        card: PropTypes.shape(
+            {
+                id: PropTypes.number.isRequired,
+                title: PropTypes.string.isRequired,
+                content: PropTypes.string.isRequired,
+                totalLikes: PropTypes.number.isRequired
+            }).isRequired,
+        history: PropTypes.object.isRequired,
+        toggleLike: PropTypes.func.isRequired
     };
 
     editClickHandler = () => this.props.history.push(Routes.EDIT_CARD.replace(':id', this.props.card.id));
 
-    saveLikeState = () => {
-        if (this.props.card.totalLikes !== this.state.totalLikes) {
-            const card = this.props.card;
-            card.totalLikes = this.state.totalLikes;
-            // CardStorageController.replaceCard(card.id, card);
-        }
-    };
-
     render() {
+        console.log('this.props.card.totalLikes: ', this.props.card.totalLikes);
         return (
             <Card
                 title={this.props.card.title}
                 content={this.props.card.content}
-                likeCount={this.state.totalLikes}
-                onLikeClick={this.likeHandler}
+                likeCount={this.props.card.totalLikes}
+                onLikeClick={this.props.toggleLike}
                 onEditClick={this.editClickHandler}
             />
         );
     }
 }
 
+const mapDispatchToProps = (dispatch, ownProps) => ({
+    toggleLike: () => dispatch(toggleLikeRequest(ownProps.card.id))
+});
 
-CardContainer.propTypes = {
-    card: PropTypes.shape(
-        {
-            id: PropTypes.number.isRequired,
-            title: PropTypes.string.isRequired,
-            content: PropTypes.string.isRequired,
-            totalLikes: PropTypes.number.isRequired
-        }).isRequired,
-    history: PropTypes.object.isRequired
-};
+export default connect(null, mapDispatchToProps)(CardContainer);
+
+

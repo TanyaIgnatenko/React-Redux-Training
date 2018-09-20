@@ -75,7 +75,7 @@ class CardEditionFormContainer extends React.Component {
                 id: this.props.previousCard.id,
                 title: this.state.title,
                 content: this.state.content,
-                totalLikes: this.props.previousCard.totalLikes
+                totalLikes: this.props.previousCard.likeCount
             };
         } else {
             card = {

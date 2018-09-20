@@ -1,4 +1,4 @@
-import {ADD_CARD, EDIT_CARD, REMOVE_CARD, FETCH_CARDS} from './actionTypes';
+import {ADD_CARD, EDIT_CARD, FETCH_CARDS, REMOVE_CARD, TOGGLE_LIKE} from './actionTypes';
 
 const addCardRequest = (card) => ({
     type: ADD_CARD.REQUEST,
@@ -61,6 +61,21 @@ const fetchCardsError = (error) => ({
     error
 });
 
+const toggleLikeRequest = (id) => ({
+    type: TOGGLE_LIKE.REQUEST,
+    id
+});
+
+const toggleLikeSuccess = (card) => ({
+    type: TOGGLE_LIKE.SUCCESS,
+    card
+});
+
+const toggleLikeError = (error) => ({
+    type: TOGGLE_LIKE.ERROR,
+    error
+});
+
 export {
     addCardRequest,
     addCardSuccess,
@@ -73,6 +88,9 @@ export {
     removeCardError,
     fetchCardsRequest,
     fetchCardsSuccess,
-    fetchCardsError
+    fetchCardsError,
+    toggleLikeRequest,
+    toggleLikeSuccess,
+    toggleLikeError
 };
 
