@@ -5,9 +5,9 @@ import LoginPageContainer from '../LoginPageContainer/LoginPageContainer';
 import SignUpPageContainer from '../SignUpPageContainer/SignUpPageContainer';
 import NavBarContainer from '../NavBarContainer/NavBarContainer';
 import {connect} from 'react-redux';
-import CardListPageContainer from '../CardListPageContainer/CardListPageContainer';
-import CardCreationPageContainer from '../CardCreationPageContainer/CardCreationPageContainer';
-import CardEditionPageContainer from '../CardEditionPageContainer/CardEditionPageContainer';
+import PostListPageContainer from '../PostListPageContainer/PostListPageContainer';
+import PostCreationPageContainer from '../PostCreationPageContainer/PostCreationPageContainer';
+import PostEditionPageContainer from '../PostEditionPageContainer/PostEditionPageContainer';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
 
 function AppContainer(props) {
@@ -19,9 +19,9 @@ function AppContainer(props) {
                     <Switch>
                         <Route path={Routes.LOGIN} component={LoginPageContainer}/>
                         <Route path={Routes.SIGN_UP} component={SignUpPageContainer}/>
-                        <Route exact path={Routes.CARD_LIST} component={CardListPageContainer}/>
-                        <PrivateRoute path={Routes.CREATE_CARD} component={CardCreationPageContainer}/>
-                        <PrivateRoute path={Routes.EDIT_CARD} component={CardEditionPageContainer}/>
+                        <Route exact path={Routes.POSTS} component={PostListPageContainer}/>
+                        <PrivateRoute path={Routes.CREATE_POST} component={PostCreationPageContainer}/>
+                        <PrivateRoute path={Routes.EDIT_POST} component={PostEditionPageContainer}/>
                     </Switch>
                 </Fragment>
             </BrowserRouter>

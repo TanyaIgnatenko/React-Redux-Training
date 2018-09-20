@@ -4,15 +4,15 @@ import PropTypes from 'prop-types';
 import LikeButton from '../LikeButton/LikeButton';
 import EditButton from '../EditButton/EditButton';
 
-import './Card.scss';
+import './Post.scss';
 
-export default function Card(props) {
+export default function Post(props) {
     const description = props.content.length <= 123 ? props.content : props.content.slice(0, 123);
     return (
-        <div className={'card__container'}>
-            <h2 className={'card__title'}>{props.title}</h2>
-            <p className={'card__description'}>{description}</p>
-            <div className={'card__buttons-container'}>
+        <div className={'post__container'}>
+            <h2 className={'post__title'}>{props.title}</h2>
+            <p className={'post__description'}>{description}</p>
+            <div className={'post__buttons-container'}>
                 <EditButton onClick={props.onEditClick}/>
                 <LikeButton likeCount={props.likeCount} onClick={props.onLikeClick}/>
             </div>
@@ -20,7 +20,7 @@ export default function Card(props) {
     );
 }
 
-Card.propTypes = {
+Post.propTypes = {
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     likeCount: PropTypes.number.isRequired,

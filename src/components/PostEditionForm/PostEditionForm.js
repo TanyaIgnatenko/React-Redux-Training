@@ -1,25 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './CardEditionForm.scss';
+import './PostEditionForm.scss';
 
-export default function CardEditionForm(props) {
-    const deleteButton = !props.cardExist ?
+export default function PostEditionForm(props) {
+    const deleteButton = !props.postExist ?
         null :
         (
             <input
                 type='button'
-                className={'card-edition-form__delete-button'}
+                className={'post-edition-form__delete-button'}
                 value='Delete'
                 onClick={props.onDelete}
             />
         );
 
     return (
-        <form className={'card-edition-form__container'} onSubmit={props.onSave}>
+        <form className={'post-edition-form__container'} onSubmit={props.onSave}>
             <input
                 type='text'
-                className={'card-edition-form__title-field'}
+                className={'post-edition-form__title-field'}
                 value={props.title}
                 name='title'
                 placeholder='Enter title'
@@ -31,7 +31,7 @@ export default function CardEditionForm(props) {
             <textarea
                 rows='10'
                 cols='33'
-                className={'card-edition-form__description-field'}
+                className={'post-edition-form__description-field'}
                 value={props.content}
                 name='content'
                 placeholder='Enter text'
@@ -41,10 +41,10 @@ export default function CardEditionForm(props) {
                 maxLength='90'
             />
 
-            <div className={'card-edition-form__buttons-container'}>
+            <div className={'post-edition-form__buttons-container'}>
                 <input
                     type='submit'
-                    className={'card-edition-form__save-button'}
+                    className={'post-edition-form__save-button'}
                     value='Save'
                 />
                 {deleteButton}
@@ -53,12 +53,12 @@ export default function CardEditionForm(props) {
     );
 }
 
-CardEditionForm.defaultProps = {
+PostEditionForm.defaultProps = {
     id: null
 };
 
-CardEditionForm.propTypes = {
-    cardExist: PropTypes.bool.isRequired,
+PostEditionForm.propTypes = {
+    postExist: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     onSave: PropTypes.func.isRequired,

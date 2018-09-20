@@ -1,58 +1,59 @@
-import {ADD_CARD, EDIT_CARD, FETCH_CARDS, REMOVE_CARD, TOGGLE_LIKE} from './actionTypes';
+import {ADD_POST, EDIT_POST, FETCH_POSTS, REMOVE_POST, TOGGLE_LIKE} from './actionTypes';
 
 const initialState = {
     isFetching: false,
-    cards: [],
+    posts: [],
     error: null
 };
 
-export const cards = (state = initialState, action) => {
+export const posts = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_CARD.SUCCESS:
+        case ADD_POST.SUCCESS:
             return {
                 ...state,
-                cards: [
-                    ...state.cards,
-                    action.card
+                posts: [
+                    ...state.posts,
+                    action.post
                 ]
             };
-        case EDIT_CARD.SUCCESS:
+        case EDIT_POST.SUCCESS:
             return {
                 ...state,
-                cards: state.cards.map(card => card.id === action.id ? action.card : card)
+                posts: state.posts.map(post => post.id === action.id ? action.post : post)
             };
-        case REMOVE_CARD.SUCCESS:
+        case REMOVE_POST.SUCCESS:
             return {
                 ...state,
-                cards: state.cards.filter(card => card.id !== action.id)
+                posts: state.posts.filter(post => post.id !== action.id)
             };
-        case FETCH_CARDS.REQUEST:
+        case FETCH_POSTS.REQUEST:
             return {
                 ...state,
                 isFetching: true
             };
-        case FETCH_CARDS.SUCCESS:
+        case FETCH_POSTS.SUCCESS:
             return {
                 isFetching: false,
-                cards: action.cards
+                posts: action.posts
             };
-        case FETCH_CARDS.ERROR:
+        case FETCH_POSTS.ERROR:
             return {
+                ...state,
                 isFetching: false,
-                cards: [],
+                posts: [],
                 error: action.error
             };
-        case ADD_CARD.ERROR:
+        case ADD_POST.ERROR:
             return {
                 ...state,
                 error: action.error
             };
-        case EDIT_CARD.ERROR:
+        case EDIT_POST.ERROR:
             return {
                 ...state,
                 error: action.error
             };
-        case REMOVE_CARD.ERROR:
+        case REMOVE_POST.ERROR:
             return {
                 ...state,
                 error: action.error
@@ -60,7 +61,7 @@ export const cards = (state = initialState, action) => {
         case TOGGLE_LIKE.SUCCESS:
             return {
                 ...state,
-                cards: state.cards.map(card => card.id === action.card.id ? action.card : card)
+                posts: state.posts.map(post => post.id === action.post.id ? action.post : post)
             };
         case TOGGLE_LIKE.ERROR:
             return {

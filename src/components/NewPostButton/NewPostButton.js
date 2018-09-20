@@ -3,17 +3,17 @@ import PropTypes from 'prop-types';
 
 import plusIcon from '../../assets/images/plus-icon.png';
 
-import './NewCardButton.scss';
+import './NewPostButton.scss';
 
-export default function NewCardButton(props) {
+export default function NewPostButton(props) {
     return (
-        <div className={'new-card-button__container'}>
+        <div className={'new-post-button__container'}>
             <input type='image' src={plusIcon} onClick={props.onClick}/>
         </div>
     );
 }
 
-NewCardButton.propTypes = {
+NewPostButton.propTypes = {
     onClick: PropTypes.func.isRequired
 };
 

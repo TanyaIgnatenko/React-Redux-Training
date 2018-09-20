@@ -1,103 +1,103 @@
-const CARD_START_ID = 100;
-let cards = JSON.parse(localStorage.getItem('cards')) || [];
-let tempCards = JSON.parse(localStorage.getItem('tempCards')) || [];
-let nextCardId = getInitialNextCardId();
+const POST_START_ID = 100;
+let posts = JSON.parse(localStorage.getItem('posts')) || [];
+let tempPosts = JSON.parse(localStorage.getItem('tempPosts')) || [];
+let nextPostId = getInitialNextPostId();
 
-function fetchCards() {
-    return cards;
+function fetchPosts() {
+    return posts;
 }
 
-function fetchCard(id) {
-    return cards.find(card => card.id === id);
+function fetchPost(id) {
+    return posts.find(post => post.id === id);
 }
 
-function addCard(card) {
-    card.id = getNextCardId();
-    cards.push(card);
-    storeCards(cards);
+function addPost(post) {
+    post.id = getNextPostId();
+    posts.push(post);
+    storePosts(posts);
 }
 
-function replaceCard(id, card) {
-    const cardIdx = getCardIdx(id);
-    if (cardIdx === -1) {
-        addCard(card);
+function replacePost(id, post) {
+    const postIdx = getPostIdx(id);
+    if (postIdx === -1) {
+        addPost(post);
     } else {
-        cards.splice(cardIdx, 1, card);
-        storeCards(cards);
+        posts.splice(postIdx, 1, post);
+        storePosts(posts);
     }
 }
 
-function removeCard(id) {
-    const cardIdx = getCardIdx(id);
-    if (cardIdx === -1) {
+function removePost(id) {
+    const postIdx = getPostIdx(id);
+    if (postIdx === -1) {
         return;
     }
 
-    cards.splice(cardIdx, 1);
-    storeCards(cards);
+    posts.splice(postIdx, 1);
+    storePosts(posts);
 }
 
-function fetchTempCard(id) {
-    return tempCards.find(card => card.id === id);
+function fetchTempPost(id) {
+    return tempPosts.find(post => post.id === id);
 }
 
-function addTempCard(card) {
-    tempCards.push(card);
-    storeTempCards(tempCards);
+function addTempPost(post) {
+    tempPosts.push(post);
+    storeTempPosts(tempPosts);
 }
 
-function deleteTempCard(id) {
-    const cardIdx = getTempCardIdx(id);
-    if (cardIdx === -1) {
+function deleteTempPost(id) {
+    const postIdx = getTempPostIdx(id);
+    if (postIdx === -1) {
         return;
     }
 
-    tempCards.splice(cardIdx, 1);
-    storeTempCards(tempCards);
+    tempPosts.splice(postIdx, 1);
+    storeTempPosts(tempPosts);
 }
 
-function deleteTempCards() {
-    tempCards.length = 0;
-    storeTempCards(tempCards);
+function deleteTempPosts() {
+    tempPosts.length = 0;
+    storeTempPosts(tempPosts);
 }
 
-function getCardIdx(id) {
-    return cards.findIndex(card => card.id === id);
+function getPostIdx(id) {
+    return posts.findIndex(post => post.id === id);
 }
 
-function getLastCardId() {
-    return cards.length === 0 ? -1 : cards[cards.length - 1].id;
+function getLastPostId() {
+    return posts.length === 0 ? -1 : posts[posts.length - 1].id;
 }
 
-function getInitialNextCardId() {
-    const lastCardId = getLastCardId();
-    return lastCardId === -1 ? CARD_START_ID : lastCardId + 1;
+function getInitialNextPostId() {
+    const lastPostId = getLastPostId();
+    return lastPostId === -1 ? POST_START_ID : lastPostId + 1;
 }
 
-function getNextCardId() {
-    return nextCardId++;
+function getNextPostId() {
+    return nextPostId++;
 }
 
-function storeCards(cards) {
-    localStorage.setItem('cards', JSON.stringify(cards));
+function storePosts(posts) {
+    localStorage.setItem('posts', JSON.stringify(posts));
 }
 
-function getTempCardIdx(id) {
-    return tempCards.findIndex(card => card.id === id);
+function getTempPostIdx(id) {
+    return tempPosts.findIndex(post => post.id === id);
 }
 
-function storeTempCards(cards) {
-    localStorage.setItem('tempCards', JSON.stringify(tempCards));
+function storeTempPosts(posts) {
+    localStorage.setItem('tempPosts', JSON.stringify(tempPosts));
 }
 
 export default {
-    fetchCards,
-    fetchCard,
-    addCard,
-    replaceCard,
-    removeCard,
-    fetchTempCard,
-    addTempCard,
-    deleteTempCard,
-    deleteTempCards
+    fetchPosts,
+    fetchPost,
+    addPost,
+    replacePost,
+    removePost,
+    fetchTempPost,
+    addTempPost,
+    deleteTempPost,
+    deleteTempPosts
 };

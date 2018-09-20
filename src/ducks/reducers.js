@@ -1,9 +1,9 @@
 import {combineReducers} from 'redux';
 import {auth} from './auth/reducer';
-import {cards} from './cards/reducer';
+import {posts} from './posts/reducer';
 
 export default combineReducers({
     auth,
-    cards
+    posts
 });
 

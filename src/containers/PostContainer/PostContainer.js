@@ -1,14 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Card from '../../components/Card/Card';
+import Post from '../../components/Post/Post';
 import {Routes} from '../../config';
-import {toggleLikeRequest} from '../../ducks/cards/actions';
+import {toggleLikeRequest} from '../../ducks/posts/actions';
 import {connect} from 'react-redux';
 
-class CardContainer extends React.Component {
+class PostContainer extends React.Component {
     static propTypes = {
-        card: PropTypes.shape(
+        post: PropTypes.shape(
             {
                 id: PropTypes.number.isRequired,
                 title: PropTypes.string.isRequired,
@@ -19,15 +19,14 @@ class CardContainer extends React.Component {
         toggleLike: PropTypes.func.isRequired
     };
 
-    editClickHandler = () => this.props.history.push(Routes.EDIT_CARD.replace(':id', this.props.card.id));
+    editClickHandler = () => this.props.history.push(Routes.EDIT_POST.replace(':id', this.props.post.id));
 
     render() {
-        console.log('this.props.card.totalLikes: ', this.props.card.totalLikes);
         return (
-            <Card
-                title={this.props.card.title}
-                content={this.props.card.content}
-                likeCount={this.props.card.totalLikes}
+            <Post
+                title={this.props.post.title}
+                content={this.props.post.content}
+                likeCount={this.props.post.totalLikes}
                 onLikeClick={this.props.toggleLike}
                 onEditClick={this.editClickHandler}
             />
@@ -36,9 +35,9 @@ class CardContainer extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    toggleLike: () => dispatch(toggleLikeRequest(ownProps.card.id))
+    toggleLike: () => dispatch(toggleLikeRequest(ownProps.post.id))
 });
 
-export default connect(null, mapDispatchToProps)(CardContainer);
+export default connect(null, mapDispatchToProps)(PostContainer);
 
 

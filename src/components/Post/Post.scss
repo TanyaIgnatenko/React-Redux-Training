@@ -1,6 +1,6 @@
 @import '../../index';
 
-.card__container {
+.post__container {
     display: flex;
     flex-direction: column;
     position: relative;
@@ -10,18 +10,18 @@
     background-color: antiquewhite;
 }
 
-.card__title {
+.post__title {
     font-size: 24pt;
     font-family: $font-stack;
     font-weight: bold;
-    color: $card-title-color;
+    color: $post-title-color;
     margin: 0;
 }
 
-.card__description {
+.post__description {
     font-size: 20pt;
     font-family: $font-stack;
-    color: $card-description-color;
+    color: $post-description-color;
 
     overflow-wrap: break-word;
     height: 160px;
@@ -29,7 +29,7 @@
     margin: 20px 0 0 0;
 }
 
-.card__buttons-container {
+.post__buttons-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;

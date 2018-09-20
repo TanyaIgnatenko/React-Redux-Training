@@ -34,7 +34,7 @@ class LoginPageContainer extends Component {
     render() {
         const {history, isLoggedIn, isLoginProcessing, loginError} = this.props;
         if (isLoggedIn) {
-            history.push(Routes.CARD_LIST);
+            history.push(Routes.POSTS);
         }
         return (
             <Page title='Login'>
