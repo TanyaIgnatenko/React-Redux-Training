@@ -10,9 +10,12 @@ const REGISTER = {
     ERROR: '@@auth/REGISTER_ERROR'
 };
 
+const SET_USER = '@@auth/SET_USER';
+
 const LOGOUT = '@@auth/LOGOUT';
 
 export {
+    SET_USER,
     LOGIN,
     LOGOUT,
     REGISTER

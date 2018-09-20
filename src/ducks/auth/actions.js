@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, SIGN_UP, FETCH_USER} from './actionTypes';
+import {LOGIN, LOGOUT, SET_USER, REGISTER} from './actionTypes';
 
 const loginRequest = (email, password) => ({
     type: LOGIN.REQUEST,
@@ -13,21 +13,7 @@ const loginSuccess = () => ({
 });
 
 const loginError = (error) => ({
-    type: LOGIN.REQUEST,
-    error
-});
-
-const fetchUserRequest = () => ({
-    type: FETCH_USER.REQUEST
-});
-
-const fetchUserSuccess = (user) => ({
-    type: FETCH_USER.SUCCESS,
-    user
-});
-
-const fetchUserError = (error) => ({
-    type: FETCH_USER.ERROR,
+    type: LOGIN.ERROR,
     error
 });
 
@@ -36,7 +22,7 @@ const logout = () => ({
 });
 
 const registerRequest = (email, password) => ({
-    type: SIGN_UP.REQUEST,
+    type: REGISTER.REQUEST,
     credentials: {
         name,
         email,
@@ -44,27 +30,27 @@ const registerRequest = (email, password) => ({
     }
 });
 
-const registerSuccess = (user) => ({
-    type: SIGN_UP.SUCCESS
+const registerSuccess = () => ({
+    type: REGISTER.SUCCESS
 });
 
 const registerError = (error) => ({
-    type: SIGN_UP.ERROR,
+    type: REGISTER.ERROR,
     error
+});
+
+const setUser = (user) => ({
+    type: SET_USER,
+    user
 });
 
 export {
     loginRequest,
     loginSuccess,
     loginError,
-    fetchUserRequest,
-    fetchUserSuccess,
-    fetchUserError,
     registerRequest,
     registerSuccess,
     registerError,
+    setUser,
     logout
 };
-
-export * from 'actions';
-

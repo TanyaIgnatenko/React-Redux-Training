@@ -1,4 +1,4 @@
-const API_URL = '';
+const API_URL = 'http://rest-api.noveogroup.com/api/v1';
 
 const Routes = {
     ROOT: '/',

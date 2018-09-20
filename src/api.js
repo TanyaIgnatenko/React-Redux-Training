@@ -1,23 +1,16 @@
 import axios from 'axios';
-import {API_URL} from 'src/config';
+import {API_URL} from 'config';
 
-export default axios.create({
-    baseURL: API_URL
+const instance = axios.create({
+    baseURL: API_URL,
+    headers: {
+        'Content-Type': 'application/json',
+        'X-Application-Key': 'ZRwQWMEdLbmC84tULS9T25yms57wSoWbEHgm6Sdr'
+    }
 });
 
-// function post(path, payload) {
-//     return axios
-//         .get(`${API_URL}${path}`)
-//         .then(response => response.data);
-// }
-//
-// function get(path) {
-//     return axios
-//         .get(`${API_URL}${path}`)
-//         .then(response => response.data);
-// }
-//
-// export {
-//     post,
-//     get
-// };
+const setTokenIntoRequestHeader = (token) => instance.defaults.headers['Authorization'] = `Bearer ${token}`;
+
+const removeTokenFromRequestHeader = () => delete instance.defaults.headers['Authorization'];
+
+export {instance, setTokenIntoRequestHeader, removeTokenFromRequestHeader};

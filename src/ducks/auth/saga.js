@@ -1,15 +1,23 @@
-import {loginSuccess, loginError, registerSuccess, registerError} from './actions';
+import {loginError, loginSuccess, registerError, registerSuccess, setUser} from './actions';
 import {call, put, race, take} from 'redux-saga/effects';
 import {LOGIN, LOGOUT, REGISTER} from './actionTypes';
-import * as API from './services';
+import * as services from './services';
 
+function* fetchUserSaga() {
+    const response = yield call(services.fetchUser);
+    const {user} = response.data.data;
+    yield put(setUser(user));
+}
 
 function* loginSaga({credentials}) {
     try {
-        yield call(API.login, credentials);
-        const user = yield call(API.fetchUser);
-        yield put(loginSuccess(user));
+        const response = yield call(services.login, credentials);
+        const {token} = response.data.data;
+        yield call(services.setApiToken, token);
+        yield call(fetchUserSaga);
+        yield put(loginSuccess());
     } catch (e) {
+        yield call(services.removeApiToken);
         yield put(loginError(e));
         throw e;
     }
@@ -17,31 +25,45 @@ function* loginSaga({credentials}) {
 
 function* registerSaga({credentials}) {
     try {
-        yield call(API.register, credentials);
+        const response = yield call(services.register, credentials);
+        const {user, token} = response.data.data;
+        yield call(services.setApiToken, token);
+        yield put(setUser(user));
         yield put(registerSuccess());
     } catch (e) {
         yield put(registerError(e.message));
+        throw e;
     }
 }
 
 export function* watchAuthRequests() {
+    const apiToken = yield call(services.findApiToken);
+    if (apiToken) {
+        try {
+            yield call(services.setApiToken, apiToken);
+            yield call(fetchUserSaga);
+            yield take(LOGOUT);
+        } finally {
+            yield call(services.removeApiToken);
+        }
+    }
     while (true) {
         const {login, register} = yield race({
             login: take(LOGIN.REQUEST),
             register: take(REGISTER.REQUEST)
         });
 
-        if (login) {
-            try {
+        try {
+            if (login) {
                 yield call(loginSaga, login);
-            } catch (e) {
-                continue;
+            } else {
+                yield call(registerSaga, register);
             }
-
-            yield take(LOGOUT);
-            yield call(API.logout);
-        } else {
-            yield call(registerSaga, register);
+        } catch (e) {
+            continue;
         }
+
+        yield take(LOGOUT);
+        yield call(services.removeApiToken);
     }
 }

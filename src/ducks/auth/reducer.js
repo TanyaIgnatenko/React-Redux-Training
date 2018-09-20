@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, REGISTER} from './actionTypes';
+import {LOGIN, LOGOUT, REGISTER, SET_USER} from './actionTypes';
 
 const initialState = {
     isRequesting: false,
@@ -16,8 +16,7 @@ export const auth = (state = initialState, action) => {
         case LOGIN.SUCCESS:
             return {
                 ...state,
-                isRequesting: false,
-                user: action.user
+                isRequesting: false
             };
         case LOGIN.ERROR:
             return {
@@ -40,6 +39,11 @@ export const auth = (state = initialState, action) => {
                 ...state,
                 isRequesting: false,
                 error: action.error
+            };
+        case SET_USER:
+            return {
+                ...state,
+                user: action.user
             };
         case LOGOUT:
             return {

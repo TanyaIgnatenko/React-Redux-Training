@@ -30,6 +30,7 @@ const config = {
     devtool: NODE_ENV !== 'production' ? 'source-map' : false,
 
     entry: [
+        'babel-polyfill',
         path.resolve(srcFolder, 'index.js')
     ],
 

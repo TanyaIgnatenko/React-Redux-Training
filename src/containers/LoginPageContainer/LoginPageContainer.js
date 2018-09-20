@@ -23,7 +23,7 @@ class LoginPageContainer extends Component {
 
     onLoginClick = (event) => {
         event.preventDefault();
-        this.props.login();
+        this.props.login(this.state.email, this.state.password);
     };
 
     render() {
@@ -41,7 +41,7 @@ class LoginPageContainer extends Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-    login: () => dispatch(loginRequest(this.state.email, this.state.password))
+    login: (email, password) => dispatch(loginRequest(email, password))
 });
 
 export default connect(null, mapDispatchToProps)(LoginPageContainer);
