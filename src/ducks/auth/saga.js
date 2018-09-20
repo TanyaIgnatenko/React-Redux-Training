@@ -5,14 +5,14 @@ import * as services from './services';
 
 function* fetchUserSaga() {
     const response = yield call(services.fetchUser);
-    const {user} = response.data.data;
+    const {user} = response;
     yield put(setUser(user));
 }
 
 function* loginSaga({credentials}) {
     try {
         const response = yield call(services.login, credentials);
-        const {token} = response.data.data;
+        const {token} = response;
         yield call(services.setApiToken, token);
         yield call(fetchUserSaga);
         yield put(loginSuccess());
@@ -26,7 +26,7 @@ function* loginSaga({credentials}) {
 function* registerSaga({credentials}) {
     try {
         const response = yield call(services.register, credentials);
-        const {user, token} = response.data.data;
+        const {user, token} = response;
         yield call(services.setApiToken, token);
         yield put(setUser(user));
         yield put(registerSuccess());

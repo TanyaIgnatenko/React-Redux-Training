@@ -19,11 +19,11 @@ const store = createStore(
 );
 const mountNode = document.getElementById('root');
 
+sagaMiddleware.run(rootSaga);
+
 render(
     <Provider store={store}>
         <AppContainer/>
     </Provider>,
     mountNode
 );
-
-sagaMiddleware.run(rootSaga);

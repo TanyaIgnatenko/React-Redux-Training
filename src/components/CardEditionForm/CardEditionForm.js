@@ -33,7 +33,7 @@ export default function CardEditionForm(props) {
                 cols='33'
                 className={'card-edition-form__description-field'}
                 value={props.content}
-                name='description'
+                name='content'
                 placeholder='Enter text'
                 onChange={props.onDescriptionInputChange}
                 required

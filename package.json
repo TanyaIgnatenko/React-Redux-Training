@@ -7,7 +7,7 @@
     "type": "git",
     "url": "https://gitlab.noveogroup.com/tignatenko/react-training.git"
   },
-  "author"  : "Tatiana Ignatenko",
+  "author": "Tatiana Ignatenko",
   "license": "MIT",
   "scripts": {
     "start:dev": "cross-env NODE_ENV=development webpack-dev-server --progress",
@@ -46,6 +46,7 @@
     "axios": "^0.18.0",
     "bootstrap": "^4.1.3",
     "cross-env": "^5.2.0",
+    "humps": "^2.0.1",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-bootstrap": "^0.32.4",

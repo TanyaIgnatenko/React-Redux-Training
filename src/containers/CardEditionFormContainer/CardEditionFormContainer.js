@@ -20,7 +20,7 @@ class CardEditionFormContainer extends React.Component {
 
     componentDidMount() {
         // if (this.props.cardExist) {
-        //     this.previousCard = fetchCard(this.props.id);
+        //     this.props.previousCard = fetchCard(this.props.id);
         // }
         // const tempCard = fetchTempCard(this.props.id);
         const tempCard = undefined;
@@ -31,8 +31,8 @@ class CardEditionFormContainer extends React.Component {
             });
         } else if (this.props.cardExist) {
             this.setState({
-                title: this.previousCard.title,
-                content: this.previousCard.content
+                title: this.props.previousCard.title,
+                content: this.props.previousCard.content
             });
         }
 
@@ -72,10 +72,10 @@ class CardEditionFormContainer extends React.Component {
         let card;
         if (this.props.cardExist) {
             card = {
-                id: this.previousCard.id,
+                id: this.props.previousCard.id,
                 title: this.state.title,
                 content: this.state.content,
-                totalLikes: this.previousCard.totalLikes
+                totalLikes: this.props.previousCard.totalLikes
             };
         } else {
             card = {
@@ -122,7 +122,7 @@ CardEditionFormContainer.propTypes = {
 };
 
 const mapStateToProps = (state, ownPorps) => ({
-    previousCard: state.cards[ownPorps.id]
+    previousCard: state.cards.cards.find(card => card.id === ownPorps.id)
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -131,5 +131,5 @@ const mapDispatchToProps = dispatch => ({
     removeCard: id => dispatch(removeCardRequest(id))
 });
 
-export default connect(null, mapDispatchToProps)(CardEditionFormContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(CardEditionFormContainer);
 

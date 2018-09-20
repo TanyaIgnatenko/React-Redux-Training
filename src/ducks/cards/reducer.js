@@ -19,12 +19,12 @@ export const cards = (state = initialState, action) => {
         case EDIT_CARD.SUCCESS:
             return {
                 ...state,
-                cards: state.cards.map(card => card.id === action.id ? card : action.card)
+                cards: state.cards.map(card => card.id === action.id ? action.card : card)
             };
         case REMOVE_CARD.SUCCESS:
             return {
                 ...state,
-                cards: state.filter(card => card.id !== action.id)
+                cards: state.cards.filter(card => card.id !== action.id)
             };
         case FETCH_CARDS.REQUEST:
             return {
@@ -61,30 +61,3 @@ export const cards = (state = initialState, action) => {
             return state;
     }
 };
-
-const cardsData = [
-    {
-        id: 1,
-        title: 'Tanya Ignatenko',
-        content: 'JS Developer',
-        totalLikes: 5
-    },
-    {
-        id: 2,
-        title: 'Tanya Ignatenko 2',
-        content: 'JS Developer',
-        totalLikes: 3
-    },
-    {
-        id: 3,
-        title: 'Tanya Ignatenko 3',
-        content: 'JS Developer',
-        totalLikes: 1
-    },
-    {
-        id: 4,
-        title: 'Tanya Ignatenko 4',
-        content: 'JS Developer',
-        totalLikes: 0
-    }
-];

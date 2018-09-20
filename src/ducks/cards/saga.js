@@ -1,51 +1,56 @@
-import {all} from 'redux-saga/effects';
+import {all, call, put, takeLatest} from 'redux-saga/effects';
 import {ADD_CARD, EDIT_CARD, FETCH_CARDS, REMOVE_CARD} from './actionTypes';
-import {takeLatest, takeEvery, call, put} from 'redux-saga/effects';
 import * as services from './services';
+import {
+    addCardError,
+    addCardSuccess,
+    editCardError,
+    editCardSuccess,
+    fetchCardsError,
+    fetchCardsSuccess,
+    removeCardError,
+    removeCardSuccess
+} from './actions';
 
 
 function* addCardSaga({card}) {
     try {
-        yield call(services.addCard, card);
-        yield put(ADD_CARD.SUCCESS, card);
+        const {post} = yield call(services.addCard, card);
+        yield put(addCardSuccess(post));
     } catch (e) {
-        yield put(ADD_CARD.ERROR, e);
+        yield put(addCardError(e));
     }
 }
 
 function* editCardSaga({id, card}) {
     try {
         yield call(services.editCard, id, card);
-        yield put(EDIT_CARD.SUCCESS, id, card);
+        yield put(editCardSuccess(id, card));
     } catch (e) {
-        yield put(EDIT_CARD.ERROR, e);
+        yield put(editCardError(e));
     }
 }
 
 function* removeCardSaga({id}) {
     try {
         yield call(services.removeCard, id);
-        yield put(REMOVE_CARD.SUCCESS, id);
+        yield put(removeCardSuccess(id));
     } catch (e) {
-        yield put(REMOVE_CARD.ERROR, e);
+        yield put(removeCardError(e));
     }
 }
 
 function* fetchCardsSaga() {
     try {
-        console.log('fetchCardsSaga hello:');
         const response = yield call(services.fetchCards);
-        const cards = response.data.data;
-        console.log('response: ', response);
-        console.log('cards: ', cards);
-        yield put(FETCH_CARDS.SUCCESS, cards);
+        const cards = response.posts;
+        yield put(fetchCardsSuccess(cards));
     } catch (e) {
-        yield put(FETCH_CARDS.ERROR, e);
+        yield put(fetchCardsError(e));
     }
 }
 
 export function* watchCardRequests() {
-    console.log('watchCardsRequestsSaga: ');
     yield all([
         takeLatest(ADD_CARD.REQUEST, addCardSaga),
         takeLatest(EDIT_CARD.REQUEST, editCardSaga),
