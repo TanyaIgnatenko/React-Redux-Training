@@ -7,7 +7,7 @@ import {connect} from 'react-redux';
 import {Routes} from '../../config';
 
 class LoginPageContainer extends Component {
-    static props = {
+    static propTypes = {
         login: PropTypes.func.isRequired,
         history: PropTypes.object.isRequired,
         isLoggedIn: PropTypes.bool.isRequired,
@@ -63,5 +63,5 @@ const mapDispatchToProps = dispatch => ({
     login: (email, password) => dispatch(loginRequest(email, password))
 });
 
-export default connect(null, mapDispatchToProps)(LoginPageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPageContainer);
 
