@@ -4,9 +4,9 @@ import {Nav, Navbar, NavItem} from 'react-bootstrap';
 import {Routes} from '../../config';
 
 function NavBar(props) {
-    const loginButton = !props.isLoggedIn ? <NavItem href={Routes.LOGIN}>Login</NavItem> : null;
-    const signInButton = !props.isLoggedIn ? <NavItem href={Routes.SIGN_UP}>Sign up</NavItem> : null;
-    const logoutButton = props.isLoggedIn ? <NavItem href={Routes.ROOT} onClick={props.onLogout}>Logout</NavItem> : null;
+    const loginButton = !props.isLoggedIn ? <NavItem onClick={props.onLogin}>Login</NavItem> : null;
+    const signInButton = !props.isLoggedIn ? <NavItem onClick={props.onSignup}>Sign up</NavItem> : null;
+    const logoutButton = props.isLoggedIn ? <NavItem onClick={props.onLogout}>Logout</NavItem> : null;
     return (
         <Navbar inverse collapseOnSelect>
             <Navbar.Header>
@@ -30,6 +30,8 @@ function NavBar(props) {
 NavBar.propTypes = {
     isLoggedIn: PropTypes.bool.isRequired,
     onLogout: PropTypes.func.isRequired,
+    onLogin: PropTypes.func.isRequired,
+    onSignup: PropTypes.func.isRequired,
     username: PropTypes.string
 };
 
