@@ -9,7 +9,7 @@ import NewPostButtonContainer from '../NewPostButtonContainer/NewPostButtonConta
 import {fetchPostsRequest} from '../../ducks/posts/actions';
 
 
-class PostListPageContainer extends React.Component {
+class PostsPageContainer extends React.Component {
     static propTypes = {
         posts: PropTypes.arrayOf(PropTypes.shape({
             id: PropTypes.number.isRequired,
@@ -52,4 +52,4 @@ const mapDispatchToProps = dispatch => ({
     fetchPosts: () => dispatch(fetchPostsRequest())
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PostListPageContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PostsPageContainer);

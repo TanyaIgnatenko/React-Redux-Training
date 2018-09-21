@@ -5,7 +5,7 @@ import LoginPageContainer from '../LoginPageContainer/LoginPageContainer';
 import SignUpPageContainer from '../SignUpPageContainer/SignUpPageContainer';
 import NavBarContainer from '../NavBarContainer/NavBarContainer';
 import {connect} from 'react-redux';
-import PostListPageContainer from '../PostListPageContainer/PostListPageContainer';
+import PostListPageContainer from '../PostsPageContainer/PostsPageContainer';
 import PostCreationPageContainer from '../PostCreationPageContainer/PostCreationPageContainer';
 import PostEditionPageContainer from '../PostEditionPageContainer/PostEditionPageContainer';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
