@@ -12,8 +12,8 @@ export const posts = (state = initialState, action) => {
             return {
                 ...state,
                 posts: [
-                    ...state.posts,
-                    action.post
+                    action.post,
+                    ...state.posts
                 ]
             };
         case EDIT_POST.SUCCESS:
