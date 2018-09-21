@@ -11,11 +11,18 @@ import rootSaga from './ducks/sagas';
 import rootReducer from './ducks/reducers';
 
 import './index.scss';
+import {ConnectedRouter, routerMiddleware} from 'react-router-redux';
 
+import {createBrowserHistory} from 'history';
+const history = createBrowserHistory();
+const navigationMiddleware = routerMiddleware(history);
 const sagaMiddleware = createSagaMiddleware();
+const initialState = {};
+
 const store = createStore(
     rootReducer,
-    composeWithDevTools(applyMiddleware(sagaMiddleware))
+    initialState,
+    composeWithDevTools(applyMiddleware(sagaMiddleware, navigationMiddleware))
 );
 const mountNode = document.getElementById('root');
 
@@ -23,7 +30,9 @@ sagaMiddleware.run(rootSaga);
 
 render(
     <Provider store={store}>
-        <AppContainer/>
+        <ConnectedRouter history={history}>
+            <AppContainer/>
+        </ConnectedRouter>
     </Provider>,
     mountNode
 );

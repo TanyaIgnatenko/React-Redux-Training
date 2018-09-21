@@ -55,12 +55,10 @@ class PostEditionFormContainer extends React.Component {
             this.props.addPost(changedPost);
         }
         //PostsStorageController.deleteTempPost(changedPost.id);
-        this.props.history.push(Routes.POSTS);
     };
 
     handlePostDeletion = () => {
         this.props.removePost(this.props.id);
-        this.props.history.push(Routes.POSTS);
     };
 
     handlePageReload = () => {
