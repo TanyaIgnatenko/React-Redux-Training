@@ -10,7 +10,7 @@ import PostsPageContainer from '../PostsPageContainer/PostsPageContainer';
 import PostCreationPageContainer from '../PostCreationPageContainer/PostCreationPageContainer';
 import PostEditionPageContainer from '../PostEditionPageContainer/PostEditionPageContainer';
 import PrivateRoute from '../PrivateRoute/PrivateRoute';
-import {ConnectedRouter} from 'react-router-redux';
+import {ConnectedRouter} from 'connected-react-router';
 
 function AppContainer({history}) {
     return (

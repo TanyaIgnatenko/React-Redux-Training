@@ -5,6 +5,7 @@ import Post from '../../components/Post/Post';
 import {Routes} from '../../config';
 import {toggleLikeRequest} from '../../ducks/posts/actions';
 import {connect} from 'react-redux';
+import {push} from 'connected-react-router';
 
 class PostContainer extends React.Component {
     static propTypes = {
@@ -15,27 +16,27 @@ class PostContainer extends React.Component {
                 content: PropTypes.string.isRequired,
                 totalLikes: PropTypes.number.isRequired
             }).isRequired,
-        history: PropTypes.object.isRequired,
-        toggleLike: PropTypes.func.isRequired
+        toggleLike: PropTypes.func.isRequired,
+        editClickHandler: PropTypes.func.isRequired
     };
 
-    editClickHandler = () => this.props.history.push(Routes.EDIT_POST.replace(':id', this.props.post.id));
-
     render() {
+        const {post, toggleLike, editClickHandler} = this.props;
         return (
             <Post
-                title={this.props.post.title}
-                content={this.props.post.content}
-                likeCount={this.props.post.totalLikes}
-                onLikeClick={this.props.toggleLike}
-                onEditClick={this.editClickHandler}
+                title={post.title}
+                content={post.content}
+                likeCount={post.totalLikes}
+                onLikeClick={toggleLike}
+                onEditClick={editClickHandler}
             />
         );
     }
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-    toggleLike: () => dispatch(toggleLikeRequest(ownProps.post.id))
+    toggleLike: () => dispatch(toggleLikeRequest(ownProps.post.id)),
+    editClickHandler: () => dispatch(push(Routes.EDIT_POST.replace(':id', ownProps.post.id)))
 });
 
 export default connect(null, mapDispatchToProps)(PostContainer);

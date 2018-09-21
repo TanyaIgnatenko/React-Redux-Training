@@ -15,7 +15,7 @@ import {
     toggleLikeSuccess
 } from './actions';
 import {Routes} from '../../config';
-import {push} from 'react-router-redux';
+import {push} from 'connected-react-router';
 
 
 function* addPostSaga({post}) {

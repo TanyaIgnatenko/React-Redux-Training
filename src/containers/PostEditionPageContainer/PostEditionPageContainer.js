@@ -8,7 +8,7 @@ export default function PostEditionPageContainer(props) {
     const postId = parseInt(props.match.params.id, 10);
     return (
         <Page title='Edit post'>
-            <PostEditionFormContainer postExist={true} id={postId} history={props.history}/>
+            <PostEditionFormContainer postExist={true} id={postId}/>
         </Page>
     );
 }
@@ -18,6 +18,5 @@ PostEditionPageContainer.propTypes = {
         params: PropTypes.shape({
             id: PropTypes.string.isRequired
         })
-    }),
-    history: PropTypes.object.isRequired
+    })
 };

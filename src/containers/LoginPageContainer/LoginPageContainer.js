@@ -9,8 +9,6 @@ import {Routes} from '../../config';
 class LoginPageContainer extends Component {
     static propTypes = {
         login: PropTypes.func.isRequired,
-        history: PropTypes.object.isRequired,
-        isLoggedIn: PropTypes.bool.isRequired,
         isLoginProcessing: PropTypes.bool.isRequired,
         loginError: PropTypes.object.isRequired
     };
@@ -32,10 +30,7 @@ class LoginPageContainer extends Component {
     };
 
     render() {
-        const {history, isLoggedIn, isLoginProcessing, loginError} = this.props;
-        if (isLoggedIn) {
-            history.push(Routes.POSTS);
-        }
+        const {isLoginProcessing, loginError} = this.props;
         return (
             <Page title='Login'>
                 <Fragment>
@@ -55,7 +50,6 @@ class LoginPageContainer extends Component {
 
 const mapStateToProps = state => ({
     isLoginProcessing: state.auth.isRequesting,
-    isLoggedIn: state.auth.user !== null,
     loginError: state.auth.error
 });
 

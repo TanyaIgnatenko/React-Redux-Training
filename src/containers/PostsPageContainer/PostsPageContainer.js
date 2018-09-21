@@ -17,8 +17,7 @@ class PostsPageContainer extends React.Component {
             content: PropTypes.string.isRequired,
             totalLikes: PropTypes.number.isRequired
         })),
-        fetchPosts: PropTypes.func.isRequired,
-        history: PropTypes.object.isRequired
+        fetchPosts: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -26,14 +25,9 @@ class PostsPageContainer extends React.Component {
     }
 
     render() {
-        this.posts = this.props.posts.map((post) =>
-            <PostContainer
-                key={post.id}
-                post={post}
-                history={this.props.history}
-            />);
+        const posts = this.props.posts.map((post) => <PostContainer key={post.id} post={post}/>);
+        const elems = [<NewPostButtonContainer key={0}/>, ...posts];
 
-        const elems = [<NewPostButtonContainer key={0} history={this.props.history}/>, ...this.posts];
         return (
             <Page title='Post List'>
                 <Grid>

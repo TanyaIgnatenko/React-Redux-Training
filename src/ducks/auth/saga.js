@@ -2,6 +2,9 @@ import {loginError, loginSuccess, registerError, registerSuccess, setUser} from 
 import {call, put, race, take} from 'redux-saga/effects';
 import {LOGIN, LOGOUT, REGISTER} from './actionTypes';
 import * as services from './services';
+import {Routes} from '../../config';
+import {push} from 'connected-react-router';
+
 
 function* fetchUserSaga() {
     const response = yield call(services.fetchUser);
@@ -16,6 +19,7 @@ function* loginSaga({credentials}) {
         yield call(services.setApiToken, token);
         yield call(fetchUserSaga);
         yield put(loginSuccess());
+        yield put(push(Routes.POSTS));
     } catch (e) {
         yield call(services.removeApiToken);
         yield put(loginError(e));
@@ -30,6 +34,7 @@ function* registerSaga({credentials}) {
         yield call(services.setApiToken, token);
         yield put(setUser(user));
         yield put(registerSuccess());
+        yield put(push(Routes.POSTS));
     } catch (e) {
         yield put(registerError(e.message));
         throw e;

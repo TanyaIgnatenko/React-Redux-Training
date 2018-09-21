@@ -1,34 +1,33 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import NavBar from '../../components/NavBar/NavBar';
 import {logout} from '../../ducks/auth/actions';
 import {connect} from 'react-redux';
 import {Routes} from '../../config';
 import {withRouter} from 'react-router-dom';
+import {push} from 'connected-react-router';
+
+import NavBar from '../../components/NavBar/NavBar';
 
 class NavBarContainer extends Component {
     static propTypes = {
         user: PropTypes.shape({
             name: PropTypes.string.isRequired
         }).isRequired,
-        logoutClickHandler: PropTypes.func.isRequired,
-        history: PropTypes.object.isRequired
+        signupClickHandler: PropTypes.func.isRequired,
+        loginClickHandler: PropTypes.func.isRequired,
+        logoutClickHandler: PropTypes.func.isRequired
     };
 
-    loginClickHandler = () => this.props.history.push(Routes.LOGIN);
-
-    signupClickHandler = () => this.props.history.push(Routes.SIGN_UP);
-
     render() {
-        const {user, logoutClickHandler} = this.props;
+        const {user, signupClickHandler, loginClickHandler, logoutClickHandler} = this.props;
         const isLoggedIn = user !== null;
         const name = user!== null ? user.name : null;
         return (
             <NavBar
                 isLoggedIn={isLoggedIn}
-                onLogin={this.loginClickHandler}
+                onLogin={loginClickHandler}
                 onLogout={logoutClickHandler}
-                onSignup={this.signupClickHandler}
+                onSignup={signupClickHandler}
                 username={name}
             />
         );
@@ -40,7 +39,9 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    logoutClickHandler: () => dispatch(logout())
+    logoutClickHandler: () => dispatch(logout()),
+    loginClickHandler: () => dispatch(push(Routes.LOGIN)),
+    signupClickHandler: () => dispatch(push(Routes.SIGN_UP))
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBarContainer));

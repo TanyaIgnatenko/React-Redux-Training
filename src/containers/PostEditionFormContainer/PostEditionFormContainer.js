@@ -116,8 +116,7 @@ PostEditionFormContainer.propTypes = {
     postExist: PropTypes.bool.isRequired,
     addPost: PropTypes.func.isRequired,
     replacePost: PropTypes.func.isRequired,
-    removePost: PropTypes.func.isRequired,
-    history: PropTypes.object.isRequired
+    removePost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state, ownProps) => ({
