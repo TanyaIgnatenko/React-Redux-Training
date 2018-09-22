@@ -1,6 +1,6 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
-import {Routes} from '../../config';
+import {Routes} from '../config';
 import {connect} from 'react-redux';
 
 const PrivateRoute = ({component: Component, isLoggedIn, ...rest}) => (

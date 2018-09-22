@@ -1,10 +1,10 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
-import Page from '../../components/Page/Page';
-import LoginForm from '../../components/LoginForm/LoginForm';
-import {loginRequest} from '../../ducks/auth/actions';
+import Page from '../components/Page/Page';
+import LoginForm from '../components/LoginForm/LoginForm';
+import {loginRequest} from '../ducks/auth/actions';
 import {connect} from 'react-redux';
-import {Routes} from '../../config';
+import {Routes} from '../config';
 
 class LoginPageContainer extends Component {
     static propTypes = {

@@ -1,11 +1,11 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React from 'react';
-import {Routes} from '../../config';
+import {Routes} from '../config';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import PostEditionForm from '../../components/PostEditionForm/PostEditionForm';
-import {addPostRequest, editPostRequest, removePostRequest} from '../../ducks/posts/actions';
+import PostEditionForm from '../components/PostEditionForm/PostEditionForm';
+import {addPostRequest, editPostRequest, removePostRequest} from '../ducks/posts/actions';
 
 
 class PostEditionFormContainer extends React.Component {

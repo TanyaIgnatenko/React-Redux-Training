@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Button, Col, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
 
-function SignUpForm(props) {
+function SignupForm(props) {
     return (
         <Form horizontal>
             <FormGroup controlId='formHorizontalName'>
@@ -67,20 +67,20 @@ function SignUpForm(props) {
 
             <FormGroup>
                 <Col smOffset={2} sm={10}>
-                    <Button type='submit' onClick={props.onSignUpClick}>Sign up</Button>
+                    <Button type='submit' onClick={props.onSignupClick}>Sign up</Button>
                 </Col>
             </FormGroup>
         </Form>
     );
 }
 
-SignUpForm.propTypes = {
+SignupForm.propTypes = {
     name: PropTypes.string,
     email: PropTypes.string,
     password: PropTypes.string,
     confirmPassword: PropTypes.string,
-    onSignUpClick: PropTypes.func.isRequired,
+    onSignupClick: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired
 };
 
-export default SignUpForm;
+export default SignupForm;
