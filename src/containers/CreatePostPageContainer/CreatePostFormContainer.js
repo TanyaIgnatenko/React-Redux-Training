@@ -2,9 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import {addPostRequest, editPostRequest, removePostRequest} from '../ducks/posts/actions';
-import {selectPost} from '../ducks/posts/selectors';
-import {resetAddPostStatus} from '../../ducks/posts/actions';
+import {addPostRequest, resetAddPostStatus} from '../../ducks/posts/actions';
 import {push} from 'connected-react-router';
 import {Routes} from '../../config';
 import {selectAddPostStatus} from '../../ducks/posts/selectors';
@@ -64,11 +62,11 @@ const mapDispatchToProps = dispatch => ({
     addPost: post => dispatch(addPostRequest(post)),
     onAddPostSuccess: () => {
         dispatch(push(Routes.POSTS));
-        dispatch(resetAddPostStatus);
+        dispatch(resetAddPostStatus());
     },
     onAddPostError: () => {
         alert('Can\'t create post. Check your internet connection and try again');
-        dispatch(resetAddPostStatus);
+        dispatch(resetAddPostStatus());
     }
 });
 

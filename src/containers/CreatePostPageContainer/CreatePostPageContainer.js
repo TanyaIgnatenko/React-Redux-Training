@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PostEditionFormContainer from '../PostEditionFormContainer';
 import Page from '../../components/Page/Page';
+import CreatePostFormContainer from './CreatePostFormContainer';
 
 export default function PostCreationPageContainer() {
     return (

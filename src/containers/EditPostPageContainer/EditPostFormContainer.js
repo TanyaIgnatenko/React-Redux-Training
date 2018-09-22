@@ -4,17 +4,17 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import EditPostForm from '../../components/EditPostForm/PostEditionForm';
-import {addPostRequest, editPostRequest, removePostRequest} from '../ducks/posts/actions';
-import {selectPost} from '../ducks/posts/selectors';
+import {editPostRequest, removePostRequest} from '../../ducks/posts/actions';
 import {Status} from '../../constants';
-import {selectEditPostStatus, selectRemovePostStatus} from '../../ducks/posts/selectors';
-import {resetAddPostStatus, resetEditPostStatus, resetRemovePostStatus} from '../../ducks/posts/actions';
+import {selectEditPostStatus, selectRemovePostStatus, selectPost} from '../../ducks/posts/selectors';
+import {resetEditPostStatus, resetRemovePostStatus} from '../../ducks/posts/actions';
 import {Routes} from '../../config';
-import {push} from "connected-react-router";
+import {push} from 'connected-react-router';
 
 
 class EditPostFormContainer extends React.Component {
     static propTypes = {
+        id: PropTypes.number.isRequired,
         post: PropTypes.shape({
             id: PropTypes.number.isRequired,
             title: PropTypes.string.isRequired,
@@ -86,7 +86,7 @@ class EditPostFormContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    post: selectPost(state, ownProps.post.id),
+    post: selectPost(state, ownProps.id),
     editPostStatus: selectEditPostStatus(state),
     removePostRequest: selectRemovePostStatus(state)
 });

@@ -4,9 +4,9 @@ import {Routes} from '../../config';
 import {connect} from 'react-redux';
 import {selectIsAuth} from '../../ducks/auth/selectors';
 
-const PrivateRoute = ({component: Component, isLoggedIn, ...rest}) => (
+const PrivateRoute = ({component: Component, isAuth, ...rest}) => (
     <Route {...rest} render={(props) => (
-        isLoggedIn ? <Component {...props} /> : <Redirect to={Routes.LOGIN}/>
+        isAuth ? <Component {...props} /> : <Redirect to={Routes.LOGIN}/>
     )}/>
 );
 
