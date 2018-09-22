@@ -7,6 +7,7 @@ import Grid from '../components/Grid/Grid';
 import PostContainer from './PostContainer';
 import NewPostButtonContainer from './NewPostButtonContainer';
 import {fetchPostsRequest} from '../ducks/posts/actions';
+import {selectPosts} from '../ducks/posts/selectors';
 
 
 class PostsPageContainer extends React.Component {
@@ -39,7 +40,7 @@ class PostsPageContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    posts: state.posts.posts
+    posts: selectPosts(state)
 });
 
 const mapDispatchToProps = dispatch => ({

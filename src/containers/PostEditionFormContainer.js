@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 
 import PostEditionForm from '../components/PostEditionForm/PostEditionForm';
 import {addPostRequest, editPostRequest, removePostRequest} from '../ducks/posts/actions';
+import {selectPost} from '../ducks/posts/selectors';
 
 
 class PostEditionFormContainer extends React.Component {
@@ -75,7 +76,7 @@ class PostEditionFormContainer extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    post: state.posts.posts.find(post => post.id === ownProps.id)
+    post: selectPost(state, ownProps.post.id)
 });
 
 const mapDispatchToProps = dispatch => ({

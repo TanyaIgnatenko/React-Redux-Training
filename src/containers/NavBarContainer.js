@@ -7,6 +7,7 @@ import {withRouter} from 'react-router-dom';
 import {push} from 'connected-react-router';
 
 import NavBar from '../components/NavBar/NavBar';
+import {selectUser} from '../ducks/auth/selectors';
 
 class NavBarContainer extends Component {
     static propTypes = {
@@ -35,7 +36,7 @@ class NavBarContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    user: state.auth.user
+    user: selectUser(state)
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -2,6 +2,7 @@ import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
 import {Routes} from '../config';
 import {connect} from 'react-redux';
+import {selectIsAuth} from '../ducks/auth/selectors';
 
 const PrivateRoute = ({component: Component, isLoggedIn, ...rest}) => (
     <Route {...rest} render={(props) => (
@@ -10,7 +11,7 @@ const PrivateRoute = ({component: Component, isLoggedIn, ...rest}) => (
 );
 
 const mapStateToProps = state => ({
-    isLoggedIn: state.user !== null
+    isAuth: selectIsAuth(state)
 });
 
 export default connect(mapStateToProps, null)(PrivateRoute);

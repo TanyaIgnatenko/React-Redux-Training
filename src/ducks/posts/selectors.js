@@ -1,8 +1,10 @@
-export const isAdmin = state => {
-    if (state.user) {
-        return state.user.role === 'admin';
-    }
-    return false;
+const selectPost = (state, id) => {
+    return state.posts.posts.find(post => post.id === id);
 };
 
-export const isLoggedIn = state => state.user !== null;
+const selectPosts = (state) => state.posts.posts;
+
+export {
+    selectPost,
+    selectPosts
+};
