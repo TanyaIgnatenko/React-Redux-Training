@@ -4,17 +4,6 @@ import PropTypes from 'prop-types';
 import './PostEditionForm.scss';
 
 export default function PostEditionForm(props) {
-    const deleteButton = !props.postExist ?
-        null :
-        (
-            <input
-                type='button'
-                className={'post-edition-form__delete-button'}
-                value='Delete'
-                onClick={props.onDelete}
-            />
-        );
-
     return (
         <form className={'post-edition-form__container'} onSubmit={props.onSave}>
             <input
@@ -47,7 +36,14 @@ export default function PostEditionForm(props) {
                     className={'post-edition-form__save-button'}
                     value='Save'
                 />
-                {deleteButton}
+                {
+                    props.postExist && <input
+                        type='button'
+                        className={'post-edition-form__delete-button'}
+                        value='Delete'
+                        onClick={props.onDelete}
+                    />
+                }
             </div>
         </form>
     );
