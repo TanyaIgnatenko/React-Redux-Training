@@ -1,7 +1,12 @@
-import {ADD_POST, EDIT_POST, FETCH_POSTS, REMOVE_POST, TOGGLE_LIKE} from './actionTypes';
+import {
+    ADD_POST, EDIT_POST, FETCH_POSTS, REMOVE_POST, RESET_ADD_POST_STATUS, RESET_EDIT_POST_STATUS,
+    RESET_FETCH_POSTS_STATUS, RESET_REMOVE_POST_STATUS, RESET_TOGGLE_LIKE_STATUS,
+    TOGGLE_LIKE
+} from './actionTypes';
 import {Status} from '../../constants';
 import * as arrayHelpers from '../../helpers/arrayHelpers';
 import {changeStatus} from './helpers';
+import {RESET_REGISTER_STATUS} from '../auth/actionTypes';
 
 const initialState = {
     status: {
@@ -96,6 +101,31 @@ export const posts = (state = initialState, action) => {
             return {
                 ...state,
                 status: changeStatus({status: state.status, toggleLike: Status.ERROR})
+            };
+        case RESET_FETCH_POSTS_STATUS:
+            return {
+                ...state,
+                status: changeStatus({status: state.status, fetchPosts: Status.IDLE})
+            };
+        case RESET_ADD_POST_STATUS:
+            return {
+                ...state,
+                status: changeStatus({status: state.status, addPost: Status.IDLE})
+            };
+        case RESET_EDIT_POST_STATUS:
+            return {
+                ...state,
+                status: changeStatus({status: state.status, editPost: Status.IDLE})
+            };
+        case RESET_REMOVE_POST_STATUS:
+            return {
+                ...state,
+                status: changeStatus({status: state.status, removePost: Status.IDLE})
+            };
+        case RESET_TOGGLE_LIKE_STATUS:
+            return {
+                ...state,
+                status: changeStatus({status: state.status, toggleLike: Status.IDLE})
             };
         default:
             return state;

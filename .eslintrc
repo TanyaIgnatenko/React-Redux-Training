@@ -128,7 +128,6 @@
     "no-unreachable": "error",
     "use-isnan": "error",
     "valid-typeof": "error",
-    "curly": "error",
     "no-alert": "error",
     "no-caller": "error",
     "no-div-regex": "error",

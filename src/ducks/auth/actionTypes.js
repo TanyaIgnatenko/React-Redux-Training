@@ -14,9 +14,14 @@ const SET_USER = '@@auth/SET_USER';
 
 const LOGOUT = '@@auth/LOGOUT';
 
+const RESET_LOGIN_STATUS = '@@auth/RESET_LOGIN_STATUS';
+const RESET_REGISTER_STATUS = '@@auth/RESET_REGISTER_STATUS';
+
 export {
     SET_USER,
     LOGIN,
     LOGOUT,
-    REGISTER
+    REGISTER,
+    RESET_LOGIN_STATUS,
+    RESET_REGISTER_STATUS
 };

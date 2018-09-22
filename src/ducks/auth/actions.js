@@ -1,4 +1,4 @@
-import {LOGIN, LOGOUT, SET_USER, REGISTER} from './actionTypes';
+import {LOGIN, LOGOUT, SET_USER, REGISTER, RESET_LOGIN_STATUS, RESET_REGISTER_STATUS} from './actionTypes';
 
 const loginRequest = (email, password) => ({
     type: LOGIN.REQUEST,
@@ -44,6 +44,14 @@ const setUser = (user) => ({
     user
 });
 
+const resetLoginStatus = () => ({
+    type: RESET_LOGIN_STATUS
+});
+
+const resetRegisterStatus = () => ({
+    type: RESET_REGISTER_STATUS
+});
+
 export {
     loginRequest,
     loginSuccess,
@@ -52,5 +60,7 @@ export {
     registerSuccess,
     registerError,
     setUser,
-    logout
+    logout,
+    resetLoginStatus,
+    resetRegisterStatus
 };

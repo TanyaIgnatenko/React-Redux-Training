@@ -19,7 +19,6 @@ function* loginSaga({credentials}) {
         yield call(services.setApiToken, token);
         yield call(fetchUserSaga);
         yield put(loginSuccess());
-        yield put(push(Routes.POSTS));
     } catch (e) {
         yield call(services.removeApiToken);
         yield put(loginError(e));
@@ -34,7 +33,6 @@ function* registerSaga({credentials}) {
         yield call(services.setApiToken, token);
         yield put(setUser(user));
         yield put(registerSuccess());
-        yield put(push(Routes.POSTS));
     } catch (e) {
         yield put(registerError(e.message));
         throw e;

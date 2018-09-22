@@ -2,12 +2,19 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import Page from '../components/Page/Page';
 import SignupForm from '../components/SignupForm/SignupForm';
-import {registerRequest} from '../ducks/auth/actions';
+import {loginRequest, registerRequest, resetRegisterStatus} from '../ducks/auth/actions';
 import {connect} from 'react-redux';
+import {Routes} from '../config';
+import {selectLoginStatus, selectRegisterStatus} from '../ducks/auth/selectors';
+import {push} from "connected-react-router";
+import {Status} from '../constants';
 
 class SignupPageContainer extends Component {
-    static props = {
-        register: PropTypes.func.isRequired
+    static propTypes = {
+        register: PropTypes.func.isRequired,
+        onRegisterSuccess: PropTypes.func.isRequired,
+        resetRegisterStatus: PropTypes.func.isRequired,
+        registerStatus: PropTypes.string.isRequired
     };
 
     state = {
@@ -29,6 +36,10 @@ class SignupPageContainer extends Component {
     };
 
     render() {
+        const {register, onRegisterSuccess, registerStatus} = this.props;
+        if (registerStatus === Status.SUCCESS) {
+            onRegisterSuccess();
+        }
         return (
             <Page title='Sign up'>
                 <SignupForm
@@ -39,14 +50,25 @@ class SignupPageContainer extends Component {
                     onChange={this.onChange}
                     onSignupClick={this.onSignupClick}
                 />
+                {registerStatus === Status.IN_PROGRESS ? <p>Loading...</p> : null}
+                {registerStatus === Status.ERROR ? <p>Registering has failed :с</p> : null}
             </Page>
         );
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    register: (name, email, password) => dispatch(registerRequest({name, email, password}))
+const mapStateToProps = state => ({
+    registerStatus: selectRegisterStatus(state)
 });
 
-export default connect(null, mapDispatchToProps)(SignupPageContainer);
+const mapDispatchToProps = dispatch => ({
+    register: (name, email, password) => dispatch(registerRequest({name, email, password})),
+    onRegisterSuccess: () => {
+        dispatch(push(Routes.POSTS));
+        dispatch(resetRegisterStatus);
+    },
+    resetRegisterStatus: () => dispatch(resetRegisterStatus())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SignupPageContainer);
 

@@ -1,4 +1,10 @@
-import {ADD_POST, EDIT_POST, FETCH_POSTS, REMOVE_POST, TOGGLE_LIKE} from './actionTypes';
+import {
+    ADD_POST, EDIT_POST, FETCH_POSTS, REMOVE_POST, RESET_ADD_POST_STATUS, RESET_EDIT_POST_STATUS,
+    RESET_FETCH_POSTS_STATUS,
+    RESET_REMOVE_POST_STATUS, RESET_TOGGLE_LIKE_STATUS,
+    TOGGLE_LIKE
+} from './actionTypes';
+import {RESET_LOGIN_STATUS} from '../auth/actionTypes';
 
 const addPostRequest = (post) => ({
     type: ADD_POST.REQUEST,
@@ -76,6 +82,26 @@ const toggleLikeError = (error) => ({
     error
 });
 
+const resetFetchPostsStatus = () => ({
+    type: RESET_FETCH_POSTS_STATUS
+});
+
+const resetAddPostStatus = () => ({
+    type: RESET_ADD_POST_STATUS
+});
+
+const resetEditPostStatus = () => ({
+    type: RESET_EDIT_POST_STATUS
+});
+
+const resetRemovePostStatus = () => ({
+    type: RESET_REMOVE_POST_STATUS
+});
+
+const resetToggleLikeStatus = () => ({
+    type: RESET_TOGGLE_LIKE_STATUS
+});
+
 export {
     addPostRequest,
     addPostSuccess,
@@ -91,6 +117,11 @@ export {
     fetchPostsError,
     toggleLikeRequest,
     toggleLikeSuccess,
-    toggleLikeError
+    toggleLikeError,
+    resetFetchPostsStatus,
+    resetAddPostStatus,
+    resetEditPostStatus,
+    resetRemovePostStatus,
+    resetToggleLikeStatus
 };
 
