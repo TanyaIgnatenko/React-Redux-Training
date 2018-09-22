@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import Page from '../components/Page/Page';
-import Grid from '../components/Grid/Grid';
+import Page from '../../components/Page/Page';
+import Grid from '../../components/Grid/Grid';
 import PostContainer from './PostContainer';
 import NewPostButtonContainer from './NewPostButtonContainer';
-import {fetchPostsRequest} from '../ducks/posts/actions';
-import {selectPosts} from '../ducks/posts/selectors';
+import {fetchPostsRequest} from '../../ducks/posts/actions';
+import {selectPosts} from '../../ducks/posts/selectors';
 
 
 class PostsPageContainer extends React.Component {

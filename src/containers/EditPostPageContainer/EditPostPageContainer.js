@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import PostEditionFormContainer from './PostEditionFormContainer';
-import Page from '../components/Page/Page';
+import PostEditionFormContainer from '../PostEditionFormContainer';
+import Page from '../../components/Page/Page';
 
 export default function PostEditionPageContainer(props) {
     const postId = parseInt(props.match.params.id, 10);

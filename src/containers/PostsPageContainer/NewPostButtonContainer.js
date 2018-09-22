@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Routes} from '../config';
+import {Routes} from '../../config';
 import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
 
-import NewPostButton from '../components/NewPostButton/NewPostButton';
+import NewPostButton from '../../components/NewPostButton/NewPostButton';
 
 
 class NewPostButtonContainer extends React.Component {

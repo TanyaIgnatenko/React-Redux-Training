@@ -1,12 +1,12 @@
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
-import Page from '../components/Page/Page';
-import LoginForm from '../components/LoginForm/LoginForm';
-import {loginRequest, resetLoginStatus} from '../ducks/auth/actions';
+import Page from '../../components/Page/Page';
+import LoginForm from '../../components/LoginForm/LoginForm';
+import {loginRequest, resetLoginStatus} from '../../ducks/auth/actions';
 import {connect} from 'react-redux';
-import {Routes} from '../config';
-import {selectLoginStatus} from '../ducks/auth/selectors';
-import {Status} from '../constants';
+import {Routes} from '../../config';
+import {selectLoginStatus} from '../../ducks/auth/selectors';
+import {Status} from '../../constants';
 import {push} from 'connected-react-router';
 
 class LoginPageContainer extends Component {

@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import Page from '../components/Page/Page';
-import SignupForm from '../components/SignupForm/SignupForm';
-import {loginRequest, registerRequest, resetRegisterStatus} from '../ducks/auth/actions';
+import Page from '../../components/Page/Page';
+import SignupForm from '../../components/SignupForm/SignupForm';
+import {loginRequest, registerRequest, resetRegisterStatus} from '../../ducks/auth/actions';
 import {connect} from 'react-redux';
-import {Routes} from '../config';
-import {selectLoginStatus, selectRegisterStatus} from '../ducks/auth/selectors';
+import {Routes} from '../../config';
+import {selectLoginStatus, selectRegisterStatus} from '../../ducks/auth/selectors';
 import {push} from "connected-react-router";
-import {Status} from '../constants';
+import {Status} from '../../constants';
 
 class SignupPageContainer extends Component {
     static propTypes = {

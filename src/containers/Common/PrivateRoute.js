@@ -1,8 +1,8 @@
 import React from 'react';
 import {Redirect, Route} from 'react-router-dom';
-import {Routes} from '../config';
+import {Routes} from '../../config';
 import {connect} from 'react-redux';
-import {selectIsAuth} from '../ducks/auth/selectors';
+import {selectIsAuth} from '../../ducks/auth/selectors';
 
 const PrivateRoute = ({component: Component, isLoggedIn, ...rest}) => (
     <Route {...rest} render={(props) => (

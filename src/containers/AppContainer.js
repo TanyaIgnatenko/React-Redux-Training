@@ -3,13 +3,13 @@ import {Route, Switch} from 'react-router-dom';
 import {Routes} from '../config';
 import PropTypes from 'prop-types';
 
-import LoginPageContainer from './LoginPageContainer';
-import SignupPageContainer from './SignupPageContainer';
-import NavBarContainer from './NavBarContainer';
-import PostsPageContainer from './PostsPageContainer';
-import PostCreationPageContainer from './PostCreationPageContainer';
-import PostEditionPageContainer from './PostEditionPageContainer';
-import PrivateRoute from './PrivateRoute';
+import LoginPageContainer from './LoginPageContainer/LoginPageContainer';
+import SignupPageContainer from './SignupPageContainer/SignupPageContainer';
+import NavBarContainer from './Common/NavBarContainer';
+import PostsPageContainer from './PostsPageContainer/PostsPageContainer';
+import PostCreationPageContainer from './CreatePostPageContainer/CreatePostPageContainer';
+import PostEditionPageContainer from './EditPostPageContainer/EditPostPageContainer';
+import PrivateRoute from './Common/PrivateRoute';
 import {ConnectedRouter} from 'connected-react-router';
 
 function AppContainer({history}) {
