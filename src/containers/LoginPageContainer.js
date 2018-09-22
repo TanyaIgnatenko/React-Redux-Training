@@ -5,12 +5,13 @@ import LoginForm from '../components/LoginForm/LoginForm';
 import {loginRequest} from '../ducks/auth/actions';
 import {connect} from 'react-redux';
 import {Routes} from '../config';
+import {selectLoginStatus} from '../ducks/auth/selectors';
+import {Status} from '../constants';
 
 class LoginPageContainer extends Component {
     static propTypes = {
         login: PropTypes.func.isRequired,
-        isLoginProcessing: PropTypes.bool.isRequired,
-        loginError: PropTypes.object.isRequired
+        loginStatus: PropTypes.string.isRequired
     };
 
     state = {
@@ -30,7 +31,7 @@ class LoginPageContainer extends Component {
     };
 
     render() {
-        const {isLoginProcessing, loginError} = this.props;
+        const {loginStatus} = this.props;
         return (
             <Page title='Login'>
                 <Fragment>
@@ -40,8 +41,8 @@ class LoginPageContainer extends Component {
                         onLoginClick={this.onLoginClick}
                         onChange={this.onChange}
                     />
-                    {isLoginProcessing ? <p>Loading...</p> : null}
-                    {loginError ? <p>Login has failed :с</p> : null}
+                    {loginStatus === Status.IN_PROGRESS ? <p>Loading...</p> : null}
+                    {loginStatus === Status.ERROR ? <p>Login has failed :с</p> : null}
                 </Fragment>
             </Page>
         );
@@ -49,8 +50,7 @@ class LoginPageContainer extends Component {
 }
 
 const mapStateToProps = state => ({
-    isLoginProcessing: state.auth.isRequesting,
-    loginError: state.auth.error
+    loginStatus: selectLoginStatus(state)
 });
 
 const mapDispatchToProps = dispatch => ({

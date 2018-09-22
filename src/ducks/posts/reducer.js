@@ -1,7 +1,7 @@
 import {ADD_POST, EDIT_POST, FETCH_POSTS, REMOVE_POST, TOGGLE_LIKE} from './actionTypes';
 import {Status} from '../../constants';
 import * as arrayHelpers from '../../helpers/arrayHelpers';
-import {changeStatus} from '../../helpers/statusHelpers';
+import {changeStatus} from './helpers';
 
 const initialState = {
     status: {

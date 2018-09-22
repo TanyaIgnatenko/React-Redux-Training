@@ -1,9 +1,14 @@
 import {LOGIN, LOGOUT, REGISTER, SET_USER} from './actionTypes';
+import {Status} from '../../constants';
+import {changeStatus} from './helpers';
+
 
 const initialState = {
-    isRequesting: false,
-    user: null,
-    error: null
+    status: {
+        login: Status.IDLE,
+        register: Status.IDLE
+    },
+    user: null
 };
 
 export const auth = (state = initialState, action) => {
@@ -11,34 +16,32 @@ export const auth = (state = initialState, action) => {
         case LOGIN.REQUEST:
             return {
                 ...state,
-                isRequesting: true
+                status: changeStatus({status: state.status, login: Status.IN_PROGRESS})
             };
         case LOGIN.SUCCESS:
             return {
                 ...state,
-                isRequesting: false
+                status: changeStatus({status: state.status, login: Status.SUCCESS})
             };
         case LOGIN.ERROR:
             return {
                 ...state,
-                isRequesting: false,
-                error: action.error
+                status: changeStatus({status: state.status, login: Status.ERROR})
             };
         case REGISTER.REQUEST:
             return {
                 ...state,
-                isRequesting: true
+                status: changeStatus({status: state.status, register: Status.IN_PROGRESS})
             };
         case REGISTER.SUCCESS:
             return {
                 ...state,
-                isRequesting: false
+                status: changeStatus({status: state.status, register: Status.SUCCESS})
             };
         case REGISTER.ERROR:
             return {
                 ...state,
-                isRequesting: false,
-                error: action.error
+                status: changeStatus({status: state.status, register: Status.ERROR})
             };
         case SET_USER:
             return {
@@ -48,8 +51,7 @@ export const auth = (state = initialState, action) => {
         case LOGOUT:
             return {
                 ...state,
-                user: null,
-                error: null
+                user: null
             };
         default:
             return state;
