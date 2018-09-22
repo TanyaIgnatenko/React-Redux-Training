@@ -59,7 +59,7 @@ class EditPostFormContainer extends React.Component {
         event.preventDefault();
     };
 
-    render() {
+    componentDidUpdate() {
         const {editPostStatus, onEditPostSuccess, onEditPostError} = this.props;
         const {removePostStatus, onRemovePostSuccess, onRemovePostError} = this.props;
         if (editPostStatus === Status.SUCCESS) {
@@ -72,6 +72,9 @@ class EditPostFormContainer extends React.Component {
         } else if (removePostStatus === Status.ERROR) {
             onRemovePostError();
         }
+    }
+
+    render() {
         return (
             <EditPostForm
                 title={this.state.title}

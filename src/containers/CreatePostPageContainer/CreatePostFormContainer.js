@@ -35,13 +35,16 @@ class CreatePostFormContainer extends React.Component {
         event.preventDefault();
     };
 
-    render() {
+    componentDidUpdate() {
         const {addPostStatus, onAddPostSuccess, onAddPostError} = this.props;
         if (addPostStatus === Status.SUCCESS) {
             onAddPostSuccess();
         } else if (addPostStatus === Status.ERROR) {
             onAddPostError();
         }
+    }
+
+    render() {
         return (
             <CreatePostForm
                 title={this.state.title}
