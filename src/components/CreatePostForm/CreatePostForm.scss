@@ -2,7 +2,7 @@
 
 $post-color: antiquewhite;
 
-.post-edition-form__container {
+.create-post-form__container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -13,7 +13,7 @@ $post-color: antiquewhite;
     padding: 0;
 }
 
-.post-edition-form__title-field {
+.create-post-form__title-field {
     height: 40px;
     width: 290px;
     margin-top: 30px;
@@ -27,7 +27,7 @@ $post-color: antiquewhite;
     color: #414141;
 }
 
-.post-edition-form__description-field {
+.create-post-form__description-field {
     height: 160px;
     width: 290px;
     margin-bottom: 20px;
@@ -41,14 +41,14 @@ $post-color: antiquewhite;
     color: #414141;
 }
 
-.post-edition-form__buttons-container {
+.create-post-form__buttons-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 
 }
 
-.post-edition-form__save-button {
+.create-post-form__save-button {
     height: 40px;
     width: 150px;
     border-radius: 5px;
@@ -62,33 +62,19 @@ $post-color: antiquewhite;
     cursor: pointer;
 }
 
-.post-edition-form__delete-button {
-    height: 40px;
-    width: 150px;
-    border-radius: 5px;
-    border: 0;
-
-    background-color: transparent;
-    color: #414141;
-    font-family: $font-stack;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
 
 @mixin title-placeholder {
-    .post-edition-form__title-field::-webkit-input-placeholder {@content}
-    .post-edition-form__title-field:-moz-placeholder           {@content}
-    .post-edition-form__title-field::-moz-placeholder          {@content}
-    .post-edition-form__title-field:-ms-input-placeholder      {@content}
+    .create-post-form__title-field::-webkit-input-placeholder {@content}
+    .create-post-form__title-field:-moz-placeholder           {@content}
+    .create-post-form__title-field::-moz-placeholder          {@content}
+    .create-post-form__title-field:-ms-input-placeholder      {@content}
 }
 
 @mixin description-placeholder {
-    .post-edition-form__description-field::-webkit-input-placeholder {@content}
-    .post-edition-form__description-field:-moz-placeholder           {@content}
-    .post-edition-form__description-field::-moz-placeholder          {@content}
-    .post-edition-form__description-field:-ms-input-placeholder      {@content}
+    .create-post-form__description-field::-webkit-input-placeholder {@content}
+    .create-post-form__description-field:-moz-placeholder           {@content}
+    .create-post-form__description-field::-moz-placeholder          {@content}
+    .create-post-form__description-field:-ms-input-placeholder      {@content}
 }
 
 @include title-placeholder {

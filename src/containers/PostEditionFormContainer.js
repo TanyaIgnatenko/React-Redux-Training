@@ -3,7 +3,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
-import PostEditionForm from '../components/PostEditionForm/PostEditionForm';
+import PostEditionForm from '../components/CreatePostForm/CreatePostForm';
 import {addPostRequest, editPostRequest, removePostRequest} from '../ducks/posts/actions';
 import {selectPost} from '../ducks/posts/selectors';
 

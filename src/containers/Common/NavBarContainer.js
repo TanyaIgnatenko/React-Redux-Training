@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom';
 import {push} from 'connected-react-router';
 
 import NavBar from '../../components/NavBar/NavBar';
-import {selectUser} from '../../ducks/auth/selectors';
+import {selectIsAuth, selectUser} from '../../ducks/auth/selectors';
 
 class NavBarContainer extends Component {
     static propTypes = {
@@ -21,11 +21,11 @@ class NavBarContainer extends Component {
 
     render() {
         const {user, signupClickHandler, loginClickHandler, logoutClickHandler} = this.props;
-        const isLoggedIn = user !== null;
+        const isAuth = user !== null;
         const name = user!== null ? user.name : null;
         return (
             <NavBar
-                isLoggedIn={isLoggedIn}
+                isAuth={isAuth}
                 onLogin={loginClickHandler}
                 onLogout={logoutClickHandler}
                 onSignup={signupClickHandler}

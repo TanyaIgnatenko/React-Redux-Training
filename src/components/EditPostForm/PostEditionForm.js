@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 import './PostEditionForm.scss';
 
-export default function PostEditionForm(props) {
+export default function EditPostForm(props) {
     return (
-        <form className={'post-edition-form__container'} onSubmit={props.onSave}>
+        <form className={'edit-post-form__container'} onSubmit={props.onSave}>
             <input
                 type='text'
-                className={'post-edition-form__title-field'}
+                className={'edit-post-form__title-field'}
                 value={props.title}
                 name='title'
                 placeholder='Enter title'
@@ -20,7 +20,7 @@ export default function PostEditionForm(props) {
             <textarea
                 rows='10'
                 cols='33'
-                className={'post-edition-form__description-field'}
+                className={'edit-post-form__description-field'}
                 value={props.content}
                 name='content'
                 placeholder='Enter text'
@@ -30,31 +30,24 @@ export default function PostEditionForm(props) {
                 maxLength='90'
             />
 
-            <div className={'post-edition-form__buttons-container'}>
+            <div className={'edit-post-form__buttons-container'}>
                 <input
                     type='submit'
-                    className={'post-edition-form__save-button'}
+                    className={'edit-post-form__save-button'}
                     value='Save'
                 />
-                {
-                    props.postExist && <input
-                        type='button'
-                        className={'post-edition-form__delete-button'}
-                        value='Delete'
-                        onClick={props.onDelete}
-                    />
-                }
+                <input
+                    type='button'
+                    className={'edit-post-form__delete-button'}
+                    value='Delete'
+                    onClick={props.onDelete}
+                />
             </div>
         </form>
     );
 }
 
-PostEditionForm.defaultProps = {
-    id: null
-};
-
-PostEditionForm.propTypes = {
-    postExist: PropTypes.bool.isRequired,
+EditPostForm.propTypes = {
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
     onSave: PropTypes.func.isRequired,
