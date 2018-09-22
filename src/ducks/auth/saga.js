@@ -2,8 +2,6 @@ import {loginError, loginSuccess, registerError, registerSuccess, setUser} from 
 import {call, put, race, take} from 'redux-saga/effects';
 import {LOGIN, LOGOUT, REGISTER} from './actionTypes';
 import * as services from './services';
-import {Routes} from '../../config';
-import {push} from 'connected-react-router';
 
 
 function* fetchUserSaga() {
