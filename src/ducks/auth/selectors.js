@@ -2,7 +2,7 @@ const selectUser = (state) => state.auth.user;
 
 const selectIsAuth = (state) => state.auth.user !== null;
 
-const selectIsAdmin = (state) => state.user ? state.user.role === 'admin' : false;
+const selectIsAdmin = (state) => state.auth.user ? state.auth.user.role === 'admin' : false;
 
 const selectLoginStatus = (state) => state.auth.status.login;
 
