@@ -6,6 +6,7 @@ import {Routes} from '../../../config';
 import {toggleLikeRequest} from '../../../ducks/posts/actions';
 import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
+import {selectIsAdmin} from '../../../ducks/auth/selectors';
 
 class PostContainer extends React.Component {
     static propTypes = {
@@ -17,16 +18,18 @@ class PostContainer extends React.Component {
                 totalLikes: PropTypes.number.isRequired
             }).isRequired,
         toggleLike: PropTypes.func.isRequired,
+        isEditable: PropTypes.bool.isRequired,
         editClickHandler: PropTypes.func.isRequired
     };
 
     render() {
-        const {post, toggleLike, editClickHandler} = this.props;
+        const {post, toggleLike, isEditable, editClickHandler} = this.props;
         return (
             <Post
                 title={post.title}
                 content={post.content}
                 likeCount={post.totalLikes}
+                isEditable={isEditable}
                 onLikeClick={toggleLike}
                 onEditClick={editClickHandler}
             />
@@ -34,11 +37,15 @@ class PostContainer extends React.Component {
     }
 }
 
+const mapStateToProps = state => ({
+    isAdmin: selectIsAdmin(state)
+});
+
 const mapDispatchToProps = (dispatch, ownProps) => ({
     toggleLike: () => dispatch(toggleLikeRequest(ownProps.post.id)),
     editClickHandler: () => dispatch(push(Routes.EDIT_POST.replace(':id', ownProps.post.id)))
 });
 
-export default connect(null, mapDispatchToProps)(PostContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(PostContainer);
 
 
