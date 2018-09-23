@@ -1,6 +1,6 @@
 import {loginError, loginSuccess, registerError, registerSuccess, setUser} from './actions';
-import {call, put, race, take} from 'redux-saga/effects';
-import {LOGIN, LOGOUT, REGISTER} from './actionTypes';
+import {all, call, put, takeLatest} from 'redux-saga/effects';
+import {LOGIN, REGISTER} from './actionTypes';
 import * as services from './services';
 
 
@@ -19,8 +19,7 @@ function* loginSaga({credentials}) {
         yield put(loginSuccess());
     } catch (e) {
         yield call(services.removeApiToken);
-        yield put(loginError(e));
-        throw e;
+        yield put(loginError());
     }
 }
 
@@ -32,29 +31,13 @@ function* registerSaga({credentials}) {
         yield put(setUser(user));
         yield put(registerSuccess());
     } catch (e) {
-        yield put(registerError(e.message));
-        throw e;
+        yield put(registerError());
     }
 }
 
 export function* watchAuthRequests() {
-    while (true) {
-        const {login, register} = yield race({
-            login: take(LOGIN.REQUEST),
-            register: take(REGISTER.REQUEST)
-        });
-
-        try {
-            if (login) {
-                yield call(loginSaga, login);
-            } else {
-                yield call(registerSaga, register);
-            }
-        } catch (e) {
-            continue;
-        }
-
-        yield take(LOGOUT);
-        yield call(services.removeApiToken);
-    }
+    yield all([
+        takeLatest(LOGIN.REQUEST, loginSaga),
+        takeLatest(REGISTER.REQUEST, registerSaga)
+    ]);
 }

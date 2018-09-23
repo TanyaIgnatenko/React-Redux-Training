@@ -12,9 +12,8 @@ const loginSuccess = () => ({
     type: LOGIN.SUCCESS
 });
 
-const loginError = (error) => ({
-    type: LOGIN.ERROR,
-    error
+const loginError = () => ({
+    type: LOGIN.ERROR
 });
 
 const logout = () => ({
@@ -34,9 +33,8 @@ const registerSuccess = () => ({
     type: REGISTER.SUCCESS
 });
 
-const registerError = (error) => ({
-    type: REGISTER.ERROR,
-    error
+const registerError = () => ({
+    type: REGISTER.ERROR
 });
 
 const setUser = (user) => ({

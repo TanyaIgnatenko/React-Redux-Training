@@ -1,6 +1,7 @@
 import {LOGIN, LOGOUT, REGISTER, RESET_LOGIN_STATUS, RESET_REGISTER_STATUS, SET_USER} from './actionTypes';
 import {Status} from '../../constants';
 import {changeStatus} from './helpers';
+import * as services from './services';
 
 
 const initialState = {
@@ -49,6 +50,7 @@ export const auth = (state = initialState, action) => {
                 user: action.user
             };
         case LOGOUT:
+            services.removeApiToken();
             return {
                 ...state,
                 user: null
