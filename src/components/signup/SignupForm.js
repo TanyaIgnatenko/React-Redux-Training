@@ -1,74 +1,61 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Button, Col, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
 import {FIELD_LABEL, FIELD_PLACEHOLDER} from '../../locale';
+import {Button, Col, Form, FormGroup, Input, Label} from 'reactstrap';
 
 function SignupForm(props) {
     return (
-        <Form horizontal>
-            <FormGroup controlId='formHorizontalName'>
-                <Col componentClass={ControlLabel} sm={2}>
-                    {FIELD_LABEL.NAME}
-                </Col>
+        <Form>
+            <FormGroup row>
+                <Label for='name' sm={2}>{FIELD_LABEL.NAME}</Label>
                 <Col sm={10}>
-                    <FormControl
-                        type='name'
+                    <Input
                         name='name'
-                        value={props.name}
+                        id='name'
                         placeholder={FIELD_PLACEHOLDER.NAME}
                         onChange={props.onChange}
                     />
                 </Col>
             </FormGroup>
-
-            <FormGroup controlId='formHorizontalEmail'>
-                <Col componentClass={ControlLabel} sm={2}>
-                    {FIELD_LABEL.EMAIL}
-                </Col>
+            <FormGroup row>
+                <Label for='email' sm={2}>{FIELD_LABEL.EMAIL}</Label>
                 <Col sm={10}>
-                    <FormControl
+                    <Input
                         type='email'
                         name='email'
-                        value={props.email}
+                        id='email'
                         placeholder={FIELD_PLACEHOLDER.EMAIL}
                         onChange={props.onChange}
                     />
                 </Col>
             </FormGroup>
-
-            <FormGroup controlId='formHorizontalPassword'>
-                <Col componentClass={ControlLabel} sm={2}>
-                    {FIELD_LABEL.PASSWORD}
-                </Col>
+            <FormGroup row>
+                <Label for='password' sm={2}>{FIELD_LABEL.PASSWORD}</Label>
                 <Col sm={10}>
-                    <FormControl
+                    <Input
                         type='password'
                         name='password'
-                        value={props.password}
+                        id='password'
                         placeholder={FIELD_PLACEHOLDER.PASSWORD}
                         onChange={props.onChange}
                     />
                 </Col>
             </FormGroup>
-
-            <FormGroup controlId='formHorizontalConfirmPassword'>
-                <Col componentClass={ControlLabel} sm={2}>
-                    {FIELD_LABEL.CONFIRM_PASSWORD}
-                </Col>
+            <FormGroup row>
+                <Label for='confirmPassword' sm={2}>{FIELD_LABEL.CONFIRM_PASSWORD}</Label>
                 <Col sm={10}>
-                    <FormControl
+                    <Input
                         type='password'
                         name='confirmPassword'
-                        value={props.confirmPassword}
+                        id='confirmPassword'
                         placeholder={FIELD_PLACEHOLDER.CONFIRM_PASSWORD}
                         onChange={props.onChange}
                     />
                 </Col>
             </FormGroup>
-
             <FormGroup>
-                <Col smOffset={2} sm={10}>
-                    <Button type='submit' onClick={props.onSignupClick}>{Button.SIGN_UP}</Button>
+                <Col sm={{size: 10, offset: 2}}>
+                    <Button onClick={props.onSignupClick}>{Button.SIGN_UP}</Button>
                 </Col>
             </FormGroup>
         </Form>
