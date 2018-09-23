@@ -91,7 +91,7 @@ class EditPostFormContainer extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
     post: selectPost(state, ownProps.id),
     editPostStatus: selectEditPostStatus(state),
-    removePostRequest: selectRemovePostStatus(state)
+    removePostStatus: selectRemovePostStatus(state)
 });
 
 const mapDispatchToProps = dispatch => ({
