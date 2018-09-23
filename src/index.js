@@ -6,7 +6,7 @@ import createSagaMiddleware from 'redux-saga';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import {createBrowserHistory} from 'history';
 
-import AppContainer from './containers/AppContainer';
+import AppContainer from './containers/app/AppContainer';
 import rootSaga from './ducks/sagas';
 import rootReducer from './ducks/reducers';
 
