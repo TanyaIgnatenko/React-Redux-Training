@@ -5,7 +5,7 @@ import {Routes} from '../../../config';
 import {APP_NAME, BUTTON} from '../../../locale';
 
 function NavBar(props) {
-    const signinButton = !props.isAuth ? <NavItem onClick={props.onLogin}>{BUTTON.LOGIN}</NavItem> : null;
+    const signinButton = !props.isAuth ? <NavItem onClick={props.onLogin}>{BUTTON.SIGN_IN}</NavItem> : null;
     const signupButton = !props.isAuth ? <NavItem onClick={props.onSignup}>{BUTTON.SIGN_UP}</NavItem> : null;
     const logoutButton = props.isAuth ? <NavItem onClick={props.onLogout}>{BUTTON.LOGOUT}</NavItem> : null;
     return (
