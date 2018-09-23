@@ -10,7 +10,7 @@ import Page from '../../../../components/common/Page/Page';
 import Loader from '../../../../components/common/Loader/Loader';
 import CreatePostForm from '../../../../components/posts/post/add/CreatePostForm/CreatePostForm';
 import {connect} from 'react-redux';
-import {PAGE_TITLE} from '../../../../locale';
+import {ERROR_MSG, PAGE_TITLE} from '../../../../locale';
 
 
 class CreatePostPage extends React.Component {
@@ -75,7 +75,7 @@ const mapDispatchToProps = dispatch => ({
         dispatch(resetAddPostStatus());
     },
     onAddPostError: () => {
-        alert('Can\'t create post. Check your internet connection and try again');
+        alert(ERROR_MSG.CREATE);
         dispatch(resetAddPostStatus());
     }
 });

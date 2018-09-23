@@ -13,7 +13,7 @@ const initialState = {
         fetchPosts: Status.IDLE,
         addPost: Status.IDLE,
         editPost: Status.IDLE,
-        removePost: Status.IDLE,
+        deletePost: Status.IDLE,
         toggleLike: Status.IDLE
     },
     posts: []

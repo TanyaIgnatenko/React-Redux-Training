@@ -16,7 +16,7 @@ import {push} from 'connected-react-router';
 import Page from '../../../../components/common/Page/Page';
 import {connect} from 'react-redux';
 import Loader from '../../../../components/common/Loader/Loader';
-import {PAGE_TITLE} from '../../../../locale';
+import {ERROR_MSG, PAGE_TITLE} from '../../../../locale';
 
 
 class EditPostPage extends React.Component {
@@ -33,13 +33,13 @@ class EditPostPage extends React.Component {
             totalLikes: PropTypes.number.isRequired
         }).isRequired,
         replacePost: PropTypes.func.isRequired,
-        removePost: PropTypes.func.isRequired,
+        deletePost: PropTypes.func.isRequired,
         onEditPostSuccess: PropTypes.func.isRequired,
         onEditPostError: PropTypes.func.isRequired,
         editPostStatus: PropTypes.string.isRequired,
-        onRemovePostSuccess: PropTypes.func.isRequired,
-        onRemovePostError: PropTypes.func.isRequired,
-        removePostStatus: PropTypes.string.isRequired
+        onDeletePostSuccess: PropTypes.func.isRequired,
+        onDeletePostError: PropTypes.func.isRequired,
+        deletePostStatus: PropTypes.string.isRequired
     };
 
     state = {
@@ -59,7 +59,7 @@ class EditPostPage extends React.Component {
     };
 
     handlePostDeletion = () => {
-        this.props.removePost(this.props.post.id);
+        this.props.deletePost(this.props.post.id);
     };
 
     handleSaveClick = (event) => {
@@ -72,16 +72,16 @@ class EditPostPage extends React.Component {
 
     componentDidUpdate() {
         const {editPostStatus, onEditPostSuccess, onEditPostError} = this.props;
-        const {removePostStatus, onRemovePostSuccess, onRemovePostError} = this.props;
+        const {deletePostStatus, onDeletePostSuccess, onDeletePostError} = this.props;
         if (editPostStatus === Status.SUCCESS) {
             onEditPostSuccess();
         } else if (editPostStatus === Status.ERROR) {
             onEditPostError();
         }
-        if (removePostStatus === Status.SUCCESS) {
-            onRemovePostSuccess();
-        } else if (removePostStatus === Status.ERROR) {
-            onRemovePostError();
+        if (deletePostStatus === Status.SUCCESS) {
+            onDeletePostSuccess();
+        } else if (deletePostStatus === Status.ERROR) {
+            onDeletePostError();
         }
     }
 
@@ -106,26 +106,26 @@ class EditPostPage extends React.Component {
 const mapStateToProps = (state, ownProps) => ({
     post: selectPost(state, parseInt(ownProps.match.params.id, 10)),
     editPostStatus: selectEditPostStatus(state),
-    removePostStatus: selectRemovePostStatus(state)
+    deletePostStatus: selectRemovePostStatus(state)
 });
 
 const mapDispatchToProps = dispatch => ({
     replacePost: (id, post) => dispatch(editPostRequest(id, post)),
-    removePost: id => dispatch(removePostRequest(id)),
+    deletePost: id => dispatch(removePostRequest(id)),
     onEditPostSuccess: () => {
         dispatch(push(Routes.POSTS));
         dispatch(resetEditPostStatus());
     },
     onEditPostError: () => {
-        alert('Can\'t edit post. Check your internet connection and try again');
+        alert(ERROR_MSG.EDIT);
         dispatch(resetEditPostStatus());
     },
-    onRemovePostSuccess: () => {
+    onDeletePostSuccess: () => {
         dispatch(push(Routes.POSTS));
         dispatch(resetRemovePostStatus());
     },
-    onRemovePostError: () => {
-        alert('Can\'t delete post. Check your internet connection and try again');
+    onDeletePostError: () => {
+        alert(ERROR_MSG.DELETE);
         dispatch(resetRemovePostStatus());
     }
 });

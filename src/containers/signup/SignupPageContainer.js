@@ -9,7 +9,7 @@ import {selectLoginStatus, selectRegisterStatus} from '../../ducks/auth/selector
 import {push} from "connected-react-router";
 import {Status} from '../../constants';
 import Loader from '../../components/common/Loader/Loader';
-import {PAGE_TITLE} from '../../locale';
+import {ERROR_MSG, PAGE_TITLE} from '../../locale';
 
 class SignupPageContainer extends Component {
     static propTypes = {
@@ -53,7 +53,7 @@ class SignupPageContainer extends Component {
                     onSignupClick={this.onSignupClick}
                 />
                 {registerStatus === Status.IN_PROGRESS ? <Loader/> : null}
-                {registerStatus === Status.ERROR ? <p>Registering has failed :с</p> : null}
+                {registerStatus === Status.ERROR ? <p>{ERROR_MSG.SIGN_UP}</p> : null}
             </Page>
         );
     }

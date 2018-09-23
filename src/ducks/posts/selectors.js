@@ -8,7 +8,7 @@ const selectAddPostStatus = (state) => state.posts.status.addPost;
 
 const selectEditPostStatus = (state) => state.posts.status.editPost;
 
-const selectRemovePostStatus = (state) => state.posts.status.removePost;
+const selectRemovePostStatus = (state) => state.posts.status.deletePost;
 
 const selectToggleLikeStatus = (state) => state.posts.status.toggleLike;
 

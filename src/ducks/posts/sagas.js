@@ -42,7 +42,7 @@ function* editPostSaga({id, post}) {
 
 function* removePostSaga({id}) {
     try {
-        yield call(services.removePost, id);
+        yield call(services.deletePost, id);
         yield put(removePostSuccess(id));
     } catch (e) {
         yield put(removePostError(e));

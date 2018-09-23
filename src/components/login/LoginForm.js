@@ -38,7 +38,7 @@ function LoginForm(props) {
 
             <FormGroup>
                 <Col smOffset={2} sm={10}>
-                    <Button type='submit' onClick={props.onLoginClick}>{Button.SIGN_IN}</Button>
+                    <Button type='submit' onClick={props.onLoginClick}>{Button.LOGIN}</Button>
                 </Col>
             </FormGroup>
         </Form>

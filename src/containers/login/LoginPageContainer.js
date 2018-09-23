@@ -9,7 +9,7 @@ import {selectLoginStatus} from '../../ducks/auth/selectors';
 import {Status} from '../../constants';
 import {push} from 'connected-react-router';
 import Loader from '../../components/common/Loader/Loader';
-import {PAGE_TITLE} from '../../locale';
+import {ERROR_MSG, PAGE_TITLE} from '../../locale';
 
 class LoginPageContainer extends Component {
     static propTypes = {
@@ -54,7 +54,7 @@ class LoginPageContainer extends Component {
                         onChange={this.onChange}
                     />
                     {loginStatus === Status.IN_PROGRESS ? <Loader/>: null}
-                    {loginStatus === Status.ERROR ? <p>Login has failed :с</p> : null}
+                    {loginStatus === Status.ERROR ? <p>{ERROR_MSG.LOGIN}</p> : null}
                 </Fragment>
             </Page>
         );
