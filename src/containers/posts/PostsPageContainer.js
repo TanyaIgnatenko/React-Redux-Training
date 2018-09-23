@@ -8,6 +8,7 @@ import PostContainer from './post/PostContainer';
 import NewPostButtonContainer from './NewPostButtonContainer';
 import {fetchPostsRequest} from '../../ducks/posts/actions';
 import {selectPosts} from '../../ducks/posts/selectors';
+import {selectIsAdmin} from '../../ducks/auth/selectors';
 
 
 class PostsPageContainer extends React.Component {
@@ -18,7 +19,8 @@ class PostsPageContainer extends React.Component {
             content: PropTypes.string.isRequired,
             totalLikes: PropTypes.number.isRequired
         })),
-        fetchPosts: PropTypes.func.isRequired
+        fetchPosts: PropTypes.func.isRequired,
+        isAdmin: PropTypes.bool.isRequired
     };
 
     componentDidMount() {
@@ -27,7 +29,7 @@ class PostsPageContainer extends React.Component {
 
     render() {
         const posts = this.props.posts.map((post) => <PostContainer key={post.id} post={post}/>);
-        const elems = [<NewPostButtonContainer key={0}/>, ...posts];
+        const elems = this.props.isAdmin ? [<NewPostButtonContainer key={0}/>, ...posts] : [...posts];
 
         return (
             <Page title='Post List'>
@@ -40,7 +42,8 @@ class PostsPageContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    posts: selectPosts(state)
+    posts: selectPosts(state),
+    isAdmin: selectIsAdmin(state)
 });
 
 const mapDispatchToProps = dispatch => ({
