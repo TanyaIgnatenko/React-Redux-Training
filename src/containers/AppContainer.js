@@ -11,8 +11,9 @@ import CreatePostPageContainer from './CreatePostPageContainer/CreatePostPageCon
 import EditPostPageContainer from './EditPostPageContainer/EditPostPageContainer';
 import PrivateRoute from './Common/PrivateRoute';
 import {ConnectedRouter} from 'connected-react-router';
+import {selectIsInitialised} from '../ducks/app/selectors';
 
-function AppContainer({history}) {
+function AppContainer({history, isInitialised}) {
     return (
         <ConnectedRouter history={history}>
             <Fragment>
@@ -30,8 +31,13 @@ function AppContainer({history}) {
 }
 
 AppContainer.propTypes = {
-    history: PropTypes.object
+    history: PropTypes.object.isRequired,
+    isInitialised: PropTypes.bool.isRequired
 };
+
+const mapStateToProps = state => ({
+    isInitialised: selectIsInitialised(state)
+});
 
 export default AppContainer;
 

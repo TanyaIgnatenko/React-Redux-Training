@@ -4,7 +4,7 @@ import {LOGIN, LOGOUT, REGISTER} from './actionTypes';
 import * as services from './services';
 
 
-function* fetchUserSaga() {
+export function* fetchUserSaga() {
     const response = yield call(services.fetchUser);
     const {user} = response;
     yield put(setUser(user));
@@ -37,21 +37,7 @@ function* registerSaga({credentials}) {
     }
 }
 
-function* initSaga() {
-    const apiToken = yield call(services.findApiToken);
-    if (apiToken) {
-        try {
-            yield call(services.setApiToken, apiToken);
-            yield call(fetchUserSaga);
-            yield take(LOGOUT);
-        } finally {
-            yield call(services.removeApiToken);
-        }
-    }
-}
-
 export function* watchAuthRequests() {
-    yield call(initSaga);
     while (true) {
         const {login, register} = yield race({
             login: take(LOGIN.REQUEST),
