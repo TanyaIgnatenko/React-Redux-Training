@@ -7,11 +7,12 @@ import LoginPageContainer from '../login/LoginPageContainer';
 import SignupPageContainer from '../signup/SignupPageContainer';
 import NavBarContainer from '../Common/NavBarContainer';
 import PostsPageContainer from '../posts/PostsPageContainer';
-import CreatePostPageContainer from '../posts/post/add/CreatePostPageContainer';
-import EditPostPageContainer from '../posts/post/edit/EditPostPageContainer';
+import CreatePostPage from '../posts/post/add/CreatePostPage';
+import EditPostPage from '../posts/post/edit/EditPostPage';
 import PrivateRoute from '../Common/PrivateRoute';
 import {ConnectedRouter} from 'connected-react-router';
 import {selectIsInitialised} from '../../ducks/app/selectors';
+import {connect} from 'react-redux';
 
 function AppContainer({history, isInitialised}) {
     return (
@@ -22,8 +23,8 @@ function AppContainer({history, isInitialised}) {
                     <Route path={Routes.LOGIN} component={LoginPageContainer}/>
                     <Route path={Routes.SIGN_UP} component={SignupPageContainer}/>
                     <Route exact path={Routes.POSTS} component={PostsPageContainer}/>
-                    <PrivateRoute path={Routes.CREATE_POST} component={CreatePostPageContainer}/>
-                    <PrivateRoute path={Routes.EDIT_POST} component={EditPostPageContainer}/>
+                    <PrivateRoute path={Routes.CREATE_POST} component={CreatePostPage}/>
+                    <PrivateRoute path={Routes.EDIT_POST} component={EditPostPage}/>
                 </Switch>
             </Fragment>
         </ConnectedRouter>
@@ -39,5 +40,5 @@ const mapStateToProps = state => ({
     isInitialised: selectIsInitialised(state)
 });
 
-export default AppContainer;
+export default connect(mapStateToProps)(AppContainer);
 

@@ -12,6 +12,7 @@ import rootReducer from './ducks/reducers';
 
 import './index.scss';
 import {connectRouter, routerMiddleware} from 'connected-react-router';
+import Loader from './components/common/Loader/Loader';
 
 
 const history = createBrowserHistory();

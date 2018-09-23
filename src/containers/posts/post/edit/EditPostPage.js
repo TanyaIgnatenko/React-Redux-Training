@@ -1,20 +1,30 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React from 'react';
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import EditPostForm from '../../../../components/posts/post/edit/EditPostForm/PostEditionForm';
-import {editPostRequest, removePostRequest} from '../../../../ducks/posts/actions';
+import {
+    editPostRequest,
+    removePostRequest,
+    resetEditPostStatus,
+    resetRemovePostStatus
+} from '../../../../ducks/posts/actions';
 import {Status} from '../../../../constants';
-import {selectEditPostStatus, selectRemovePostStatus, selectPost} from '../../../../ducks/posts/selectors';
-import {resetEditPostStatus, resetRemovePostStatus} from '../../../../ducks/posts/actions';
+import {selectEditPostStatus, selectPost, selectRemovePostStatus} from '../../../../ducks/posts/selectors';
 import {Routes} from '../../../../config';
 import {push} from 'connected-react-router';
+import Page from '../../../../components/common/Page/Page';
+import {connect} from 'react-redux';
+import Loader from '../../../../components/common/Loader/Loader';
 
 
-class EditPostFormContainer extends React.Component {
+class EditPostPage extends React.Component {
     static propTypes = {
-        id: PropTypes.number.isRequired,
+        match: PropTypes.shape({
+            params: PropTypes.shape({
+                id: PropTypes.string.isRequired
+            }).isRequired
+        }).isRequired,
         post: PropTypes.shape({
             id: PropTypes.number.isRequired,
             title: PropTypes.string.isRequired,
@@ -75,21 +85,25 @@ class EditPostFormContainer extends React.Component {
     }
 
     render() {
+        const {editPostStatus} = this.props;
         return (
-            <EditPostForm
-                title={this.state.title}
-                content={this.state.content}
-                onSave={this.handleSaveClick}
-                onDelete={this.handlePostDeletion}
-                onTitleInputChange={this.handleInputChange}
-                onDescriptionInputChange={this.handleInputChange}
-            />
+            <Page title='Edit post'>
+                <EditPostForm
+                    title={this.state.title}
+                    content={this.state.content}
+                    onSave={this.handleSaveClick}
+                    onDelete={this.handlePostDeletion}
+                    onTitleInputChange={this.handleInputChange}
+                    onDescriptionInputChange={this.handleInputChange}
+                />
+                {editPostStatus === Status.IN_PROGRESS && <Loader/>}
+            </Page>
         );
     }
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    post: selectPost(state, ownProps.id),
+    post: selectPost(state, parseInt(ownProps.match.params.id, 10)),
     editPostStatus: selectEditPostStatus(state),
     removePostStatus: selectRemovePostStatus(state)
 });
@@ -115,5 +129,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(EditPostFormContainer);
-
+export default connect(mapStateToProps, mapDispatchToProps)(EditPostPage);

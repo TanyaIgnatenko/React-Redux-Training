@@ -1,16 +1,18 @@
 import React from 'react';
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 
 import {addPostRequest, resetAddPostStatus} from '../../../../ducks/posts/actions';
 import {push} from 'connected-react-router';
 import {Routes} from '../../../../config';
 import {selectAddPostStatus} from '../../../../ducks/posts/selectors';
-import CreatePostForm from '../../../../components/posts/post/add/CreatePostForm/CreatePostForm';
 import {Status} from '../../../../constants';
+import Page from '../../../../components/common/Page/Page';
+import Loader from '../../../../components/common/Loader/Loader';
+import CreatePostForm from '../../../../components/posts/post/add/CreatePostForm/CreatePostForm';
+import {connect} from 'react-redux';
 
 
-class CreatePostFormContainer extends React.Component {
+class CreatePostPage extends React.Component {
     static propTypes = {
         addPost: PropTypes.func.isRequired,
         onAddPostSuccess: PropTypes.func.isRequired,
@@ -45,14 +47,18 @@ class CreatePostFormContainer extends React.Component {
     }
 
     render() {
+        const {addPostStatus} = this.props;
         return (
-            <CreatePostForm
-                title={this.state.title}
-                content={this.state.content}
-                onSave={this.handleSaveClick}
-                onTitleInputChange={this.handleInputChange}
-                onDescriptionInputChange={this.handleInputChange}
-            />
+            <Page title='Create post'>
+                <CreatePostForm
+                    title={this.state.title}
+                    content={this.state.content}
+                    onSave={this.handleSaveClick}
+                    onTitleInputChange={this.handleInputChange}
+                    onDescriptionInputChange={this.handleInputChange}
+                />
+                {addPostStatus === Status.IN_PROGRESS && <Loader/>}
+            </Page>
         );
     }
 }
@@ -73,5 +79,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreatePostFormContainer);
-
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePostPage);
