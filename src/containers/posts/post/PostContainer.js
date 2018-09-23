@@ -18,18 +18,18 @@ class PostContainer extends React.Component {
                 totalLikes: PropTypes.number.isRequired
             }).isRequired,
         toggleLike: PropTypes.func.isRequired,
-        isEditable: PropTypes.bool.isRequired,
+        isAdmin: PropTypes.bool.isRequired,
         editClickHandler: PropTypes.func.isRequired
     };
 
     render() {
-        const {post, toggleLike, isEditable, editClickHandler} = this.props;
+        const {post, toggleLike, isAdmin, editClickHandler} = this.props;
         return (
             <Post
                 title={post.title}
                 content={post.content}
                 likeCount={post.totalLikes}
-                isEditable={isEditable}
+                isEditable={isAdmin}
                 onLikeClick={toggleLike}
                 onEditClick={editClickHandler}
             />
