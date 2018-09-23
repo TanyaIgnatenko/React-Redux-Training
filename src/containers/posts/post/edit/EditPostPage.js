@@ -16,6 +16,7 @@ import {push} from 'connected-react-router';
 import Page from '../../../../components/common/Page/Page';
 import {connect} from 'react-redux';
 import Loader from '../../../../components/common/Loader/Loader';
+import {PAGE_TITLE} from '../../../../locale';
 
 
 class EditPostPage extends React.Component {
@@ -87,7 +88,7 @@ class EditPostPage extends React.Component {
     render() {
         const {editPostStatus} = this.props;
         return (
-            <Page title='Edit post'>
+            <Page title={PAGE_TITLE.EDIT_POST}>
                 <EditPostForm
                     title={this.state.title}
                     content={this.state.content}

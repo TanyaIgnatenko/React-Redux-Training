@@ -9,6 +9,7 @@ import {selectLoginStatus, selectRegisterStatus} from '../../ducks/auth/selector
 import {push} from "connected-react-router";
 import {Status} from '../../constants';
 import Loader from '../../components/common/Loader/Loader';
+import {PAGE_TITLE} from '../../locale';
 
 class SignupPageContainer extends Component {
     static propTypes = {
@@ -42,7 +43,7 @@ class SignupPageContainer extends Component {
             onRegisterSuccess();
         }
         return (
-            <Page title='Sign up'>
+            <Page title={PAGE_TITLE.SIGN_UP}>
                 <SignupForm
                     name={this.state.name}
                     email={this.state.email}

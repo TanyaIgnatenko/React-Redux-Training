@@ -1,20 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Button, Col, ControlLabel, Form, FormControl, FormGroup} from 'react-bootstrap';
+import {FIELD_LABEL, FIELD_PLACEHOLDER} from '../../locale';
 
 function LoginForm(props) {
     return (
         <Form horizontal>
             <FormGroup controlId='formHorizontalEmail'>
                 <Col componentClass={ControlLabel} sm={2}>
-                    Email
+                    {FIELD_LABEL.EMAIL}
                 </Col>
                 <Col sm={10}>
                     <FormControl
                         type='email'
                         name='email'
                         value={props.email}
-                        placeholder='Email'
+                        placeholder={FIELD_PLACEHOLDER.EMAIL}
                         onChange={props.onChange}
                     />
                 </Col>
@@ -22,14 +23,14 @@ function LoginForm(props) {
 
             <FormGroup controlId='formHorizontalPassword'>
                 <Col componentClass={ControlLabel} sm={2}>
-                    Password
+                    {FIELD_LABEL.PASSWORD}
                 </Col>
                 <Col sm={10}>
                     <FormControl
                         type='password'
                         name='password'
                         value={props.password}
-                        placeholder='Password'
+                        placeholder={FIELD_PLACEHOLDER.PASSWORD}
                         onChange={props.onChange}
                     />
                 </Col>
@@ -37,7 +38,7 @@ function LoginForm(props) {
 
             <FormGroup>
                 <Col smOffset={2} sm={10}>
-                    <Button type='submit' onClick={props.onLoginClick}>Sign in</Button>
+                    <Button type='submit' onClick={props.onLoginClick}>{Button.SIGN_IN}</Button>
                 </Col>
             </FormGroup>
         </Form>

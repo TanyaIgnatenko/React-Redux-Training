@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './PostEditionForm.scss';
+import {BUTTON, FIELD_PLACEHOLDER} from '../../../../../locale';
 
 export default function EditPostForm(props) {
     return (
@@ -11,7 +12,7 @@ export default function EditPostForm(props) {
                 className={'edit-post-form__title-field'}
                 value={props.title}
                 name='title'
-                placeholder='Enter title'
+                placeholder={FIELD_PLACEHOLDER.TITLE}
                 onChange={props.onTitleInputChange}
                 required
                 minLength='4'
@@ -23,7 +24,7 @@ export default function EditPostForm(props) {
                 className={'edit-post-form__description-field'}
                 value={props.content}
                 name='content'
-                placeholder='Enter text'
+                placeholder={FIELD_PLACEHOLDER.CONTENT}
                 onChange={props.onDescriptionInputChange}
                 required
                 minLength='5'
@@ -34,12 +35,12 @@ export default function EditPostForm(props) {
                 <input
                     type='submit'
                     className={'edit-post-form__save-button'}
-                    value='Save'
+                    value={BUTTON.SAVE}
                 />
                 <input
                     type='button'
                     className={'edit-post-form__delete-button'}
-                    value='Delete'
+                    value={BUTTON.DELETE}
                     onClick={props.onDelete}
                 />
             </div>

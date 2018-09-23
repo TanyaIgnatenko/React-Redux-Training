@@ -9,6 +9,7 @@ import {selectLoginStatus} from '../../ducks/auth/selectors';
 import {Status} from '../../constants';
 import {push} from 'connected-react-router';
 import Loader from '../../components/common/Loader/Loader';
+import {PAGE_TITLE} from '../../locale';
 
 class LoginPageContainer extends Component {
     static propTypes = {
@@ -44,7 +45,7 @@ class LoginPageContainer extends Component {
             onLoginSuccess();
         }
         return (
-            <Page title='Login'>
+            <Page title={PAGE_TITLE.LOGIN}>
                 <Fragment>
                     <LoginForm
                         email={this.state.email}

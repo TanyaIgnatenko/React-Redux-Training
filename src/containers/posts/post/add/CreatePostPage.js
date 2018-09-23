@@ -10,6 +10,7 @@ import Page from '../../../../components/common/Page/Page';
 import Loader from '../../../../components/common/Loader/Loader';
 import CreatePostForm from '../../../../components/posts/post/add/CreatePostForm/CreatePostForm';
 import {connect} from 'react-redux';
+import {PAGE_TITLE} from '../../../../locale';
 
 
 class CreatePostPage extends React.Component {
@@ -49,7 +50,7 @@ class CreatePostPage extends React.Component {
     render() {
         const {addPostStatus} = this.props;
         return (
-            <Page title='Create post'>
+            <Page title={PAGE_TITLE.CREATE_POST}>
                 <CreatePostForm
                     title={this.state.title}
                     content={this.state.content}

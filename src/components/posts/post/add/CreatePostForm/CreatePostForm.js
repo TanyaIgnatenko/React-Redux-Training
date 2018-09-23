@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CreatePostForm.scss';
+import {BUTTON as Button, FIELD_PLACEHOLDER} from '../../../../../locale';
 
 export default function CreatePostForm(props) {
     return (
@@ -11,7 +12,7 @@ export default function CreatePostForm(props) {
                 className={'create-post-form__title-field'}
                 value={props.title}
                 name='title'
-                placeholder='Enter title'
+                placeholder={FIELD_PLACEHOLDER.TITLE}
                 onChange={props.onTitleInputChange}
                 required
                 minLength='4'
@@ -23,7 +24,7 @@ export default function CreatePostForm(props) {
                 className={'create-post-form__description-field'}
                 value={props.content}
                 name='content'
-                placeholder='Enter text'
+                placeholder={FIELD_PLACEHOLDER.CONTENT}
                 onChange={props.onDescriptionInputChange}
                 required
                 minLength='5'
@@ -34,7 +35,7 @@ export default function CreatePostForm(props) {
                 <input
                     type='submit'
                     className={'create-post-form__save-button'}
-                    value='Save'
+                    value={Button.SAVE}
                 />
             </div>
         </form>

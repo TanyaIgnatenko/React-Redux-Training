@@ -9,6 +9,7 @@ import NewPostButtonContainer from './NewPostButtonContainer';
 import {fetchPostsRequest} from '../../ducks/posts/actions';
 import {selectPosts} from '../../ducks/posts/selectors';
 import {selectIsAdmin} from '../../ducks/auth/selectors';
+import {PAGE_TITLE} from '../../locale';
 
 
 class PostsPageContainer extends React.Component {
@@ -32,7 +33,7 @@ class PostsPageContainer extends React.Component {
         const elems = this.props.isAdmin ? [<NewPostButtonContainer key={0}/>, ...posts] : [...posts];
 
         return (
-            <Page title='Post List'>
+            <Page title={PAGE_TITLE.POSTS}>
                 <Grid>
                     {elems}
                 </Grid>
