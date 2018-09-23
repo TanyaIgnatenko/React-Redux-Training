@@ -54,6 +54,21 @@ class EditPostPage extends React.Component {
         });
     }
 
+    componentDidUpdate() {
+        const {editPostStatus, onEditPostSuccess, onEditPostError} = this.props;
+        const {deletePostStatus, onDeletePostSuccess, onDeletePostError} = this.props;
+        if (editPostStatus === Status.SUCCESS) {
+            onEditPostSuccess();
+        } else if (editPostStatus === Status.ERROR) {
+            onEditPostError();
+        }
+        if (deletePostStatus === Status.SUCCESS) {
+            onDeletePostSuccess();
+        } else if (deletePostStatus === Status.ERROR) {
+            onDeletePostError();
+        }
+    }
+
     handleInputChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
     };
@@ -69,21 +84,6 @@ class EditPostPage extends React.Component {
 
         event.preventDefault();
     };
-
-    componentDidUpdate() {
-        const {editPostStatus, onEditPostSuccess, onEditPostError} = this.props;
-        const {deletePostStatus, onDeletePostSuccess, onDeletePostError} = this.props;
-        if (editPostStatus === Status.SUCCESS) {
-            onEditPostSuccess();
-        } else if (editPostStatus === Status.ERROR) {
-            onEditPostError();
-        }
-        if (deletePostStatus === Status.SUCCESS) {
-            onDeletePostSuccess();
-        } else if (deletePostStatus === Status.ERROR) {
-            onDeletePostError();
-        }
-    }
 
     render() {
         const {editPostStatus} = this.props;
