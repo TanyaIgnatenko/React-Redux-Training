@@ -23,6 +23,7 @@ function LoginForm(props) {
                     <Label for='password'>{FIELD_LABEL.PASSWORD}</Label>
                     <Input
                         className={'login-form__input'}
+                        type='password'
                         name='password'
                         id='password'
                         placeholder={FIELD_PLACEHOLDER.PASSWORD}

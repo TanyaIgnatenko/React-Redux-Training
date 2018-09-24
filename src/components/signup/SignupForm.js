@@ -5,7 +5,6 @@ import {Button, Col, Form, FormGroup, Input, Label} from 'reactstrap';
 import './SignupForm.scss';
 
 function SignupForm(props) {
-    const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = props;
     return (
         <div className={'signup-form__container centering-container'}>
             <Form>
@@ -35,6 +34,7 @@ function SignupForm(props) {
                     <Label for='password'>{FIELD_LABEL.PASSWORD}</Label>
                     <Input
                         className={'signup-form__input'}
+                        type='password'
                         name='password'
                         id='password'
                         placeholder={FIELD_PLACEHOLDER.PASSWORD}
@@ -47,6 +47,7 @@ function SignupForm(props) {
                     <Input
                         className={'signup-form__input'}
                         name='confirmPassword'
+                        type='password'
                         id='confirmPassword'
                         placeholder={FIELD_PLACEHOLDER.CONFIRM_PASSWORD}
                         onChange={props.onChange}
@@ -59,6 +60,7 @@ function SignupForm(props) {
             </Form>
         </div>
     );
+    const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = props;
 }
 
 SignupForm.propTypes = {
