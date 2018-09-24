@@ -14,21 +14,24 @@ import {selectIsInitialised} from '../../ducks/app/selectors';
 import {connect} from 'react-redux';
 import UserRoute from '../common/UserRoute';
 import AdminRoute from '../common/AdminRoute';
+import Loader from '../../components/common/Loader/Loader';
 
 function AppContainer({history, isInitialised}) {
     return (
-        <ConnectedRouter history={history}>
-            <Fragment>
-                <NavBarContainer/>
-                <Switch>
-                    <Route path={Routes.LOGIN} component={LoginPageContainer}/>
-                    <Route path={Routes.SIGN_UP} component={SignupPageContainer}/>
-                    <UserRoute exact path={Routes.POSTS} component={PostsPageContainer}/>
-                    <AdminRoute path={Routes.CREATE_POST} component={CreatePostPage}/>
-                    <AdminRoute path={Routes.EDIT_POST} component={EditPostPage}/>
-                </Switch>
-            </Fragment>
-        </ConnectedRouter>
+        isInitialised ?
+            <ConnectedRouter history={history}>
+                <Fragment>
+                    <NavBarContainer/>
+                    <Switch>
+                        <Route path={Routes.LOGIN} component={LoginPageContainer}/>
+                        <Route path={Routes.SIGN_UP} component={SignupPageContainer}/>
+                        <UserRoute exact path={Routes.POSTS} component={PostsPageContainer}/>
+                        <AdminRoute path={Routes.CREATE_POST} component={CreatePostPage}/>
+                        <AdminRoute path={Routes.EDIT_POST} component={EditPostPage}/>
+                    </Switch>
+                </Fragment>
+            </ConnectedRouter> :
+            <Loader/>
     );
 }
 
