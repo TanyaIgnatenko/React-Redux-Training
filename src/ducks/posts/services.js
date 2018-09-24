@@ -10,7 +10,7 @@ const editPost = (id, post) => {
     return API.put(`/posts/${id}`, post);
 };
 
-const removePost = (id) => API.delete(`/posts/${id}`);
+const deletePost = (id) => API.delete(`/posts/${id}`);
 
 const fetchPosts = () => API.get('/posts');
 
@@ -19,7 +19,7 @@ const toggleLike = (id) => API.post(`/posts/${id}/like`);
 export {
     addPost,
     editPost,
-    removePost,
+    deletePost,
     fetchPosts,
     toggleLike
 };

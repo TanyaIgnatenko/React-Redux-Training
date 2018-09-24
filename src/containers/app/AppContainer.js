@@ -9,10 +9,11 @@ import NavBarContainer from '../Common/NavBarContainer';
 import PostsPageContainer from '../posts/PostsPageContainer';
 import CreatePostPage from '../posts/post/add/CreatePostPage';
 import EditPostPage from '../posts/post/edit/EditPostPage';
-import PrivateRoute from '../Common/PrivateRoute';
 import {ConnectedRouter} from 'connected-react-router';
 import {selectIsInitialised} from '../../ducks/app/selectors';
 import {connect} from 'react-redux';
+import UserRoute from '../common/UserRoute';
+import AdminRoute from '../common/AdminRoute';
 
 function AppContainer({history, isInitialised}) {
     return (
@@ -22,9 +23,9 @@ function AppContainer({history, isInitialised}) {
                 <Switch>
                     <Route path={Routes.LOGIN} component={LoginPageContainer}/>
                     <Route path={Routes.SIGN_UP} component={SignupPageContainer}/>
-                    <Route exact path={Routes.POSTS} component={PostsPageContainer}/>
-                    <PrivateRoute path={Routes.CREATE_POST} component={CreatePostPage}/>
-                    <PrivateRoute path={Routes.EDIT_POST} component={EditPostPage}/>
+                    <UserRoute exact path={Routes.POSTS} component={PostsPageContainer}/>
+                    <AdminRoute path={Routes.CREATE_POST} component={CreatePostPage}/>
+                    <AdminRoute path={Routes.EDIT_POST} component={EditPostPage}/>
                 </Switch>
             </Fragment>
         </ConnectedRouter>
