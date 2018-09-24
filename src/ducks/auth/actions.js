@@ -20,7 +20,7 @@ const logout = () => ({
     type: LOGOUT
 });
 
-const registerRequest = (email, password) => ({
+const registerRequest = (name, email, password) => ({
     type: REGISTER.REQUEST,
     credentials: {
         name,
