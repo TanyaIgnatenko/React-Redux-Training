@@ -2,15 +2,15 @@ import {instance as API, removeTokenFromRequestHeader, setTokenIntoRequestHeader
 
 const API_TOKEN_KEY = 'api_token';
 
-const login = (credentials) => API.post('/login', credentials);
+const login = credentials => API.post('/login', credentials);
 
-const register = (credentials) => API.post('/register', credentials);
+const register = credentials => API.post('/register', credentials);
 
 const fetchUser = () => API.get('/user');
 
 const findApiToken = () => localStorage.getItem(API_TOKEN_KEY);
 
-const setApiToken = (token) => {
+const setApiToken = token => {
     localStorage.setItem(API_TOKEN_KEY, token);
     setTokenIntoRequestHeader(token);
 };

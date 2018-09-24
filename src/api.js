@@ -20,7 +20,7 @@ instance.interceptors.response.use(function (response) {
     return humps.camelizeKeys(response.data.data);
 });
 
-const setTokenIntoRequestHeader = (token) => instance.defaults.headers['Authorization'] = `Bearer ${token}`;
+const setTokenIntoRequestHeader = token => instance.defaults.headers['Authorization'] = `Bearer ${token}`;
 
 const removeTokenFromRequestHeader = () => delete instance.defaults.headers['Authorization'];
 
