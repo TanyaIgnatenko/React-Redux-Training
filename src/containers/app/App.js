@@ -3,10 +3,10 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import {Routes} from '../../config';
 import PropTypes from 'prop-types';
 
-import LoginPageContainer from '../login/LoginPage';
-import SignupPageContainer from '../signup/SignupPage';
+import LoginPage from '../login/LoginPage';
+import SignupPage from '../signup/SignupPage';
 import NavBarContainer from './NavBarContainer';
-import PostsPageContainer from '../posts/PostsPage';
+import PostsPage from '../posts/PostsPage';
 import CreatePostPage from '../posts/CreatePostPage';
 import EditPostPage from '../posts/EditPostPage';
 import {ConnectedRouter} from 'connected-react-router';
@@ -24,11 +24,11 @@ function AppContainer({history, isInitialised}) {
                 <Fragment>
                     <NavBarContainer/>
                     <Switch>
-                        <AnonymRoute exact path={Routes.LOGIN} component={LoginPageContainer}/>
-                        <AnonymRoute exact path={Routes.SIGN_UP} component={SignupPageContainer}/>
+                        <AnonymRoute exact path={Routes.LOGIN} component={LoginPage}/>
+                        <AnonymRoute exact path={Routes.SIGN_UP} component={SignupPage}/>
                         <AdminRoute exact path={Routes.CREATE_POST} component={CreatePostPage}/>
                         <AdminRoute exact path={Routes.EDIT_POST} component={EditPostPage}/>
-                        <UserRoute exact path={Routes.POSTS} component={PostsPageContainer}/>
+                        <UserRoute exact path={Routes.POSTS} component={PostsPage}/>
                         <Redirect to={Routes.POSTS}/>
                     </Switch>
                 </Fragment>

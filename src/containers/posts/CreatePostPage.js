@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import {addPostRequest, resetAddPostStatus} from '../../ducks/posts/actions';
@@ -51,14 +51,16 @@ class CreatePostPage extends React.Component {
         const {addPostStatus} = this.props;
         return (
             <Page title={PAGE_TITLE.CREATE_POST}>
-                <CreatePostForm
-                    title={this.state.title}
-                    content={this.state.content}
-                    onSave={this.handleSaveClick}
-                    onTitleInputChange={this.handleInputChange}
-                    onDescriptionInputChange={this.handleInputChange}
-                />
-                {addPostStatus === Status.IN_PROGRESS && <Loader/>}
+                <Fragment>
+                    <CreatePostForm
+                        title={this.state.title}
+                        content={this.state.content}
+                        onSave={this.handleSaveClick}
+                        onTitleInputChange={this.handleInputChange}
+                        onDescriptionInputChange={this.handleInputChange}
+                    />
+                    {addPostStatus === Status.IN_PROGRESS && <Loader/>}
+                </Fragment>
             </Page>
         );
     }

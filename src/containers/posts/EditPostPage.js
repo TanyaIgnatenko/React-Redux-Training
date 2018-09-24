@@ -1,5 +1,5 @@
 /* eslint-disable react/no-did-mount-set-state */
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
 import {
@@ -89,15 +89,17 @@ class EditPostPage extends React.Component {
         const {editPostStatus} = this.props;
         return (
             <Page title={PAGE_TITLE.EDIT_POST}>
-                <EditPostForm
-                    title={this.state.title}
-                    content={this.state.content}
-                    onSave={this.handleSaveClick}
-                    onDelete={this.handlePostDeletion}
-                    onTitleInputChange={this.handleInputChange}
-                    onDescriptionInputChange={this.handleInputChange}
-                />
-                {editPostStatus === Status.IN_PROGRESS && <Loader/>}
+                <Fragment>
+                    <EditPostForm
+                        title={this.state.title}
+                        content={this.state.content}
+                        onSave={this.handleSaveClick}
+                        onDelete={this.handlePostDeletion}
+                        onTitleInputChange={this.handleInputChange}
+                        onDescriptionInputChange={this.handleInputChange}
+                    />
+                    {editPostStatus === Status.IN_PROGRESS && <Loader/>}
+                </Fragment>
             </Page>
         );
     }

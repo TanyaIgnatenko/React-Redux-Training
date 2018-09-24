@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Page from '../../components/common/Page/Page';
 import SignupForm from '../../components/signup/SignupForm';
-import {loginRequest, registerRequest, resetRegisterStatus} from '../../ducks/auth/actions';
+import {registerRequest, resetRegisterStatus} from '../../ducks/auth/actions';
 import {connect} from 'react-redux';
 import {Routes} from '../../config';
-import {selectLoginStatus, selectRegisterStatus} from '../../ducks/auth/selectors';
+import {selectRegisterStatus} from '../../ducks/auth/selectors';
 import {push} from 'connected-react-router';
 import {Status} from '../../constants';
 import Loader from '../../components/common/Loader/Loader';
@@ -69,20 +69,22 @@ class SignupPageContainer extends Component {
         const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = this.state;
         return (
             <Page title={PAGE_TITLE.SIGN_UP}>
-                <SignupForm
-                    name={name}
-                    email={email}
-                    password={password}
-                    confirmPassword={confirmPassword}
-                    nameInvalid={nameInvalid}
-                    emailInvalid={emailInvalid}
-                    passwordInvalid={passwordInvalid}
-                    confirmPasswordInvalid={confirmPasswordInvalid}
-                    onChange={this.changeHandler}
-                    onSignupClick={this.submitHandler}
-                />
-                {registerStatus === Status.IN_PROGRESS ? <Loader/> : null}
-                {registerStatus === Status.ERROR ? <p>{ERROR_MSG.SIGN_UP}</p> : null}
+                <Fragment>
+                    <SignupForm
+                        name={name}
+                        email={email}
+                        password={password}
+                        confirmPassword={confirmPassword}
+                        nameInvalid={nameInvalid}
+                        emailInvalid={emailInvalid}
+                        passwordInvalid={passwordInvalid}
+                        confirmPasswordInvalid={confirmPasswordInvalid}
+                        onChange={this.changeHandler}
+                        onSignupClick={this.submitHandler}
+                    />
+                    {registerStatus === Status.IN_PROGRESS ? <Loader/> : null}
+                    {registerStatus === Status.ERROR ? <p>{ERROR_MSG.SIGN_UP}</p> : null}
+                </Fragment>
             </Page>
         );
     }

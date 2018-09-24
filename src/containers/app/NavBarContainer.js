@@ -7,13 +7,13 @@ import {withRouter} from 'react-router-dom';
 import {push} from 'connected-react-router';
 
 import NavBar from '../../components/common/NavBar/NavBar';
-import {selectIsAuth, selectUser} from '../../ducks/auth/selectors';
+import {selectUser} from '../../ducks/auth/selectors';
 
 class NavBarContainer extends Component {
     static propTypes = {
         user: PropTypes.shape({
             name: PropTypes.string.isRequired
-        }).isRequired,
+        }),
         signupClickHandler: PropTypes.func.isRequired,
         loginClickHandler: PropTypes.func.isRequired,
         logoutClickHandler: PropTypes.func.isRequired
