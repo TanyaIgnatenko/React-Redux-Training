@@ -6,10 +6,11 @@ import {loginRequest, registerRequest, resetRegisterStatus} from '../../ducks/au
 import {connect} from 'react-redux';
 import {Routes} from '../../config';
 import {selectLoginStatus, selectRegisterStatus} from '../../ducks/auth/selectors';
-import {push} from "connected-react-router";
+import {push} from 'connected-react-router';
 import {Status} from '../../constants';
 import Loader from '../../components/common/Loader/Loader';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';
+import * as validationHelpers from '../../helpers/validationHelpers';
 
 class SignupPageContainer extends Component {
     static propTypes = {
@@ -23,18 +24,39 @@ class SignupPageContainer extends Component {
         name: '',
         email: '',
         password: '',
-        confirmPassword: ''
+        confirmPassword: '',
+        nameInvalid: false,
+        emailInvalid: false,
+        passwordInvalid: false,
+        confirmPasswordInvalid: false
     };
 
-    onChange = (event) => {
+    changeHandler = (event) => {
+        this.setState({[event.target.name]: event.target.value});
+    };
+
+    isValid = (name, email, password, confirmPassword) => {
+        const nameInvalid = !validationHelpers.isValidName(name);
+        const emailInvalid = !validationHelpers.isValidEmail(email);
+        const passwordInvalid = !validationHelpers.isValidPassword(password);
+        const confirmPasswordInvalid = !validationHelpers.isValidConfirmPassword({password, confirmPassword});
         this.setState({
-            [event.target.name]: event.target.value
+            nameInvalid,
+            emailInvalid,
+            passwordInvalid,
+            confirmPasswordInvalid
         });
+        return !nameInvalid && !emailInvalid && !passwordInvalid && !confirmPasswordInvalid;
     };
 
-    onSignupClick = (event) => {
+    submitHandler = (event) => {
+        const {name, email, password, confirmPassword} = this.state;
+        const dataValid = this.isValid(name, email, password, confirmPassword);
+        if (dataValid) {
+            this.props.register(name, email, password);
+        }
+
         event.preventDefault();
-        this.props.register(this.state.name, this.state.email, this.state.password);
     };
 
     render() {
@@ -42,15 +64,22 @@ class SignupPageContainer extends Component {
         if (registerStatus === Status.SUCCESS) {
             onRegisterSuccess();
         }
+
+        const {name, email, password, confirmPassword} = this.state;
+        const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = this.state;
         return (
             <Page title={PAGE_TITLE.SIGN_UP}>
                 <SignupForm
-                    name={this.state.name}
-                    email={this.state.email}
-                    password={this.state.password}
-                    confirmPassword={this.state.confirmPassword}
-                    onChange={this.onChange}
-                    onSignupClick={this.onSignupClick}
+                    name={name}
+                    email={email}
+                    password={password}
+                    confirmPassword={confirmPassword}
+                    nameInvalid={nameInvalid}
+                    emailInvalid={emailInvalid}
+                    passwordInvalid={passwordInvalid}
+                    confirmPasswordInvalid={confirmPasswordInvalid}
+                    onChange={this.changeHandler}
+                    onSignupClick={this.submitHandler}
                 />
                 {registerStatus === Status.IN_PROGRESS ? <Loader/> : null}
                 {registerStatus === Status.ERROR ? <p>{ERROR_MSG.SIGN_UP}</p> : null}

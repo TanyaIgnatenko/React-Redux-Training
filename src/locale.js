@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 const APP_NAME = 'LadyBug 404 blog';
 
 const ERROR_MSG = {
@@ -10,10 +11,10 @@ const ERROR_MSG = {
 };
 
 const RULE = {
-    EMAIL: 'Can\'t create post. Check your internet connection and try again',
-    PASSWORD: 'Can\'t edit post. Check your internet connection and try again',
-    POST_TITLE: 'Can\'t delete post. Check your internet connection and try again',
-    POST_CONTENT: 'Can\'t toggle like. Check your internet connection and try again',
+    NAME: 'Name has to be at least 3 characters long and must begin with a letter',
+    EMAIL: 'Email has to be at least 3 characters long and must contain domain name of the server (ex., @gmail.com)',
+    PASSWORD: 'Password has to be at least 6 characters long. Must contain at least one lower case letter, one upper case letter and one digit',
+    CONFIRM_PASSWORD: 'Confirm password should match password'
 };
 
 const PAGE_TITLE = {
@@ -36,7 +37,7 @@ const FIELD_LABEL = {
     NAME: 'Name',
     EMAIL: 'Email',
     PASSWORD: 'Password',
-    CONFIRM_PASSWORD: 'Confirm password',
+    CONFIRM_PASSWORD: 'Confirm password'
 };
 
 const FIELD_PLACEHOLDER = {
