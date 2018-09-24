@@ -17,7 +17,9 @@ import AdminRoute from '../routes/AdminRoute';
 import Loader from '../../components/common/Loader/Loader';
 import AnonymRoute from '../routes/AnonymRoute';
 
-function AppContainer({history, isInitialised}) {
+import {history} from '../../store/store';
+
+function AppContainer({isInitialised}) {
     return (
         isInitialised ?
             <ConnectedRouter history={history}>
@@ -38,7 +40,6 @@ function AppContainer({history, isInitialised}) {
 }
 
 AppContainer.propTypes = {
-    history: PropTypes.object.isRequired,
     isInitialised: PropTypes.bool.isRequired
 };
 
