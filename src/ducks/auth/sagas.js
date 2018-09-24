@@ -1,5 +1,6 @@
-import {loginError, loginSuccess, registerError, registerSuccess, setUser} from './actions';
 import {all, call, put, takeLatest} from 'redux-saga/effects';
+
+import {loginError, loginSuccess, registerError, registerSuccess, setUser} from './actions';
 import {LOGIN, REGISTER} from './actionTypes';
 import * as services from './services';
 

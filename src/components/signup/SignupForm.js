@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {BUTTON, FIELD_LABEL, FIELD_PLACEHOLDER, RULE} from '../../locale';
 import {Button, Col, Form, FormGroup, Input, Label} from 'reactstrap';
+
 import './SignupForm.scss';
 
 function SignupForm(props) {

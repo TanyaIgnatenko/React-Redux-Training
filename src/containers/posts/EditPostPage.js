@@ -1,6 +1,8 @@
 /* eslint-disable react/no-did-mount-set-state */
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
+import {push} from 'connected-react-router';
+import {connect} from 'react-redux';
 
 import {
     editPostRequest,
@@ -8,15 +10,13 @@ import {
     resetEditPostStatus,
     resetRemovePostStatus
 } from '../../ducks/posts/actions';
-import {Status} from '../../constants';
-import {selectEditPostStatus, selectPost, selectRemovePostStatus} from '../../ducks/posts/selectors';
-import {Routes} from '../../config';
-import {push} from 'connected-react-router';
 import Page from '../../components/common/Page/Page';
-import {connect} from 'react-redux';
 import Loader from '../../components/common/Loader/Loader';
 import EditPostForm from '../../components/posts/EditPostForm/EditPostForm';
+import {selectEditPostStatus, selectPost, selectRemovePostStatus} from '../../ducks/posts/selectors';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';
+import {Status} from '../../constants';
+import {Routes} from '../../config';
 
 
 class EditPostPage extends React.Component {

@@ -1,7 +1,9 @@
 import React, {Fragment} from 'react';
-import {Redirect, Route, Switch} from 'react-router-dom';
-import {Routes} from '../../config';
 import PropTypes from 'prop-types';
+import {Redirect, Switch} from 'react-router-dom';
+import {Routes} from '../../config';
+import {ConnectedRouter} from 'connected-react-router';
+import {connect} from 'react-redux';
 
 import LoginPage from '../login/LoginPage';
 import SignupPage from '../signup/SignupPage';
@@ -9,9 +11,7 @@ import NavBarContainer from './NavBarContainer';
 import PostsPage from '../posts/PostsPage';
 import CreatePostPage from '../posts/CreatePostPage';
 import EditPostPage from '../posts/EditPostPage';
-import {ConnectedRouter} from 'connected-react-router';
 import {selectIsInitialised} from '../../ducks/app/selectors';
-import {connect} from 'react-redux';
 import UserRoute from '../routes/UserRoute';
 import AdminRoute from '../routes/AdminRoute';
 import Loader from '../../components/common/Loader/Loader';

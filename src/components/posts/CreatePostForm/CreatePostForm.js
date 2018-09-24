@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {BUTTON, FIELD_PLACEHOLDER} from '../../../locale';
 
 import './CreatePostForm.scss';
-import {BUTTON, FIELD_PLACEHOLDER} from '../../../locale';
 
 export default function CreatePostForm(props) {
     return (

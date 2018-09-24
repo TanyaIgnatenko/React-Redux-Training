@@ -10,8 +10,6 @@ import rootSaga from './rootSaga';
 
 const history = createBrowserHistory();
 const navigationMiddleware = routerMiddleware(history);
-
-
 const sagaMiddleware = createSagaMiddleware();
 const initialState = {};
 

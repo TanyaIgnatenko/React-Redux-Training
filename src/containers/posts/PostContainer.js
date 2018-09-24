@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {push} from 'connected-react-router';
 
 import {Routes} from '../../config';
 import {toggleLikeRequest} from '../../ducks/posts/actions';
-import {connect} from 'react-redux';
-import {push} from 'connected-react-router';
 import {selectIsAdmin} from '../../ducks/auth/selectors';
 import Post from '../../components/posts/Post/Post';
 

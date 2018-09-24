@@ -1,4 +1,5 @@
-import {all, call, take} from 'redux-saga/effects';
+import {all, call} from 'redux-saga/effects';
+
 import {watchAuthRequests} from '../ducks/auth/sagas';
 import {watchPostRequests} from '../ducks/posts/sagas';
 import appSaga from '../ducks/app/sagas';

@@ -6,7 +6,6 @@ import {
 import {Status} from '../../constants';
 import * as arrayHelpers from '../../helpers/arrayHelpers';
 import {changeStatus} from './helpers';
-import {RESET_REGISTER_STATUS} from '../auth/actionTypes';
 
 const initialState = {
     status: {

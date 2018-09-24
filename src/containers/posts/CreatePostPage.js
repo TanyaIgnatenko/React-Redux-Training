@@ -1,16 +1,16 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-
-import {addPostRequest, resetAddPostStatus} from '../../ducks/posts/actions';
+import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
-import {Routes} from '../../config';
-import {selectAddPostStatus} from '../../ducks/posts/selectors';
-import {Status} from '../../constants';
+
 import Page from '../../components/common/Page/Page';
 import Loader from '../../components/common/Loader/Loader';
-import {connect} from 'react-redux';
 import CreatePostForm from '../../components/posts/CreatePostForm/CreatePostForm';
+import {addPostRequest, resetAddPostStatus} from '../../ducks/posts/actions';
+import {selectAddPostStatus} from '../../ducks/posts/selectors';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';
+import {Status} from '../../constants';
+import {Routes} from '../../config';
 
 
 class CreatePostPage extends React.Component {

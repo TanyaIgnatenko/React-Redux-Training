@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
-import {logout} from '../../ducks/auth/actions';
 import {connect} from 'react-redux';
-import {Routes} from '../../config';
-import {withRouter} from 'react-router-dom';
 import {push} from 'connected-react-router';
+import {withRouter} from 'react-router-dom';
 
 import NavBar from '../../components/common/NavBar/NavBar';
 import {selectUser} from '../../ducks/auth/selectors';
+import {logout} from '../../ducks/auth/actions';
+import {Routes} from '../../config';
 
 class NavBarContainer extends Component {
     static propTypes = {
