@@ -16,7 +16,8 @@ const initialState = {
         toggleLike: Status.IDLE
     },
     posts: [],
-    selectedPage: 1
+    selectedPage: 1,
+    pageCount: 1
 };
 
 export const posts = (state = initialState, action) => {
@@ -30,7 +31,9 @@ export const posts = (state = initialState, action) => {
             return {
                 ...state,
                 posts: action.posts,
-                status: changeStatus({status: state.status, fetchPosts: Status.SUCCESS})
+                status: changeStatus({status: state.status, fetchPosts: Status.SUCCESS}),
+                selectedPage: action.meta.currentPage,
+                pageCount: action.meta.lastPage
             };
         case FETCH_POSTS.ERROR:
             return {

@@ -52,10 +52,10 @@ function* removePostSaga({id}) {
     }
 }
 
-function* fetchPostsSaga({page}) {
+function* fetchPostsSaga({page, perPage}) {
     try {
-        const {posts} = yield call(services.fetchPosts({page}));
-        yield put(fetchPostsSuccess(posts));
+        const {posts, meta} = yield call(services.fetchPosts, {page, perPage});
+        yield put(fetchPostsSuccess(posts, meta));
     } catch (e) {
         yield put(fetchPostsError(e));
     }

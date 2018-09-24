@@ -8,7 +8,7 @@ const SERVER_END_POINT = {
     DELETE_POST: '/posts/:id',
     EDIT_POST: '/posts/:id',
     ADD_POST: '/posts',
-    FETCH_POSTS: '/posts?perPage=:perPage&page=:page',
+    FETCH_POSTS: '/posts?per_page=:perPage&page=:page',
     TOGGLE_LIKE: '/posts/:id/like'
 };
 

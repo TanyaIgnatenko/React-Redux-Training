@@ -1,22 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {PaginationItem, PaginationLink} from 'reactstrap';
+import * as ReactStrap from 'reactstrap';
 
 function Pagination(props) {
-    const paginationItems = [];
-    for (let i = 1; i <= props.pageCount; ++i) {
-        const active = i === props.selectedPage;
-        const paginationItem = (
-            <PaginationItem active={active}>
-                <PaginationLink onClick={props.onPageSelected}/>i<PaginationLink/>
-            </PaginationItem>
-        );
-        paginationItems.push(paginationItem);
-    }
+    const {pageCount, selectedPage, onPageSelected} = props;
+    const pageNumbers = Array.from({length: pageCount}, (_, idx) => idx + 1);
+    const selectPrevPage = () => onPageSelected(selectedPage - 1);
+    const selectNextPage = () => onPageSelected(selectedPage + 1);
     return (
-        <Pagination aria-label='Page navigation example'>
-            {paginationItems}
-        </Pagination>
+        <ReactStrap.Pagination>
+            <ReactStrap.PaginationItem disabled={selectedPage === 1}>
+                <ReactStrap.PaginationLink previous onClick={selectPrevPage}/>
+            </ReactStrap.PaginationItem>
+            {
+                pageNumbers.map(pageNumber => (
+                    <ReactStrap.PaginationItem key={pageNumber}
+                                               active={pageNumber === selectedPage}
+                                               disabled={pageNumber === selectedPage}>
+                        <ReactStrap.PaginationLink onClick={() => onPageSelected(pageNumber)}>
+                            {pageNumber}
+                        </ReactStrap.PaginationLink>
+                    </ReactStrap.PaginationItem>
+                ))
+            }
+            <ReactStrap.PaginationItem disabled={selectedPage === pageCount}>
+                <ReactStrap.PaginationLink next onClick={selectNextPage}/>
+            </ReactStrap.PaginationItem>
+        </ReactStrap.Pagination>
     );
 }
 

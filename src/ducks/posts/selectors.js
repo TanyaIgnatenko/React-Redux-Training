@@ -18,7 +18,7 @@ const selectFetchPostsStatus = (state) => state.posts.status.fetchPosts;
 
 const selectSelectedPage = state => state.posts.selectedPage;
 
-const selectPageCount = state => 10;
+const selectPageCount = state => state.posts.pageCount;
 
 export {
     selectPost,

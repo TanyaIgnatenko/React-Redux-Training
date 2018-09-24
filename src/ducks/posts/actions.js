@@ -53,14 +53,16 @@ const removePostError = (error) => ({
     error
 });
 
-const fetchPostsRequest = (page) => ({
+const fetchPostsRequest = (perPage, page) => ({
     type: FETCH_POSTS.REQUEST,
+    perPage,
     page
 });
 
-const fetchPostsSuccess = (posts) => ({
+const fetchPostsSuccess = (posts, meta) => ({
     type: FETCH_POSTS.SUCCESS,
-    posts
+    posts,
+    meta
 });
 
 const fetchPostsError = (error) => ({
@@ -101,11 +103,6 @@ const resetRemovePostStatus = () => ({
 
 const resetToggleLikeStatus = () => ({
     type: RESET_TOGGLE_LIKE_STATUS
-});
-
-const selectPage = page => ({
-    type: SELECT_PAGE,
-    page
 });
 
 export {
