@@ -86,3 +86,7 @@ $post-color: antiquewhite;
     font-family: $font-stack;
     font-size: 16px;
 }
+
+textarea {
+    resize: none;
+}
