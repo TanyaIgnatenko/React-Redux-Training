@@ -54,8 +54,8 @@ class LoginPageContainer extends Component {
                         onLoginClick={this.loginHandler}
                         onChange={this.onChange}
                     />
-                    {loginStatus === Status.IN_PROGRESS ? <Loader/>: null}
-                    {loginStatus === Status.ERROR ? <p>{ERROR_MSG.LOGIN}</p> : null}
+                    {loginStatus === Status.IN_PROGRESS && <Loader/>}
+                    {loginStatus === Status.ERROR && <p>{ERROR_MSG.LOGIN}</p>}
                 </Fragment>
             </Page>
         );

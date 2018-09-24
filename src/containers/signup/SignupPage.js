@@ -83,8 +83,8 @@ class SignupPageContainer extends Component {
                         onChange={this.changeHandler}
                         onSignupClick={this.submitHandler}
                     />
-                    {registerStatus === Status.IN_PROGRESS ? <Loader/> : null}
-                    {registerStatus === Status.ERROR ? <p>{ERROR_MSG.SIGN_UP}</p> : null}
+                    {registerStatus === Status.IN_PROGRESS && <Loader/>}
+                    {registerStatus === Status.ERROR && <p>{ERROR_MSG.SIGN_UP}</p>}
                 </Fragment>
             </Page>
         );
