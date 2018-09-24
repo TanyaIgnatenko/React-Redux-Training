@@ -1,10 +1,10 @@
-const isValidName = name => true;
+const isValidName = name => true; //later here would be RegExp
 
-const isValidEmail = email => true;
+const isValidEmail = email => true; //later here would be RegExp
 
-const isValidPassword = password => true;
+const isValidPassword = password => true; //later here would be RegExp
 
-const isValidConfirmPassword = ({password, confirmPassword}) => true;
+const isValidConfirmPassword = ({password, confirmPassword}) => password === confirmPassword;
 
 export {
     isValidName,
