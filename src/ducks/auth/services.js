@@ -1,12 +1,13 @@
 import {instance as API, removeTokenFromRequestHeader, setTokenIntoRequestHeader} from 'api';
+import {SERVER_END_POINT} from '../../config';
 
 const API_TOKEN_KEY = 'api_token';
 
-const login = credentials => API.post('/login', credentials);
+const login = credentials => API.post(SERVER_END_POINT.LOGIN, credentials);
 
-const register = credentials => API.post('/register', credentials);
+const register = credentials => API.post(SERVER_END_POINT.REGISTER, credentials);
 
-const fetchUser = () => API.get('/user');
+const fetchUser = () => API.get(SERVER_END_POINT.FETCH_USER);
 
 const findApiToken = () => localStorage.getItem(API_TOKEN_KEY);
 

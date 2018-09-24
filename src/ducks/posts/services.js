@@ -1,20 +1,21 @@
 import {instance as API} from 'api';
+import {Routes, SERVER_END_POINT} from '../../config';
 
 const addPost = post => {
     const {title, content} = post;
-    return API.post('/posts', {title, content});
+    return API.post(SERVER_END_POINT.ADD_POST, {title, content});
 };
 
 const editPost = (id, post) => {
     const {title, content} = post;
-    return API.put(`/posts/${id}`, post);
+    return API.put(SERVER_END_POINT.EDIT_POST.replace(':id', id), post);
 };
 
-const deletePost = id => API.delete(`/posts/${id}`);
+const deletePost = id => API.delete(SERVER_END_POINT.DELETE_POST.replace(':id', id));
 
-const fetchPosts = () => API.get('/posts');
+const fetchPosts = () => API.get(SERVER_END_POINT.FETCH_POSTS);
 
-const toggleLike = id => API.post(`/posts/${id}/like`);
+const toggleLike = id => API.post(SERVER_END_POINT.TOGGLE_LIKE.replace(':id', id));
 
 export {
     addPost,
