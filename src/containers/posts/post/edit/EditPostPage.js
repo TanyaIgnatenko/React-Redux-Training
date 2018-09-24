@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import EditPostForm from '../../../../components/posts/post/edit/EditPostForm/PostEditionForm';
+import EditPostForm from '../../../../components/posts/post/edit/EditPostForm/EditPostForm';
 import {
     editPostRequest,
     removePostRequest,

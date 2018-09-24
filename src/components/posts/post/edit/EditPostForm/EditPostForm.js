@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import './PostEditionForm.scss';
+import './EditPostForm.scss';
 import {BUTTON, FIELD_PLACEHOLDER} from '../../../../../locale';
 
 export default function EditPostForm(props) {
