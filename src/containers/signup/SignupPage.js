@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import Page from '../../components/common/Page/Page';
 import SignupForm from '../../components/signup/SignupForm';
 import Loader from '../../components/common/Loader/Loader';
-import {registerRequest, resetRegisterStatus} from '../../ducks/auth/actions';
+import {registerRequest, resetLoginStatus, resetRegisterStatus} from '../../ducks/auth/actions';
 import {selectRegisterStatus} from '../../ducks/auth/selectors';
 import * as validationHelpers from '../../helpers/validationHelpers';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';
@@ -17,7 +17,7 @@ class SignupPageContainer extends Component {
     static propTypes = {
         register: PropTypes.func.isRequired,
         onRegisterSuccess: PropTypes.func.isRequired,
-        resetRegisterStatus: PropTypes.func.isRequired,
+        onRegisterError: PropTypes.func.isRequired,
         registerStatus: PropTypes.string.isRequired
     };
 
@@ -60,11 +60,17 @@ class SignupPageContainer extends Component {
         event.preventDefault();
     };
 
-    render() {
-        const {register, onRegisterSuccess, registerStatus} = this.props;
+    componentDidUpdate() {
+        const {registerStatus, onRegisterSuccess, onRegisterError} = this.props;
         if (registerStatus === Status.SUCCESS) {
             onRegisterSuccess();
+        } else if (registerStatus === Status.ERROR) {
+            onRegisterError();
         }
+    }
+
+    render() {
+        const {registerStatus} = this.props;
 
         const {name, email, password, confirmPassword} = this.state;
         const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = this.state;
@@ -84,7 +90,6 @@ class SignupPageContainer extends Component {
                         onSignupClick={this.submitHandler}
                     />
                     {registerStatus === Status.IN_PROGRESS && <Loader/>}
-                    {registerStatus === Status.ERROR && <p>{ERROR_MSG.SIGN_UP}</p>}
                 </Fragment>
             </Page>
         );
@@ -101,7 +106,10 @@ const mapDispatchToProps = dispatch => ({
         dispatch(push(Routes.POSTS));
         dispatch(resetRegisterStatus());
     },
-    resetRegisterStatus: () => dispatch(resetRegisterStatus())
+    onRegisterError: () => {
+        alert(ERROR_MSG.SIGN_UP);
+        dispatch(resetRegisterStatus());
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignupPageContainer);

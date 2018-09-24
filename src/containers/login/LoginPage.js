@@ -11,12 +11,13 @@ import {Routes} from '../../config';
 import {selectLoginStatus} from '../../ducks/auth/selectors';
 import {Status} from '../../constants';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';
+import {resetAddPostStatus} from '../../ducks/posts/actions';
 
 class LoginPageContainer extends Component {
     static propTypes = {
         login: PropTypes.func.isRequired,
         onLoginSuccess: PropTypes.func.isRequired,
-        resetLoginStatus: PropTypes.func.isRequired,
+        onLoginError: PropTypes.func.isRequired,
         loginStatus: PropTypes.string.isRequired
     };
 
@@ -25,8 +26,13 @@ class LoginPageContainer extends Component {
         password: ''
     };
 
-    UNSAFE_componentWillMount() {
-        this.props.resetLoginStatus();
+    componentDidUpdate() {
+        const {loginStatus, onLoginSuccess, onLoginError} = this.props;
+        if (loginStatus === Status.SUCCESS) {
+            onLoginSuccess();
+        } else if (loginStatus === Status.ERROR) {
+            onLoginError();
+        }
     }
 
     onChange = (event) => {
@@ -41,10 +47,7 @@ class LoginPageContainer extends Component {
     };
 
     render() {
-        const {login, onLoginSuccess, loginStatus} = this.props;
-        if (loginStatus === Status.SUCCESS) {
-            onLoginSuccess();
-        }
+        const {loginStatus} = this.props;
         return (
             <Page title={PAGE_TITLE.LOGIN}>
                 <Fragment>
@@ -55,7 +58,6 @@ class LoginPageContainer extends Component {
                         onChange={this.onChange}
                     />
                     {loginStatus === Status.IN_PROGRESS && <Loader/>}
-                    {loginStatus === Status.ERROR && <p>{ERROR_MSG.LOGIN}</p>}
                 </Fragment>
             </Page>
         );
@@ -72,7 +74,10 @@ const mapDispatchToProps = dispatch => ({
         dispatch(push(Routes.POSTS));
         dispatch(resetLoginStatus());
     },
-    resetLoginStatus: () => dispatch(resetLoginStatus())
+    onLoginError: () => {
+        alert(ERROR_MSG.LOGIN);
+        dispatch(resetLoginStatus());
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginPageContainer);
