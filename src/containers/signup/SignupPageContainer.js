@@ -96,7 +96,7 @@ const mapDispatchToProps = dispatch => ({
     register: (name, email, password) => dispatch(registerRequest(name, email, password)),
     onRegisterSuccess: () => {
         dispatch(push(Routes.POSTS));
-        dispatch(resetRegisterStatus);
+        dispatch(resetRegisterStatus());
     },
     resetRegisterStatus: () => dispatch(resetRegisterStatus())
 });
