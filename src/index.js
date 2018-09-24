@@ -5,7 +5,7 @@ import {Provider} from 'react-redux';
 import AppContainer from './containers/app/App';
 import {store} from './store/store';
 
-import './index.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const mountNode = document.getElementById('root');

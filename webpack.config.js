@@ -107,7 +107,7 @@ const config = {
             },
 
             {
-                test: /\.scss$/,
+                test: /\.css$/,
                 exclude: [path.resolve(srcFolder, 'components')],
                 loader: ExtractTextPlugin.extract({
                     fallback: 'style-loader',

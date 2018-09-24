@@ -1,6 +1,6 @@
 import {
     ADD_POST, EDIT_POST, FETCH_POSTS, REMOVE_POST, RESET_ADD_POST_STATUS, RESET_EDIT_POST_STATUS,
-    RESET_FETCH_POSTS_STATUS, RESET_REMOVE_POST_STATUS, RESET_TOGGLE_LIKE_STATUS,
+    RESET_FETCH_POSTS_STATUS, RESET_REMOVE_POST_STATUS, RESET_TOGGLE_LIKE_STATUS, SELECT_PAGE,
     TOGGLE_LIKE
 } from './actionTypes';
 import {Status} from '../../constants';
@@ -15,7 +15,9 @@ const initialState = {
         deletePost: Status.IDLE,
         toggleLike: Status.IDLE
     },
-    posts: []
+    posts: [],
+    selectedPage: 1,
+    pageCount: 1
 };
 
 export const posts = (state = initialState, action) => {
@@ -29,7 +31,9 @@ export const posts = (state = initialState, action) => {
             return {
                 ...state,
                 posts: action.posts,
-                status: changeStatus({status: state.status, fetchPosts: Status.SUCCESS})
+                status: changeStatus({status: state.status, fetchPosts: Status.SUCCESS}),
+                selectedPage: action.meta.currentPage,
+                pageCount: action.meta.lastPage
             };
         case FETCH_POSTS.ERROR:
             return {
@@ -125,6 +129,11 @@ export const posts = (state = initialState, action) => {
             return {
                 ...state,
                 status: changeStatus({status: state.status, toggleLike: Status.IDLE})
+            };
+        case SELECT_PAGE:
+            return {
+                ...state,
+                selectedPage: action.page
             };
         default:
             return state;

@@ -1,7 +1,7 @@
 import {
     ADD_POST, EDIT_POST, FETCH_POSTS, REMOVE_POST, RESET_ADD_POST_STATUS, RESET_EDIT_POST_STATUS,
     RESET_FETCH_POSTS_STATUS,
-    RESET_REMOVE_POST_STATUS, RESET_TOGGLE_LIKE_STATUS,
+    RESET_REMOVE_POST_STATUS, RESET_TOGGLE_LIKE_STATUS, SELECT_PAGE,
     TOGGLE_LIKE
 } from './actionTypes';
 import {RESET_LOGIN_STATUS} from '../auth/actionTypes';
@@ -53,13 +53,16 @@ const removePostError = (error) => ({
     error
 });
 
-const fetchPostsRequest = () => ({
-    type: FETCH_POSTS.REQUEST
+const fetchPostsRequest = (perPage, page) => ({
+    type: FETCH_POSTS.REQUEST,
+    perPage,
+    page
 });
 
-const fetchPostsSuccess = (posts) => ({
+const fetchPostsSuccess = (posts, meta) => ({
     type: FETCH_POSTS.SUCCESS,
-    posts
+    posts,
+    meta
 });
 
 const fetchPostsError = (error) => ({
@@ -122,6 +125,7 @@ export {
     resetAddPostStatus,
     resetEditPostStatus,
     resetRemovePostStatus,
-    resetToggleLikeStatus
+    resetToggleLikeStatus,
+    selectPage
 };
 
