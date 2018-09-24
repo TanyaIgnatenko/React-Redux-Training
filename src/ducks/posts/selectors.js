@@ -4,6 +4,8 @@ const selectPost = (state, id) => {
 
 const selectPosts = (state) => state.posts.posts;
 
+const selectPostsPage = (state) => state.posts.page;
+
 const selectAddPostStatus = (state) => state.posts.status.addPost;
 
 const selectEditPostStatus = (state) => state.posts.status.editPost;
@@ -14,6 +16,10 @@ const selectToggleLikeStatus = (state) => state.posts.status.toggleLike;
 
 const selectFetchPostsStatus = (state) => state.posts.status.fetchPosts;
 
+const selectSelectedPage = state => state.posts.selectedPage;
+
+const selectPageCount = state => 10;
+
 export {
     selectPost,
     selectPosts,
@@ -21,5 +27,8 @@ export {
     selectEditPostStatus,
     selectRemovePostStatus,
     selectToggleLikeStatus,
-    selectFetchPostsStatus
+    selectFetchPostsStatus,
+    selectPostsPage,
+    selectSelectedPage,
+    selectPageCount
 };

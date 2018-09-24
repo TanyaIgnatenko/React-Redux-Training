@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
@@ -7,9 +7,10 @@ import Grid from '../../components/common/Grid/Grid';
 import PostContainer from './PostContainer';
 import NewPostButtonContainer from './NewPostButtonContainer';
 import {fetchPostsRequest} from '../../ducks/posts/actions';
-import {selectPosts} from '../../ducks/posts/selectors';
+import {selectPageCount, selectPosts, selectSelectedPage} from '../../ducks/posts/selectors';
 import {selectIsAdmin} from '../../ducks/auth/selectors';
 import {PAGE_TITLE} from '../../locale';
+import Pagination from '../../components/common/Pagination/Pagination';
 
 
 class PostsPageContainer extends React.Component {
@@ -21,6 +22,9 @@ class PostsPageContainer extends React.Component {
             totalLikes: PropTypes.number.isRequired
         })),
         fetchPosts: PropTypes.func.isRequired,
+        selectedPage: PropTypes.bool.isRequired,
+        pageCount: PropTypes.number.isRequired,
+        onPageSelected: PropTypes.func.isRequired,
         isAdmin: PropTypes.bool.isRequired
     };
 
@@ -28,15 +32,25 @@ class PostsPageContainer extends React.Component {
         this.props.fetchPosts();
     }
 
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.selectedPage !== this.props.selectedPage) {
+            this.setState({posts: this.props.fetchPosts(nextProps.selectedPage)});
+        }
+    }
+
     render() {
         const posts = this.props.posts.map((post) => <PostContainer key={post.id} post={post}/>);
         const elems = this.props.isAdmin ? [<NewPostButtonContainer key={0}/>, ...posts] : [...posts];
 
+        const {selectedPage, pageCount, onPageSelected} = this.props;
         return (
             <Page title={PAGE_TITLE.POSTS}>
-                <Grid>
-                    {elems}
-                </Grid>
+                <Fragment>
+                    <Grid>
+                        {elems}
+                    </Grid>
+                    <Pagination pageCount={pageCount} selectedPage={selectedPage} onPageSelected={onPageSelected}/>
+                </Fragment>
             </Page>
         );
     }
@@ -44,6 +58,8 @@ class PostsPageContainer extends React.Component {
 
 const mapStateToProps = state => ({
     posts: selectPosts(state),
+    selectedPage: selectSelectedPage(state),
+    pageCount: selectPageCount(state),
     isAdmin: selectIsAdmin(state)
 });
 

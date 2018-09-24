@@ -13,7 +13,9 @@ const editPost = (id, post) => {
 
 const deletePost = id => API.delete(SERVER_END_POINT.DELETE_POST.replace(':id', id));
 
-const fetchPosts = () => API.get(SERVER_END_POINT.FETCH_POSTS);
+const fetchPosts = ({perPage = 15, page}) => API.get(
+    SERVER_END_POINT.FETCH_POSTS.replace(':perPage', perPage).replace(':page', page)
+);
 
 const toggleLike = id => API.post(SERVER_END_POINT.TOGGLE_LIKE.replace(':id', id));
 
