@@ -8,8 +8,8 @@ import {selectAddPostStatus} from '../../ducks/posts/selectors';
 import {Status} from '../../constants';
 import Page from '../../components/common/Page/Page';
 import Loader from '../../components/common/Loader/Loader';
-import CreatePostForm from '../../components/posts/CreatePostForm/CreatePostForm';
 import {connect} from 'react-redux';
+import CreatePostForm from '../../components/posts/CreatePostForm/CreatePostForm';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';
 
 

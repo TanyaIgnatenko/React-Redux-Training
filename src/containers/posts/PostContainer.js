@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import Post from '../../components/posts/post/Post/Post';
 import {Routes} from '../../config';
 import {toggleLikeRequest} from '../../ducks/posts/actions';
 import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
 import {selectIsAdmin} from '../../ducks/auth/selectors';
+import Post from '../../components/posts/Post/Post';
 
 class PostContainer extends React.Component {
     static propTypes = {

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CreatePostForm.scss';
-import {BUTTON as Button, FIELD_PLACEHOLDER} from '../../../../../locale';
+import {BUTTON, FIELD_PLACEHOLDER} from '../../../locale';
 
 export default function CreatePostForm(props) {
     return (
@@ -35,7 +35,7 @@ export default function CreatePostForm(props) {
                 <input
                     type='submit'
                     className={'create-post-form__save-button'}
-                    value={Button.SAVE}
+                    value={BUTTON.SAVE}
                 />
             </div>
         </form>

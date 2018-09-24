@@ -2,7 +2,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import EditPostForm from '../../components/posts/EditPostForm/EditPostForm';
 import {
     editPostRequest,
     removePostRequest,
@@ -16,6 +15,7 @@ import {push} from 'connected-react-router';
 import Page from '../../components/common/Page/Page';
 import {connect} from 'react-redux';
 import Loader from '../../components/common/Loader/Loader';
+import EditPostForm from '../../components/posts/EditPostForm/EditPostForm';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';
 
 
