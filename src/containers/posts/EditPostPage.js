@@ -2,21 +2,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import EditPostForm from '../../../../components/posts/post/edit/EditPostForm/EditPostForm';
+import EditPostForm from '../../components/posts/EditPostForm/EditPostForm';
 import {
     editPostRequest,
     removePostRequest,
     resetEditPostStatus,
     resetRemovePostStatus
-} from '../../../../ducks/posts/actions';
-import {Status} from '../../../../constants';
-import {selectEditPostStatus, selectPost, selectRemovePostStatus} from '../../../../ducks/posts/selectors';
-import {Routes} from '../../../../config';
+} from '../../ducks/posts/actions';
+import {Status} from '../../constants';
+import {selectEditPostStatus, selectPost, selectRemovePostStatus} from '../../ducks/posts/selectors';
+import {Routes} from '../../config';
 import {push} from 'connected-react-router';
-import Page from '../../../../components/common/Page/Page';
+import Page from '../../components/common/Page/Page';
 import {connect} from 'react-redux';
-import Loader from '../../../../components/common/Loader/Loader';
-import {ERROR_MSG, PAGE_TITLE} from '../../../../locale';
+import Loader from '../../components/common/Loader/Loader';
+import {ERROR_MSG, PAGE_TITLE} from '../../locale';
 
 
 class EditPostPage extends React.Component {

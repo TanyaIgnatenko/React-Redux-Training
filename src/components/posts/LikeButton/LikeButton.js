@@ -1,8 +1,8 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 
-import filledLikeIcon from '../../../../assets/images/filled-like.png';
-import notFilledLikeIcon from '../../../../assets/images/not-filled-like.png';
+import filledLikeIcon from '../../../assets/images/filled-like.png';
+import notFilledLikeIcon from '../../../assets/images/not-filled-like.png';
 
 import './LikeButton.scss';
 

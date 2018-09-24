@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import Page from '../../components/common/Page/Page';
 import Grid from '../../components/common/Grid/Grid';
-import PostContainer from './post/PostContainer';
+import PostContainer from './PostContainer';
 import NewPostButtonContainer from './NewPostButtonContainer';
 import {fetchPostsRequest} from '../../ducks/posts/actions';
 import {selectPosts} from '../../ducks/posts/selectors';

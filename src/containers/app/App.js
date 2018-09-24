@@ -3,19 +3,19 @@ import {Redirect, Route, Switch} from 'react-router-dom';
 import {Routes} from '../../config';
 import PropTypes from 'prop-types';
 
-import LoginPageContainer from '../login/LoginPageContainer';
-import SignupPageContainer from '../signup/SignupPageContainer';
-import NavBarContainer from '../Common/NavBarContainer';
-import PostsPageContainer from '../posts/PostsPageContainer';
-import CreatePostPage from '../posts/post/add/CreatePostPage';
-import EditPostPage from '../posts/post/edit/EditPostPage';
+import LoginPageContainer from '../login/LoginPage';
+import SignupPageContainer from '../signup/SignupPage';
+import NavBarContainer from './NavBarContainer';
+import PostsPageContainer from '../posts/PostsPage';
+import CreatePostPage from '../posts/CreatePostPage';
+import EditPostPage from '../posts/EditPostPage';
 import {ConnectedRouter} from 'connected-react-router';
 import {selectIsInitialised} from '../../ducks/app/selectors';
 import {connect} from 'react-redux';
-import UserRoute from '../common/UserRoute';
-import AdminRoute from '../common/AdminRoute';
+import UserRoute from '../routes/UserRoute';
+import AdminRoute from '../routes/AdminRoute';
 import Loader from '../../components/common/Loader/Loader';
-import AnonymRoute from '../common/AnonymRoute';
+import AnonymRoute from '../routes/AnonymRoute';
 
 function AppContainer({history, isInitialised}) {
     return (

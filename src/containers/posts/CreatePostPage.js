@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import {addPostRequest, resetAddPostStatus} from '../../../../ducks/posts/actions';
+import {addPostRequest, resetAddPostStatus} from '../../ducks/posts/actions';
 import {push} from 'connected-react-router';
-import {Routes} from '../../../../config';
-import {selectAddPostStatus} from '../../../../ducks/posts/selectors';
-import {Status} from '../../../../constants';
-import Page from '../../../../components/common/Page/Page';
-import Loader from '../../../../components/common/Loader/Loader';
-import CreatePostForm from '../../../../components/posts/post/add/CreatePostForm/CreatePostForm';
+import {Routes} from '../../config';
+import {selectAddPostStatus} from '../../ducks/posts/selectors';
+import {Status} from '../../constants';
+import Page from '../../components/common/Page/Page';
+import Loader from '../../components/common/Loader/Loader';
+import CreatePostForm from '../../components/posts/CreatePostForm/CreatePostForm';
 import {connect} from 'react-redux';
-import {ERROR_MSG, PAGE_TITLE} from '../../../../locale';
+import {ERROR_MSG, PAGE_TITLE} from '../../locale';
 
 
 class CreatePostPage extends React.Component {
