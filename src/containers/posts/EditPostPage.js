@@ -42,13 +42,12 @@ class EditPostPage extends React.Component {
         deletePostStatus: PropTypes.string.isRequired
     };
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        if (nextProps.post !== this.props.post) {
-            this.state({
-                title: this.props.post.title,
-                content: this.props.post.content
-            });
-        }
+    constructor(props) {
+        super(props);
+        this.state = {
+            title: this.props.post.title,
+            content: this.props.post.content
+        };
     }
 
     componentDidUpdate() {
