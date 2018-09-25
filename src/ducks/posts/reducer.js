@@ -15,7 +15,7 @@ const initialState = {
         deletePost: Status.IDLE,
         toggleLike: Status.IDLE
     },
-    posts: [],
+    posts: null,
     selectedPage: 1,
     pageCount: 1
 };
@@ -133,6 +133,7 @@ export const posts = (state = initialState, action) => {
         case SELECT_PAGE:
             return {
                 ...state,
+                posts: null,
                 selectedPage: action.page
             };
         default:

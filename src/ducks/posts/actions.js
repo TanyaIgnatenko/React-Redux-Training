@@ -105,6 +105,12 @@ const resetToggleLikeStatus = () => ({
     type: RESET_TOGGLE_LIKE_STATUS
 });
 
+const selectPage = page => ({
+    type: SELECT_PAGE,
+    page
+});
+
+
 export {
     addPostRequest,
     addPostSuccess,

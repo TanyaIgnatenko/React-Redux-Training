@@ -2,12 +2,12 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
-import PostContainer from './PostContainer';
-import PaginationContainer from './PaginationContainer';
-import Page from '../../components/common/Page/Page';
-import Grid from '../../components/common/Grid/Grid';
-import NewPostButtonContainer from './NewPostButtonContainer';
-import {PAGE_TITLE} from '../../locale';
+import PostContainer from '../../../containers/posts/PostContainer';
+import PaginationContainer from '../../../containers/posts/PaginationContainer';
+import Page from '../../common/Page/Page';
+import Grid from '../../common/Grid/Grid';
+import NewPostButtonContainer from '../../../containers/posts/NewPostButtonContainer';
+import {PAGE_TITLE} from '../../../locale';
 
 
 export default class PostsPage extends React.Component {
