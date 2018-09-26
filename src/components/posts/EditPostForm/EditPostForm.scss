@@ -1,12 +1,10 @@
 @import '../../../index';
 
-$post-color: antiquewhite;
-
 .edit-post-form__container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: $post-color;
+    background-color: #D8D9DE;
     border: solid 2px #A9A9A9;
     height: 330px;
     width: 360px;
@@ -54,7 +52,7 @@ $post-color: antiquewhite;
     border-radius: 5px;
     border: solid 1px #A9A9A9;
 
-    background-color: #e65d4d;
+    background-color: #5A6268;
     color: white;
     font-family: $font-stack;
     font-size: 16px;
