@@ -6,12 +6,14 @@ import {connect} from 'react-redux';
 import Page from '../../components/common/Page/Page';
 import Loader from '../../components/common/Loader/Loader';
 import {
+    selectFetchPostStatus,
     selectPost,
     selectSelectedPost
 } from '../../ducks/posts/selectors';
 import {PAGE_TITLE} from '../../locale';
 import EditPostFormContainer from './EditPostFormContainer';
-import {fetchPostRequest} from '../../ducks/posts/actions';
+import {fetchPostRequest, resetFetchPostStatus} from '../../ducks/posts/actions';
+import {Status} from '../../constants';
 
 
 class EditPostPage extends React.Component {
@@ -27,7 +29,9 @@ class EditPostPage extends React.Component {
             content: PropTypes.string.isRequired,
             totalLikes: PropTypes.number.isRequired
         }),
-        fetchPost: PropTypes.func.isRequired
+        fetchPost: PropTypes.func.isRequired,
+        fetchPostStatus: PropTypes.string.isRequired,
+        resetFetchPostStatus: PropTypes.func.isRequired
     };
 
     componentDidMount() {
@@ -40,15 +44,21 @@ class EditPostPage extends React.Component {
         }
     }
 
+    componentWillUnmount() {
+        this.props.resetFetchPostStatus();
+    }
+
     updatePost = () => this.props.fetchPost(parseInt(this.props.match.params.id, 10));
 
     render() {
-        const {post} = this.props;
+        const {fetchPostStatus, post} = this.props;
+        const postNotLoaded = fetchPostStatus === Status.IDLE || fetchPostStatus === Status.IN_PROGRESS;
+        console.log('fetchPostStatus: ', fetchPostStatus);
         return (
             <Page title={PAGE_TITLE.EDIT_POST}>
                 <Fragment>
                     {
-                        !post ?
+                        postNotLoaded ?
                             <Loader/> :
                             <EditPostFormContainer post={post}/>
                     }
@@ -59,11 +69,13 @@ class EditPostPage extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
+    fetchPostStatus: selectFetchPostStatus(state),
     post: selectSelectedPost(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchPost: id => dispatch(fetchPostRequest(id))
+    fetchPost: id => dispatch(fetchPostRequest(id)),
+    resetFetchPostStatus: () => dispatch(resetFetchPostStatus())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPostPage);

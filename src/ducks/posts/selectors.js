@@ -14,6 +14,8 @@ const selectToggleLikeStatus = state => state.posts.status.toggleLike;
 
 const selectFetchPostsStatus = state => state.posts.status.fetchPosts;
 
+const selectFetchPostStatus = state => state.posts.status.fetchPost;
+
 const selectSelectedPage = state => state.posts.selectedPage;
 
 const selectPageCount = state => state.posts.pageCount;
@@ -26,6 +28,7 @@ export {
     selectRemovePostStatus,
     selectToggleLikeStatus,
     selectFetchPostsStatus,
+    selectFetchPostStatus,
     selectPostsPage,
     selectSelectedPage,
     selectPageCount

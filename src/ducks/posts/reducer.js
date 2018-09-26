@@ -1,6 +1,16 @@
 import {
-    ADD_POST, EDIT_POST, FETCH_POST, FETCH_POSTS, REMOVE_POST, RESET_ADD_POST_STATUS, RESET_EDIT_POST_STATUS,
-    RESET_FETCH_POSTS_STATUS, RESET_REMOVE_POST_STATUS, RESET_TOGGLE_LIKE_STATUS, SELECT_PAGE,
+    ADD_POST,
+    EDIT_POST,
+    FETCH_POST,
+    FETCH_POSTS,
+    REMOVE_POST,
+    RESET_ADD_POST_STATUS,
+    RESET_EDIT_POST_STATUS,
+    RESET_FETCH_POST_STATUS,
+    RESET_FETCH_POSTS_STATUS,
+    RESET_REMOVE_POST_STATUS,
+    RESET_TOGGLE_LIKE_STATUS,
+    SELECT_PAGE,
     TOGGLE_LIKE
 } from './actionTypes';
 import {Status} from '../../constants';
@@ -57,7 +67,6 @@ export const posts = (state = initialState, action) => {
         case FETCH_POST.ERROR:
             return {
                 ...state,
-                selectedPost: null,
                 status: changeStatus({status: state.status, fetchPost: Status.ERROR})
             };
         case ADD_POST.REQUEST:
@@ -85,8 +94,7 @@ export const posts = (state = initialState, action) => {
             return {
                 ...state,
                 posts: arrayHelpers.replaceItem(state.posts, action.post.id, action.post),
-                status: changeStatus({status: state.status, editPost: Status.SUCCESS}),
-                selectedPost: null
+                status: changeStatus({status: state.status, editPost: Status.SUCCESS})
             };
         case EDIT_POST.ERROR:
             return {
@@ -129,6 +137,11 @@ export const posts = (state = initialState, action) => {
             return {
                 ...state,
                 status: changeStatus({status: state.status, fetchPosts: Status.IDLE})
+            };
+        case RESET_FETCH_POST_STATUS:
+            return {
+                ...state,
+                status: changeStatus({status: state.status, fetchPost: Status.IDLE})
             };
         case RESET_ADD_POST_STATUS:
             return {
