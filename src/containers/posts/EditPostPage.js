@@ -1,22 +1,19 @@
 /* eslint-disable react/no-did-mount-set-state,no-alert */
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {push} from 'connected-react-router';
 import {connect} from 'react-redux';
 
-import {
-    editPostRequest,
-    removePostRequest,
-    resetEditPostStatus,
-    resetRemovePostStatus
-} from '../../ducks/posts/actions';
 import Page from '../../components/common/Page/Page';
 import Loader from '../../components/common/Loader/Loader';
-import EditPostForm from '../../components/posts/EditPostForm/EditPostForm';
-import {selectEditPostStatus, selectPost, selectRemovePostStatus} from '../../ducks/posts/selectors';
-import {ERROR_MSG, PAGE_TITLE} from '../../locale';
+import {
+    selectFetchPostStatus,
+    selectPost,
+    selectSelectedPost
+} from '../../ducks/posts/selectors';
+import {PAGE_TITLE} from '../../locale';
+import EditPostFormContainer from './EditPostFormContainer';
+import {fetchPostRequest, resetFetchPostStatus} from '../../ducks/posts/actions';
 import {Status} from '../../constants';
-import {Routes} from '../../config';
 
 
 class EditPostPage extends React.Component {
@@ -31,101 +28,54 @@ class EditPostPage extends React.Component {
             title: PropTypes.string.isRequired,
             content: PropTypes.string.isRequired,
             totalLikes: PropTypes.number.isRequired
-        }).isRequired,
-        replacePost: PropTypes.func.isRequired,
-        deletePost: PropTypes.func.isRequired,
-        onEditPostSuccess: PropTypes.func.isRequired,
-        onEditPostError: PropTypes.func.isRequired,
-        editPostStatus: PropTypes.string.isRequired,
-        onDeletePostSuccess: PropTypes.func.isRequired,
-        onDeletePostError: PropTypes.func.isRequired,
-        deletePostStatus: PropTypes.string.isRequired
+        }),
+        fetchPost: PropTypes.func.isRequired,
+        fetchPostStatus: PropTypes.string.isRequired,
+        resetFetchPostStatus: PropTypes.func.isRequired
     };
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            title: this.props.post.title,
-            content: this.props.post.content
-        };
+    componentDidMount() {
+        this.updatePost();
     }
 
     componentDidUpdate() {
-        const {editPostStatus, onEditPostSuccess, onEditPostError} = this.props;
-        const {deletePostStatus, onDeletePostSuccess, onDeletePostError} = this.props;
-        if (editPostStatus === Status.SUCCESS) {
-            onEditPostSuccess();
-        } else if (editPostStatus === Status.ERROR) {
-            onEditPostError();
-        }
-        if (deletePostStatus === Status.SUCCESS) {
-            onDeletePostSuccess();
-        } else if (deletePostStatus === Status.ERROR) {
-            onDeletePostError();
+        if (!this.props.post) {
+            this.updatePost();
         }
     }
 
-    handleInputChange = (event) => {
-        this.setState({[event.target.name]: event.target.value});
-    };
+    componentWillUnmount() {
+        this.props.resetFetchPostStatus();
+    }
 
-    handlePostDeletion = () => {
-        this.props.deletePost(this.props.post.id);
-    };
-
-    handleSaveClick = (event) => {
-        const {title, content} = this.state;
-        const post = {title, content};
-        this.props.replacePost(this.props.post.id, post);
-
-        event.preventDefault();
-    };
+    updatePost = () => this.props.fetchPost(parseInt(this.props.match.params.id, 10));
 
     render() {
-        const {editPostStatus} = this.props;
+        const {fetchPostStatus, post} = this.props;
+        const postNotLoaded = fetchPostStatus === Status.IDLE || fetchPostStatus === Status.IN_PROGRESS;
+        console.log('fetchPostStatus: ', fetchPostStatus);
         return (
             <Page title={PAGE_TITLE.EDIT_POST}>
                 <Fragment>
-                    <EditPostForm
-                        title={this.state.title}
-                        content={this.state.content}
-                        onSave={this.handleSaveClick}
-                        onDelete={this.handlePostDeletion}
-                        onTitleInputChange={this.handleInputChange}
-                        onDescriptionInputChange={this.handleInputChange}
-                    />
-                    {editPostStatus === Status.IN_PROGRESS && <Loader/>}
+                    {
+                        postNotLoaded ?
+                            <Loader/> :
+                            <EditPostFormContainer post={post}/>
+                    }
                 </Fragment>
             </Page>
         );
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-    post: selectPost(state, parseInt(ownProps.match.params.id, 10)),
-    editPostStatus: selectEditPostStatus(state),
-    deletePostStatus: selectRemovePostStatus(state)
+const mapStateToProps = (state) => ({
+    fetchPostStatus: selectFetchPostStatus(state),
+    post: selectSelectedPost(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-    replacePost: (id, post) => dispatch(editPostRequest(id, post)),
-    deletePost: id => dispatch(removePostRequest(id)),
-    onEditPostSuccess: () => {
-        dispatch(push(Routes.POSTS));
-        dispatch(resetEditPostStatus());
-    },
-    onEditPostError: () => {
-        alert(ERROR_MSG.EDIT);
-        dispatch(resetEditPostStatus());
-    },
-    onDeletePostSuccess: () => {
-        dispatch(push(Routes.POSTS));
-        dispatch(resetRemovePostStatus());
-    },
-    onDeletePostError: () => {
-        alert(ERROR_MSG.DELETE);
-        dispatch(resetRemovePostStatus());
-    }
+    fetchPost: id => dispatch(fetchPostRequest(id)),
+    resetFetchPostStatus: () => dispatch(resetFetchPostStatus())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditPostPage);

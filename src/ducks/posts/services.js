@@ -17,6 +17,8 @@ const fetchPosts = ({page, perPage = 15}) => API.get(
     (SERVER_END_POINT.FETCH_POSTS).replace(':perPage', perPage).replace(':page', page)
 );
 
+const fetchPost = id => API.get(SERVER_END_POINT.FETCH_POST.replace(':id', id));
+
 const toggleLike = id => API.post(SERVER_END_POINT.TOGGLE_LIKE.replace(':id', id));
 
 export {
@@ -24,5 +26,6 @@ export {
     editPost,
     deletePost,
     fetchPosts,
+    fetchPost,
     toggleLike
 };
