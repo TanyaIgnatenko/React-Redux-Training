@@ -9,6 +9,7 @@ const SERVER_END_POINT = {
     EDIT_POST: '/posts/:id',
     ADD_POST: '/posts',
     FETCH_POSTS: '/posts?per_page=:perPage&page=:page',
+    FETCH_POST: '/posts/:id',
     TOGGLE_LIKE: '/posts/:id/like'
 };
 

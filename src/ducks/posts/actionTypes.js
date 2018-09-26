@@ -22,6 +22,12 @@ const FETCH_POSTS = {
     ERROR: '@@posts/FETCH_POSTS_ERROR'
 };
 
+const FETCH_POST = {
+    REQUEST: '@@posts/FETCH_POST_REQUEST',
+    SUCCESS: '@@posts/FETCH_POST_SUCCESS',
+    ERROR: '@@posts/FETCH_POST_ERROR'
+};
+
 const TOGGLE_LIKE = {
     REQUEST: '@@posts/TOGGLE_LIKE_REQUEST',
     SUCCESS: '@@posts/TOGGLE_LIKE_SUCCESS',
@@ -41,6 +47,7 @@ export {
     EDIT_POST,
     REMOVE_POST,
     FETCH_POSTS,
+    FETCH_POST,
     TOGGLE_LIKE,
     RESET_FETCH_POSTS_STATUS,
     RESET_ADD_POST_STATUS,

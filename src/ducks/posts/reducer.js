@@ -1,5 +1,5 @@
 import {
-    ADD_POST, EDIT_POST, FETCH_POSTS, REMOVE_POST, RESET_ADD_POST_STATUS, RESET_EDIT_POST_STATUS,
+    ADD_POST, EDIT_POST, FETCH_POST, FETCH_POSTS, REMOVE_POST, RESET_ADD_POST_STATUS, RESET_EDIT_POST_STATUS,
     RESET_FETCH_POSTS_STATUS, RESET_REMOVE_POST_STATUS, RESET_TOGGLE_LIKE_STATUS, SELECT_PAGE,
     TOGGLE_LIKE
 } from './actionTypes';
@@ -10,6 +10,7 @@ import {changeStatus} from './helpers';
 const initialState = {
     status: {
         fetchPosts: Status.IDLE,
+        fetchPost: Status.IDLE,
         addPost: Status.IDLE,
         editPost: Status.IDLE,
         deletePost: Status.IDLE,
@@ -17,6 +18,7 @@ const initialState = {
     },
     posts: null,
     selectedPage: 1,
+    selectedPost: null,
     pageCount: 1
 };
 
@@ -40,6 +42,23 @@ export const posts = (state = initialState, action) => {
                 ...state,
                 posts: [],
                 status: changeStatus({status: state.status, fetchPosts: Status.ERROR})
+            };
+        case FETCH_POST.REQUEST:
+            return {
+                ...state,
+                status: changeStatus({status: state.status, fetchPost: Status.IN_PROGRESS})
+            };
+        case FETCH_POST.SUCCESS:
+            return {
+                ...state,
+                selectedPost: action.post,
+                status: changeStatus({status: state.status, fetchPost: Status.SUCCESS})
+            };
+        case FETCH_POST.ERROR:
+            return {
+                ...state,
+                selectedPost: null,
+                status: changeStatus({status: state.status, fetchPost: Status.ERROR})
             };
         case ADD_POST.REQUEST:
             return {

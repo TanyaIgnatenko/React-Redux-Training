@@ -1,15 +1,15 @@
 import {all, call, put, takeEvery, takeLatest} from 'redux-saga/effects';
 
-import {ADD_POST, EDIT_POST, FETCH_POSTS, REMOVE_POST, TOGGLE_LIKE} from './actionTypes';
+import {ADD_POST, EDIT_POST, FETCH_POST, FETCH_POSTS, REMOVE_POST, TOGGLE_LIKE} from './actionTypes';
 import * as services from './services';
 
 import {
     addPostError,
     addPostSuccess,
     editPostError,
-    editPostSuccess,
+    editPostSuccess, fetchPostError,
     fetchPostsError,
-    fetchPostsSuccess,
+    fetchPostsSuccess, fetchPostSuccess,
     removePostError,
     removePostSuccess,
     toggleLikeError,
@@ -61,6 +61,16 @@ function* fetchPostsSaga({page, perPage}) {
     }
 }
 
+function* fetchPostSaga({id}) {
+    try {
+        console.log('id: ', id);
+        const {post} = yield call(services.fetchPost, id);
+        yield put(fetchPostSuccess(post));
+    } catch (e) {
+        yield put(fetchPostError(e));
+    }
+}
+
 function* toggleLikeSaga({id}) {
     try {
         const {post} = yield call(services.toggleLike, id);
@@ -76,6 +86,7 @@ export function* watchPostRequests() {
         takeLatest(EDIT_POST.REQUEST, editPostSaga),
         takeLatest(REMOVE_POST.REQUEST, removePostSaga),
         takeLatest(FETCH_POSTS.REQUEST, fetchPostsSaga),
+        takeLatest(FETCH_POST.REQUEST, fetchPostSaga),
         takeEvery(TOGGLE_LIKE.REQUEST, toggleLikeSaga)
     ]);
 }
