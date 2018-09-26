@@ -1,3 +1,4 @@
+/* eslint-disable react/no-did-mount-set-state */
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {push} from 'connected-react-router';
@@ -29,25 +30,65 @@ class SignupPageContainer extends Component {
         nameInvalid: false,
         emailInvalid: false,
         passwordInvalid: false,
-        confirmPasswordInvalid: false
+        confirmPasswordInvalid: false,
+        blurName: false,
+        blurEmail: false,
+        blurPassword: false,
+        blurConfirmPassword: false
     };
+
+    componentDidUpdate() {
+        const {registerStatus, onRegisterSuccess, onRegisterError} = this.props;
+        if (registerStatus === Status.SUCCESS) {
+            onRegisterSuccess();
+        } else if (registerStatus === Status.ERROR) {
+            onRegisterError();
+        }
+    }
 
     changeHandler = (event) => {
         this.setState({[event.target.name]: event.target.value});
     };
 
     isValid = (name, email, password, confirmPassword) => {
-        const nameInvalid = !validationHelpers.isValidName(name);
-        const emailInvalid = !validationHelpers.isValidEmail(email);
-        const passwordInvalid = !validationHelpers.isValidPassword(password);
-        const confirmPasswordInvalid = !validationHelpers.isValidConfirmPassword({password, confirmPassword});
-        this.setState({
-            nameInvalid,
-            emailInvalid,
-            passwordInvalid,
-            confirmPasswordInvalid
-        });
+        this.validateName();
+        this.validateEmail();
+        this.validatePassword();
+        this.validateConfirmPassword();
+        const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = this.state;
         return !nameInvalid && !emailInvalid && !passwordInvalid && !confirmPasswordInvalid;
+    };
+
+    validateName = () => this.setState({nameInvalid: !validationHelpers.isValidName(this.state.name)});
+
+    validateEmail = () => this.setState({emailInvalid: !validationHelpers.isValidEmail(this.state.email)});
+
+    validatePassword = () => this.setState({passwordInvalid: !validationHelpers.isValidPassword(this.state.password)});
+
+    validateConfirmPassword = () => this.setState({
+        confirmPasswordInvalid: !validationHelpers.isValidConfirmPassword({
+            password: this.state.password,
+            confirmPassword: this.state.confirmPassword
+        })});
+
+    blurNameHandler = () => {
+        this.validateName();
+        this.setState({blurName: true});
+    };
+
+    blurEmailHandler = () => {
+        this.validateEmail();
+        this.setState({blurEmail: true});
+    };
+
+    blurPasswordHandler = () => {
+        this.validatePassword();
+        this.setState({blurPassword: true});
+    };
+
+    blurConfirmPasswordHandler = () => {
+        this.validateConfirmPassword();
+        this.setState({blurConfirmPassword: true});
     };
 
     submitHandler = (event) => {
@@ -60,20 +101,17 @@ class SignupPageContainer extends Component {
         event.preventDefault();
     };
 
-    componentDidUpdate() {
-        const {registerStatus, onRegisterSuccess, onRegisterError} = this.props;
-        if (registerStatus === Status.SUCCESS) {
-            onRegisterSuccess();
-        } else if (registerStatus === Status.ERROR) {
-            onRegisterError();
-        }
-    }
-
     render() {
         const {registerStatus} = this.props;
-
         const {name, email, password, confirmPassword} = this.state;
         const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = this.state;
+        const {blurName, blurEmail, blurPassword, blurConfirmPassword} = this.state;
+
+        const nameValid = !blurName ? false : !nameInvalid;
+        const emailValid = !blurEmail ? false : !emailInvalid;
+        const passwordValid = !blurPassword ? false : !passwordInvalid;
+        const confirmPasswordValid = !blurConfirmPassword ? false : !confirmPasswordInvalid;
+
         return (
             <Page title={PAGE_TITLE.SIGN_UP}>
                 <Fragment>
@@ -86,6 +124,14 @@ class SignupPageContainer extends Component {
                         emailInvalid={emailInvalid}
                         passwordInvalid={passwordInvalid}
                         confirmPasswordInvalid={confirmPasswordInvalid}
+                        nameValid={nameValid}
+                        emailValid={emailValid}
+                        passwordValid={passwordValid}
+                        confirmPasswordValid={confirmPasswordValid}
+                        onBlurName={this.blurNameHandler}
+                        onBlurEmail={this.blurEmailHandler}
+                        onBlurPassword={this.blurPasswordHandler}
+                        onBlurConfirmPassword={this.blurConfirmPasswordHandler}
                         onChange={this.changeHandler}
                         onSignupClick={this.submitHandler}
                     />

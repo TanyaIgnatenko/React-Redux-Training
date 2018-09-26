@@ -7,6 +7,8 @@ import './SignupForm.scss';
 
 function SignupForm(props) {
     const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = props;
+    const {nameValid, emailValid, passwordValid, confirmPasswordValid} = props;
+    const {onBlurName, onBlurEmail, onBlurPassword, onBlurConfirmPassword} = props;
     return (
         <Container className={'signup-form__container'}>
             <Form>
@@ -19,6 +21,8 @@ function SignupForm(props) {
                         placeholder={FIELD_PLACEHOLDER.NAME}
                         onChange={props.onChange}
                         invalid={nameInvalid}
+                        valid={nameValid}
+                        onBlur={onBlurName}
                     />
                     <FormFeedback>{RULE.NAME}</FormFeedback>
                 </FormGroup>
@@ -31,6 +35,8 @@ function SignupForm(props) {
                         placeholder={FIELD_PLACEHOLDER.EMAIL}
                         onChange={props.onChange}
                         invalid={emailInvalid}
+                        valid={emailValid}
+                        onBlur={onBlurEmail}
                     />
                     <FormFeedback>{RULE.EMAIL}</FormFeedback>
                 </FormGroup>
@@ -44,6 +50,8 @@ function SignupForm(props) {
                         placeholder={FIELD_PLACEHOLDER.PASSWORD}
                         onChange={props.onChange}
                         invalid={passwordInvalid}
+                        valid={passwordValid}
+                        onBlur={onBlurPassword}
                     />
                     <FormFeedback>{RULE.PASSWORD}</FormFeedback>
                 </FormGroup>
@@ -57,6 +65,8 @@ function SignupForm(props) {
                         placeholder={FIELD_PLACEHOLDER.CONFIRM_PASSWORD}
                         onChange={props.onChange}
                         invalid={confirmPasswordInvalid}
+                        valid={confirmPasswordValid}
+                        onBlur={onBlurConfirmPassword}
                     />
                     <FormFeedback>{RULE.CONFIRM_PASSWORD}</FormFeedback>
                 </FormGroup>
@@ -69,14 +79,22 @@ function SignupForm(props) {
 }
 
 SignupForm.propTypes = {
-    name: PropTypes.string,
-    email: PropTypes.string,
-    password: PropTypes.string,
-    confirmPassword: PropTypes.string,
-    nameInvalid: PropTypes.bool,
-    emailInvalid: PropTypes.bool,
-    passwordInvalid: PropTypes.bool,
-    confirmPasswordInvalid: PropTypes.bool,
+    name: PropTypes.string.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    confirmPassword: PropTypes.string.isRequired,
+    nameInvalid: PropTypes.bool.isRequired,
+    emailInvalid: PropTypes.bool.isRequired,
+    passwordInvalid: PropTypes.bool.isRequired,
+    confirmPasswordInvalid: PropTypes.bool.isRequired,
+    nameValid: PropTypes.bool.isRequired,
+    emailValid: PropTypes.bool.isRequired,
+    passwordValid: PropTypes.bool.isRequired,
+    confirmPasswordValid: PropTypes.bool.isRequired,
+    onBlurName: PropTypes.func.isRequired,
+    onBlurEmail: PropTypes.func.isRequired,
+    onBlurPassword: PropTypes.func.isRequired,
+    onBlurConfirmPassword: PropTypes.func.isRequired,
     onSignupClick: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired
 };
