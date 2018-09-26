@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const APP_NAME = 'LadyBug 404 blog';
+const APP_NAME = 'LadyBug404 blog';
 
 const ERROR_MSG = {
     CREATE: 'Can\'t create post. Check your internet connection and try again',
