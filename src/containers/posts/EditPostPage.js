@@ -31,12 +31,16 @@ class EditPostPage extends React.Component {
     };
 
     componentDidMount() {
-        this.props.fetchPost(parseInt(this.props.match.params.id, 10));
+        this.updatePost();
     }
 
     componentDidUpdate() {
-        this.props.fetchPost(parseInt(this.props.match.params.id, 10));
+        if (!this.props.post) {
+            this.updatePost();
+        }
     }
+
+    updatePost = () => this.props.fetchPost(parseInt(this.props.match.params.id, 10));
 
     render() {
         const {post} = this.props;

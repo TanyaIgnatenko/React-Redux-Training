@@ -85,7 +85,8 @@ export const posts = (state = initialState, action) => {
             return {
                 ...state,
                 posts: arrayHelpers.replaceItem(state.posts, action.post.id, action.post),
-                status: changeStatus({status: state.status, editPost: Status.SUCCESS})
+                status: changeStatus({status: state.status, editPost: Status.SUCCESS}),
+                selectedPost: null
             };
         case EDIT_POST.ERROR:
             return {

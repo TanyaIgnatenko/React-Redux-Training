@@ -63,7 +63,6 @@ function* fetchPostsSaga({page, perPage}) {
 
 function* fetchPostSaga({id}) {
     try {
-        console.log('id: ', id);
         const {post} = yield call(services.fetchPost, id);
         yield put(fetchPostSuccess(post));
     } catch (e) {
