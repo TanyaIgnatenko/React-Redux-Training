@@ -45,19 +45,19 @@ class NavBar extends React.Component {
                         {
                             !isAuth &&
                             <NavItem>
-                                <NavLink onClick={onLogin}>{BUTTON.SIGN_IN}</NavLink>
+                                <NavLink href='#' onClick={onLogin}>{BUTTON.SIGN_IN}</NavLink>
                             </NavItem>
                         }
                         {
                             !isAuth &&
                             <NavItem>
-                                <NavLink onClick={onSignup}>{BUTTON.SIGN_UP}</NavLink>
+                                <NavLink href='#' onClick={onSignup}>{BUTTON.SIGN_UP}</NavLink>
                             </NavItem>
                         }
                         {
                             isAuth &&
                             <NavItem>
-                                <NavLink onClick={onLogout}>{BUTTON.LOGOUT}</NavLink>
+                                <NavLink href='#' onClick={onLogout}>{BUTTON.LOGOUT}</NavLink>
                             </NavItem>
                         }
                     </Nav>
