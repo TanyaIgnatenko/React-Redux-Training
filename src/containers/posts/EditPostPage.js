@@ -1,4 +1,4 @@
-/* eslint-disable react/no-did-mount-set-state */
+/* eslint-disable react/no-did-mount-set-state,no-alert */
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {push} from 'connected-react-router';
