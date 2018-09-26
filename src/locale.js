@@ -1,5 +1,5 @@
 /* eslint-disable max-len */
-const APP_NAME = 'LadyBug 404 blog';
+const APP_NAME = 'LadyBug404 blog';
 
 const ERROR_MSG = {
     CREATE: 'Can\'t create post. Check your internet connection and try again',
@@ -11,9 +11,9 @@ const ERROR_MSG = {
 };
 
 const RULE = {
-    NAME: 'Name has to be at least 3 characters long and must begin with a letter',
-    EMAIL: 'Email has to be at least 3 characters long and must contain domain name of the server (ex., @gmail.com)',
-    PASSWORD: 'Password has to be at least 6 characters long. Must contain at least one lower case letter, one upper case letter and one digit',
+    NAME: 'Name has to be at least 3 characters (a-z,A-Z,0-9, _) long and must begin with a letter',
+    EMAIL: 'Email has to be at least 3 characters (a-z,A-Z,0-9, _) long and must contain domain name of the server (ex., @gmail.com)',
+    PASSWORD: 'Password has to be at least 6 characters (a-z,A-Z,0-9) long. Must contain at least one lower case letter, one upper case letter and one digit',
     CONFIRM_PASSWORD: 'Confirm password should match password'
 };
 

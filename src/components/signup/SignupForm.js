@@ -6,6 +6,7 @@ import {Button, Col, Form, FormGroup, Input, Label} from 'reactstrap';
 import './SignupForm.scss';
 
 function SignupForm(props) {
+    const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = props;
     return (
         <div className={'signup-form__container centering-container'}>
             <Form>
@@ -61,7 +62,6 @@ function SignupForm(props) {
             </Form>
         </div>
     );
-    const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = props;
 }
 
 SignupForm.propTypes = {

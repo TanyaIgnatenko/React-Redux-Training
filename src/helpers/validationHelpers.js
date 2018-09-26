@@ -1,10 +1,10 @@
-const isValidName = name => true; //someday there would be RegExp
+const isValidName = name => /^[a-zA-Z]\S\S+$/.test(name);
 
-const isValidEmail = email => true; //someday there would be RegExp
+const isValidEmail = email => /^\w{3,}@(a-zA-Z)+\.(a-zA-Z)+$/.test(email);
 
-const isValidPassword = password => true; //someday there would be RegExp
+const isValidPassword = password => /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{6,}$/.test(password);
 
-const isValidConfirmPassword = ({password, confirmPassword}) => true;
+const isValidConfirmPassword = ({password, confirmPassword}) => password === confirmPassword;
 
 export {
     isValidName,
