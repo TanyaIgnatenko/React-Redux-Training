@@ -54,7 +54,7 @@ class PostsPageContainer extends Component {
     };
 
     render() {
-        const {fetchPostsStatus, posts, isAdmin} = this.props;
+        const {posts, isAdmin} = this.props;
         const postsNotLoaded = !this.postsLoaded();
         return (
             <Fragment>
