@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {BUTTON, FIELD_LABEL, FIELD_PLACEHOLDER} from '../../locale';
-import {Button, Col, Form, FormGroup, Input, Label} from 'reactstrap';
+import {Button, Col, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 
 import './LoginForm.scss';
 
 function LoginForm(props) {
     return (
-        <div className={'login-form__container centering-container'}>
+        <Container className={'login-form__container'}>
             <Form>
                 <FormGroup>
                     <Label for='email'>{FIELD_LABEL.EMAIL}</Label>
@@ -34,7 +34,7 @@ function LoginForm(props) {
                     <Button className={'login-form__button'} onClick={props.onLoginClick}>{BUTTON.SIGN_IN}</Button>
                 </FormGroup>
             </Form>
-        </div>
+        </Container>
     );
 }
 
