@@ -1,11 +1,12 @@
 import React, {Component, Fragment} from 'react';
-import {selectPosts, selectSelectedPage} from '../../ducks/posts/selectors';
-import {fetchPostsRequest} from '../../ducks/posts/actions';
+import {selectFetchPostsStatus, selectPosts, selectSelectedPage} from '../../ducks/posts/selectors';
+import {fetchPostsRequest, resetFetchPostsStatus} from '../../ducks/posts/actions';
 import {selectIsAdmin} from '../../ducks/auth/selectors';
 import PostsPage from '../../components/posts/PostsPage/PostsPage';
 import Loader from '../../components/common/Loader/Loader';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {Status} from '../../constants';
 
 const adminPostsPerPage = 14;
 const userPostsPerPage = 15;
@@ -20,6 +21,8 @@ class PostsPageContainer extends Component {
             totalLikes: PropTypes.number.isRequired
         })),
         fetchPosts: PropTypes.func.isRequired,
+        fetchPostsStatus: PropTypes.string.isRequired,
+        resetFetchPostsStatus: PropTypes.func.isRequired,
         selectedPage: PropTypes.number.isRequired,
         isAdmin: PropTypes.bool.isRequired
     };
@@ -32,21 +35,31 @@ class PostsPageContainer extends Component {
         this.updatePosts();
     }
 
+    componentWillUnmount() {
+        this.props.resetFetchPostsStatus();
+    }
+
     updatePosts() {
-        const {posts} = this.props;
-        if (!posts) {
+        const postsNotLoaded = !this.postsLoaded();
+        if (postsNotLoaded) {
             const {isAdmin, selectedPage, fetchPosts} = this.props;
             const perPage = isAdmin ? adminPostsPerPage : userPostsPerPage;
             fetchPosts(perPage, selectedPage);
         }
     }
 
+    postsLoaded = () => {
+        const {fetchPostsStatus} = this.props;
+        return fetchPostsStatus === Status.SUCCESS || fetchPostsStatus === Status.ERROR;
+    };
+
     render() {
-        const {isAdmin, posts} = this.props;
+        const {fetchPostsStatus, posts, isAdmin} = this.props;
+        const postsNotLoaded = !this.postsLoaded();
         return (
             <Fragment>
                 {
-                    !posts ?
+                    postsNotLoaded ?
                         <Loader/> :
                         <PostsPage
                             posts={posts}
@@ -60,12 +73,14 @@ class PostsPageContainer extends Component {
 
 const mapStateToProps = state => ({
     posts: selectPosts(state),
+    fetchPostsStatus: selectFetchPostsStatus(state),
     selectedPage: selectSelectedPage(state),
     isAdmin: selectIsAdmin(state)
 });
 
 const mapDispatchToProps = dispatch => ({
-    fetchPosts: (perPage, page) => dispatch(fetchPostsRequest(perPage, page))
+    fetchPosts: (perPage, page) => dispatch(fetchPostsRequest(perPage, page)),
+    resetFetchPostsStatus: () => dispatch(resetFetchPostsStatus())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostsPageContainer);

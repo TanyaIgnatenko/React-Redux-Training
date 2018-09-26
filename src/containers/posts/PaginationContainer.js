@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 
 import Pagination from '../../components/common/Pagination/Pagination';
 import {selectPageCount, selectSelectedPage} from '../../ducks/posts/selectors';
-import {selectPage} from '../../ducks/posts/actions';
+import {resetFetchPostsStatus, selectPage} from '../../ducks/posts/actions';
 
 class PaginationContainer extends Component {
     static propTypes = {
@@ -31,7 +31,10 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    selectPage: (page) => dispatch(selectPage(page))
+    selectPage: (page) => {
+        dispatch(selectPage(page));
+        dispatch(resetFetchPostsStatus());
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PaginationContainer);

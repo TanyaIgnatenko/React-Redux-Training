@@ -50,7 +50,6 @@ export const posts = (state = initialState, action) => {
         case FETCH_POSTS.ERROR:
             return {
                 ...state,
-                posts: [],
                 status: changeStatus({status: state.status, fetchPosts: Status.ERROR})
             };
         case FETCH_POST.REQUEST:

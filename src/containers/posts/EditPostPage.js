@@ -53,7 +53,6 @@ class EditPostPage extends React.Component {
     render() {
         const {fetchPostStatus, post} = this.props;
         const postNotLoaded = fetchPostStatus === Status.IDLE || fetchPostStatus === Status.IN_PROGRESS;
-        console.log('fetchPostStatus: ', fetchPostStatus);
         return (
             <Page title={PAGE_TITLE.EDIT_POST}>
                 <Fragment>
