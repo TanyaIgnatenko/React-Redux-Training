@@ -16,6 +16,7 @@ export default class PostsPage extends React.Component {
             id: PropTypes.number.isRequired,
             title: PropTypes.string.isRequired,
             content: PropTypes.string.isRequired,
+            liked: PropTypes.bool.isRequired,
             totalLikes: PropTypes.number.isRequired
         })),
         isAdmin: PropTypes.bool.isRequired

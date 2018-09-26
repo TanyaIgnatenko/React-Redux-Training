@@ -8,7 +8,7 @@ import './LikeButton.scss';
 
 
 export default function LikeButton(props) {
-    const image = props.likeCount ? filledLikeIcon : notFilledLikeIcon;
+    const image = props.liked ? filledLikeIcon : notFilledLikeIcon;
 
     return (
         <div className={'like-button__container'}>
@@ -24,6 +24,7 @@ export default function LikeButton(props) {
 }
 
 LikeButton.propTypes = {
+    liked: PropTypes.bool.isRequired,
     likeCount: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired
 };

@@ -7,7 +7,7 @@ import EditButton from '../EditButton/EditButton';
 import './Post.scss';
 
 export default function Post(props) {
-    const {title, content, likeCount, isEditable, onLikeClick, onEditClick} = props;
+    const {title, content, liked, likeCount, isEditable, onLikeClick, onEditClick} = props;
     const description = content.length <= 123 ? content : content.slice(0, 123);
     return (
         <div className={'post__container'}>
@@ -15,7 +15,7 @@ export default function Post(props) {
             <p className={'post__description'}>{description}</p>
             <div className={'post__buttons-container'}>
                 {isEditable && <EditButton onClick={onEditClick}/>}
-                <LikeButton likeCount={likeCount} onClick={onLikeClick}/>
+                <LikeButton liked={liked} likeCount={likeCount} onClick={onLikeClick}/>
             </div>
         </div>
     );
@@ -24,6 +24,7 @@ export default function Post(props) {
 Post.propTypes = {
     title: PropTypes.string.isRequired,
     content: PropTypes.string.isRequired,
+    liked: PropTypes.bool.isRequired,
     likeCount: PropTypes.number.isRequired,
     isEditable: PropTypes.bool.isRequired,
     onLikeClick: PropTypes.func.isRequired,

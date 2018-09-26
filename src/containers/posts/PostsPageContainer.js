@@ -16,6 +16,7 @@ class PostsPageContainer extends Component {
             id: PropTypes.number.isRequired,
             title: PropTypes.string.isRequired,
             content: PropTypes.string.isRequired,
+            liked: PropTypes.bool.isRequired,
             totalLikes: PropTypes.number.isRequired
         })),
         fetchPosts: PropTypes.func.isRequired,

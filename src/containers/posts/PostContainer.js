@@ -15,6 +15,7 @@ class PostContainer extends React.Component {
                 id: PropTypes.number.isRequired,
                 title: PropTypes.string.isRequired,
                 content: PropTypes.string.isRequired,
+                liked: PropTypes.bool.isRequired,
                 totalLikes: PropTypes.number.isRequired
             }).isRequired,
         toggleLike: PropTypes.func.isRequired,
@@ -28,6 +29,7 @@ class PostContainer extends React.Component {
             <Post
                 title={post.title}
                 content={post.content}
+                liked={post.liked}
                 likeCount={post.totalLikes}
                 isEditable={isAdmin}
                 onLikeClick={toggleLike}
