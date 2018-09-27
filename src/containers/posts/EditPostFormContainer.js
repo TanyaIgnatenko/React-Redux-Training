@@ -1,4 +1,3 @@
-/* eslint-disable react/no-did-mount-set-state,no-alert */
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {push} from 'connected-react-router';
@@ -76,7 +75,9 @@ class EditPostFormContainer extends React.Component {
     };
 
     render() {
-        const {editPostStatus} = this.props;
+        const {editPostStatus, deletePostStatus} = this.props;
+        const editInProgress = editPostStatus === Status.IN_PROGRESS;
+        const deleteInProgress = deletePostStatus === Status.IN_PROGRESS;
         return (
             <Fragment>
                 <EditPostForm
@@ -87,7 +88,7 @@ class EditPostFormContainer extends React.Component {
                     onTitleInputChange={this.handleInputChange}
                     onDescriptionInputChange={this.handleInputChange}
                 />
-                {editPostStatus === Status.IN_PROGRESS && <Loader/>}
+                {(editInProgress || deleteInProgress) && <Loader/>}
             </Fragment>
         );
     }

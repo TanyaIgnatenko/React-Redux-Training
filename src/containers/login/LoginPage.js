@@ -1,3 +1,4 @@
+/* eslint-disable no-alert */
 import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
@@ -11,7 +12,6 @@ import {Routes} from '../../config';
 import {selectLoginStatus} from '../../ducks/auth/selectors';
 import {Status} from '../../constants';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';
-import {resetAddPostStatus} from '../../ducks/posts/actions';
 
 class LoginPageContainer extends Component {
     static propTypes = {

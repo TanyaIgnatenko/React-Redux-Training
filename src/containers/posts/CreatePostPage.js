@@ -27,6 +27,15 @@ class CreatePostPage extends React.Component {
         content: ''
     };
 
+    componentDidUpdate() {
+        const {addPostStatus, onAddPostSuccess, onAddPostError} = this.props;
+        if (addPostStatus === Status.SUCCESS) {
+            onAddPostSuccess();
+        } else if (addPostStatus === Status.ERROR) {
+            onAddPostError();
+        }
+    }
+
     handleInputChange = (event) => {
         this.setState({[event.target.name]: event.target.value});
     };
@@ -38,15 +47,6 @@ class CreatePostPage extends React.Component {
 
         event.preventDefault();
     };
-
-    componentDidUpdate() {
-        const {addPostStatus, onAddPostSuccess, onAddPostError} = this.props;
-        if (addPostStatus === Status.SUCCESS) {
-            onAddPostSuccess();
-        } else if (addPostStatus === Status.ERROR) {
-            onAddPostError();
-        }
-    }
 
     render() {
         const {addPostStatus} = this.props;
