@@ -7,7 +7,7 @@ import {initApp} from './actions';
 function* initSaga() {
     const apiToken = yield call(services.findApiToken);
     if (apiToken) {
-        yield call(services.setApiToken, apiToken);
+        yield call(services.setApiTokenIntoRequestHeader, apiToken);
         yield call(fetchUserSaga);
     }
     yield put(initApp());

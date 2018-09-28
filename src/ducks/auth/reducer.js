@@ -1,8 +1,6 @@
-import {LOGIN, LOGOUT, REGISTER, RESET_LOGIN_STATUS, RESET_REGISTER_STATUS, SET_USER} from './actionTypes';
+import {LOGIN, LOGOUT, REGISTER, RESET_STATUS, SET_USER} from './actionTypes';
 import {Status} from '../../constants';
 import {changeStatus} from './helpers';
-import * as services from './services';
-
 
 const initialState = {
     status: {
@@ -54,12 +52,12 @@ export const auth = (state = initialState, action) => {
                 ...state,
                 user: null
             };
-        case RESET_LOGIN_STATUS:
+        case RESET_STATUS.LOGIN:
             return {
                 ...state,
                 status: changeStatus({status: state.status, login: Status.IDLE})
             };
-        case RESET_REGISTER_STATUS:
+        case RESET_STATUS.REGISTER:
             return {
                 ...state,
                 status: changeStatus({status: state.status, register: Status.IDLE})

@@ -8,7 +8,7 @@ import {
     RESET_EDIT_POST_STATUS,
     RESET_FETCH_POST_STATUS,
     RESET_FETCH_POSTS_STATUS,
-    RESET_REMOVE_POST_STATUS,
+    RESET_REMOVE_POST_STATUS, RESET_STATUS,
     RESET_TOGGLE_LIKE_STATUS,
     SELECT_PAGE,
     TOGGLE_LIKE
@@ -132,32 +132,32 @@ export const posts = (state = initialState, action) => {
                 ...state,
                 status: changeStatus({status: state.status, toggleLike: Status.ERROR})
             };
-        case RESET_FETCH_POSTS_STATUS:
+        case RESET_STATUS.FETCH_POSTS:
             return {
                 ...state,
                 status: changeStatus({status: state.status, fetchPosts: Status.IDLE})
             };
-        case RESET_FETCH_POST_STATUS:
+        case RESET_STATUS.FETCH_POST:
             return {
                 ...state,
                 status: changeStatus({status: state.status, fetchPost: Status.IDLE})
             };
-        case RESET_ADD_POST_STATUS:
+        case RESET_STATUS.ADD_POST:
             return {
                 ...state,
                 status: changeStatus({status: state.status, addPost: Status.IDLE})
             };
-        case RESET_EDIT_POST_STATUS:
+        case RESET_STATUS.EDIT_POST:
             return {
                 ...state,
                 status: changeStatus({status: state.status, editPost: Status.IDLE})
             };
-        case RESET_REMOVE_POST_STATUS:
+        case RESET_STATUS.REMOVE_POST:
             return {
                 ...state,
                 status: changeStatus({status: state.status, removePost: Status.IDLE})
             };
-        case RESET_TOGGLE_LIKE_STATUS:
+        case RESET_STATUS.TOGGLE_LIKE:
             return {
                 ...state,
                 status: changeStatus({status: state.status, toggleLike: Status.IDLE})

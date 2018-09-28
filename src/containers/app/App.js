@@ -8,30 +8,58 @@ import {connect} from 'react-redux';
 import LoginPage from '../login/LoginPage';
 import SignupPage from '../signup/SignupPage';
 import NavBarContainer from './NavBarContainer';
-import PostsPage from '../../components/posts/PostsPage/PostsPage';
 import CreatePostPage from '../posts/CreatePostPage';
 import EditPostPage from '../posts/EditPostPage';
-import {selectIsInitialised} from '../../ducks/app/selectors';
-import UserRoute from '../routes/UserRoute';
-import AdminRoute from '../routes/AdminRoute';
+import PrivateRoute from '../routes/PrivateRoute';
 import Loading from '../../components/common/Loading/Loading';
-import AnonymRoute from '../routes/AnonymRoute';
 import PostsPageContainer from '../posts/PostsPageContainer';
+import {selectIsInitialised} from '../../ducks/app/selectors';
+import {selectIsAuth, selectIsAdmin} from '../../ducks/auth/selectors';
 
 import {history} from '../../store/store';
 
-function App({isInitialised}) {
+function App({isInitialised, isAuth, isAdmin}) {
     return (
         isInitialised ?
             <ConnectedRouter history={history}>
                 <Fragment>
                     <NavBarContainer/>
                     <Switch>
-                        <AnonymRoute exact path={Routes.LOGIN} component={LoginPage}/>
-                        <AnonymRoute exact path={Routes.SIGN_UP} component={SignupPage}/>
-                        <AdminRoute exact path={Routes.CREATE_POST} component={CreatePostPage}/>
-                        <AdminRoute exact path={Routes.EDIT_POST} component={EditPostPage}/>
-                        <UserRoute exact path={Routes.POSTS} component={PostsPageContainer}/>
+                        <PrivateRoute
+                            exact path={Routes.LOGIN}
+                            component={LoginPage}
+                            hasAccess={!isAuth}
+                            redirectTo={Routes.POSTS}
+                        />
+
+                        <PrivateRoute
+                            exact path={Routes.SIGN_UP}
+                            component={SignupPage}
+                            hasAccess={!isAuth}
+                            redirectTo={Routes.POSTS}
+                        />
+
+                        <PrivateRoute
+                            exact path={Routes.CREATE_POST}
+                            component={CreatePostPage}
+                            hasAccess={isAdmin}
+                            redirectTo={Routes.LOGIN}
+                        />
+
+                        <PrivateRoute
+                            exact path={Routes.EDIT_POST}
+                            component={EditPostPage}
+                            hasAccess={isAdmin}
+                            redirectTo={Routes.LOGIN}
+                        />
+
+                        <PrivateRoute
+                            exact path={Routes.POSTS}
+                            component={PostsPageContainer}
+                            hasAccess={isAuth}
+                            redirectTo={Routes.LOGIN}
+                        />
+
                         <Redirect to={Routes.POSTS}/>
                     </Switch>
                 </Fragment>
@@ -41,11 +69,16 @@ function App({isInitialised}) {
 }
 
 App.propTypes = {
-    isInitialised: PropTypes.bool.isRequired
+    isInitialised: PropTypes.bool.isRequired,
+    isAdmin: PropTypes.bool.isRequired,
+    isAuth: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = state => ({
-    isInitialised: selectIsInitialised(state)
+    isInitialised: selectIsInitialised(state),
+    isAuth: selectIsAuth(state),
+    isAdmin: selectIsAdmin(state)
+
 });
 
 export default connect(mapStateToProps)(App);

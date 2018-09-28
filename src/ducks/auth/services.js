@@ -1,7 +1,6 @@
-import {instance as API, removeTokenFromRequestHeader, setTokenIntoRequestHeader} from 'api';
+import {instance as API, removeTokenFromRequestHeader, setTokenIntoRequestHeader} from '../../api';
 import {SERVER_END_POINT} from '../../config';
-
-const API_TOKEN_KEY = 'api_token';
+import {API_TOKEN_LOCAL_STORAGE_KEY} from '../../constants';
 
 const login = credentials => API.post(SERVER_END_POINT.LOGIN, credentials);
 
@@ -9,15 +8,14 @@ const register = credentials => API.post(SERVER_END_POINT.REGISTER, credentials)
 
 const fetchUser = () => API.get(SERVER_END_POINT.FETCH_USER);
 
-const findApiToken = () => localStorage.getItem(API_TOKEN_KEY);
+const findApiToken = () => localStorage.getItem(API_TOKEN_LOCAL_STORAGE_KEY);
 
-const setApiToken = token => {
-    localStorage.setItem(API_TOKEN_KEY, token);
-    setTokenIntoRequestHeader(token);
-};
+const saveApiToken = token => localStorage.setItem(API_TOKEN_LOCAL_STORAGE_KEY, token);
+
+const setApiTokenIntoRequestHeader = token => setTokenIntoRequestHeader(token);
 
 const removeApiToken = () => {
-    localStorage.removeItem(API_TOKEN_KEY);
+    localStorage.removeItem(API_TOKEN_LOCAL_STORAGE_KEY);
     removeTokenFromRequestHeader();
 };
 
@@ -26,6 +24,7 @@ export {
     register,
     fetchUser,
     findApiToken,
-    setApiToken,
+    saveApiToken,
+    setApiTokenIntoRequestHeader,
     removeApiToken
 };

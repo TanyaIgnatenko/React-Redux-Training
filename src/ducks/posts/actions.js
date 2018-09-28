@@ -4,12 +4,7 @@ import {
     FETCH_POST,
     FETCH_POSTS,
     REMOVE_POST,
-    RESET_ADD_POST_STATUS,
-    RESET_EDIT_POST_STATUS,
-    RESET_FETCH_POST_STATUS,
-    RESET_FETCH_POSTS_STATUS,
-    RESET_REMOVE_POST_STATUS,
-    RESET_TOGGLE_LIKE_STATUS,
+    RESET_STATUS,
     SELECT_PAGE,
     TOGGLE_LIKE
 } from './actionTypes';
@@ -109,27 +104,27 @@ const toggleLikeError = (error) => ({
 });
 
 const resetFetchPostsStatus = () => ({
-    type: RESET_FETCH_POSTS_STATUS
+    type: RESET_STATUS.FETCH_POSTS
 });
 
 const resetFetchPostStatus = () => ({
-    type: RESET_FETCH_POST_STATUS
+    type: RESET_STATUS.FETCH_POST
 });
 
 const resetAddPostStatus = () => ({
-    type: RESET_ADD_POST_STATUS
+    type: RESET_STATUS.ADD_POST
 });
 
 const resetEditPostStatus = () => ({
-    type: RESET_EDIT_POST_STATUS
+    type: RESET_STATUS.EDIT_POST
 });
 
 const resetRemovePostStatus = () => ({
-    type: RESET_REMOVE_POST_STATUS
+    type: RESET_STATUS.REMOVE_POST
 });
 
 const resetToggleLikeStatus = () => ({
-    type: RESET_TOGGLE_LIKE_STATUS
+    type: RESET_STATUS.TOGGLE_LIKE
 });
 
 const selectPage = page => ({

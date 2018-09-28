@@ -15,7 +15,8 @@ function* loginSaga({credentials}) {
     try {
         const response = yield call(services.login, credentials);
         const {token} = response;
-        yield call(services.setApiToken, token);
+        yield call(services.setApiTokenIntoRequestHeader, token);
+        yield call(services.saveApiToken, token);
         yield call(fetchUserSaga);
         yield put(loginSuccess());
     } catch (e) {
@@ -28,7 +29,8 @@ function* registerSaga({credentials}) {
     try {
         const response = yield call(services.register, credentials);
         const {user, token} = response;
-        yield call(services.setApiToken, token);
+        yield call(services.setApiTokenIntoRequestHeader, token);
+        yield call(services.saveApiToken, token);
         yield put(setUser(user));
         yield put(registerSuccess());
     } catch (e) {
