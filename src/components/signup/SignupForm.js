@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uniqueId from 'lodash.uniqueid';
+
 import {BUTTON, FIELD_LABEL, FIELD_PLACEHOLDER, RULE} from '../../locale';
 import {Button, Col, Container, Form, FormFeedback, FormGroup, Input, Label} from 'reactstrap';
 
@@ -18,7 +20,7 @@ function SignupForm(props) {
                         <Input
                             className={'signup-form__input'}
                             name='name'
-                            id='name'
+                            id={uniqueId('name')}
                             placeholder={FIELD_PLACEHOLDER.NAME}
                             onChange={props.onChange}
                             invalid={nameInvalid}
@@ -32,7 +34,7 @@ function SignupForm(props) {
                         <Input
                             className={'signup-form__input'}
                             name='email'
-                            id='email'
+                            id={uniqueId('email')}
                             placeholder={FIELD_PLACEHOLDER.EMAIL}
                             onChange={props.onChange}
                             invalid={emailInvalid}
@@ -47,7 +49,7 @@ function SignupForm(props) {
                             className={'signup-form__input'}
                             type='password'
                             name='password'
-                            id='password'
+                            id={uniqueId('password')}
                             placeholder={FIELD_PLACEHOLDER.PASSWORD}
                             onChange={props.onChange}
                             invalid={passwordInvalid}
@@ -62,7 +64,7 @@ function SignupForm(props) {
                             className={'signup-form__input'}
                             name='confirmPassword'
                             type='password'
-                            id='confirmPassword'
+                            id={uniqueId('confirmPassword')}
                             placeholder={FIELD_PLACEHOLDER.CONFIRM_PASSWORD}
                             onChange={props.onChange}
                             invalid={confirmPasswordInvalid}
@@ -74,7 +76,8 @@ function SignupForm(props) {
                     <FormGroup className={'button-container'}>
                         <Button
                             className={'signup-form__button'}
-                            onClick={props.onSignupClick}>{BUTTON.SIGN_UP}
+                            onClick={props.onSignupClick}>
+                            {BUTTON.SIGN_UP}
                         </Button>
                     </FormGroup>
                 </Form>

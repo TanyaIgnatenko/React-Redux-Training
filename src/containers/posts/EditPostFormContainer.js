@@ -9,7 +9,7 @@ import {
     resetEditPostStatus,
     resetRemovePostStatus
 } from '../../ducks/posts/actions';
-import Loader from '../../components/common/Loader/Loader';
+import Loading from '../../components/common/Loading/Loading';
 import EditPostForm from '../../components/posts/EditPostForm/EditPostForm';
 import {selectEditPostStatus, selectPost, selectRemovePostStatus} from '../../ducks/posts/selectors';
 import {ERROR_MSG} from '../../locale';
@@ -88,7 +88,7 @@ class EditPostFormContainer extends React.Component {
                     onTitleInputChange={this.handleInputChange}
                     onDescriptionInputChange={this.handleInputChange}
                 />
-                {(editInProgress || deleteInProgress) && <Loader/>}
+                {(editInProgress || deleteInProgress) && <Loading/>}
             </Fragment>
         );
     }

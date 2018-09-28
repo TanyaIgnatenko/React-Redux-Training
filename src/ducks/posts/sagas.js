@@ -1,4 +1,5 @@
 import {all, call, put, takeEvery, takeLatest} from 'redux-saga/effects';
+import {push} from 'connected-react-router';
 
 import {ADD_POST, EDIT_POST, FETCH_POST, FETCH_POSTS, REMOVE_POST, TOGGLE_LIKE} from './actionTypes';
 import * as services from './services';
@@ -7,16 +8,17 @@ import {
     addPostError,
     addPostSuccess,
     editPostError,
-    editPostSuccess, fetchPostError,
+    editPostSuccess,
+    fetchPostError,
     fetchPostsError,
-    fetchPostsSuccess, fetchPostSuccess,
+    fetchPostsSuccess,
+    fetchPostSuccess,
     removePostError,
     removePostSuccess,
     toggleLikeError,
     toggleLikeSuccess
 } from './actions';
 import {Routes} from '../../config';
-import {push} from 'connected-react-router';
 
 
 function* addPostSaga({post}) {

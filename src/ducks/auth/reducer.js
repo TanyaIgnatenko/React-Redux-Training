@@ -50,7 +50,6 @@ export const auth = (state = initialState, action) => {
                 user: action.user
             };
         case LOGOUT:
-            services.removeApiToken();
             return {
                 ...state,
                 user: null

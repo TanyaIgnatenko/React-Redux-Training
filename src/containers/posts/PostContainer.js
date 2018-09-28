@@ -19,19 +19,19 @@ class PostContainer extends React.Component {
                 totalLikes: PropTypes.number.isRequired
             }).isRequired,
         toggleLike: PropTypes.func.isRequired,
-        isAdmin: PropTypes.bool.isRequired,
+        canEditPosts: PropTypes.bool.isRequired,
         editClickHandler: PropTypes.func.isRequired
     };
 
     render() {
-        const {post, toggleLike, isAdmin, editClickHandler} = this.props;
+        const {post, toggleLike, canEditPosts, editClickHandler} = this.props;
         return (
             <Post
                 title={post.title}
                 content={post.content}
                 liked={post.liked}
                 likeCount={post.totalLikes}
-                isEditable={isAdmin}
+                isEditable={canEditPosts}
                 onLikeClick={toggleLike}
                 onEditClick={editClickHandler}
             />
@@ -40,7 +40,7 @@ class PostContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    isAdmin: selectIsAdmin(state)
+    canEditPosts: selectIsAdmin(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

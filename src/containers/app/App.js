@@ -14,7 +14,7 @@ import EditPostPage from '../posts/EditPostPage';
 import {selectIsInitialised} from '../../ducks/app/selectors';
 import UserRoute from '../routes/UserRoute';
 import AdminRoute from '../routes/AdminRoute';
-import Loader from '../../components/common/Loader/Loader';
+import Loading from '../../components/common/Loading/Loading';
 import AnonymRoute from '../routes/AnonymRoute';
 import PostsPageContainer from '../posts/PostsPageContainer';
 
@@ -36,7 +36,7 @@ function App({isInitialised}) {
                     </Switch>
                 </Fragment>
             </ConnectedRouter> :
-            <Loader/>
+            <Loading/>
     );
 }
 

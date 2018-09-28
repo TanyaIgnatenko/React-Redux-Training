@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import uniqueId from 'lodash.uniqueid';
+
 import {BUTTON, FIELD_LABEL, FIELD_PLACEHOLDER} from '../../locale';
 import {Button, Col, Container, Form, FormGroup, Input, Label} from 'reactstrap';
 
@@ -15,7 +17,7 @@ function LoginForm(props) {
                         <Input
                             className={'login-form__input'}
                             name='email'
-                            id='email'
+                            id={uniqueId('email')}
                             placeholder={FIELD_PLACEHOLDER.EMAIL}
                             onChange={props.onChange}
                         />
@@ -26,7 +28,7 @@ function LoginForm(props) {
                             className={'login-form__input'}
                             type='password'
                             name='password'
-                            id='password'
+                            id={uniqueId('password')}
                             placeholder={FIELD_PLACEHOLDER.PASSWORD}
                             onChange={props.onChange}
                         />

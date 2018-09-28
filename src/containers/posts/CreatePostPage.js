@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
 
 import Page from '../../components/common/Page/Page';
-import Loader from '../../components/common/Loader/Loader';
+import Loading from '../../components/common/Loading/Loading';
 import CreatePostForm from '../../components/posts/CreatePostForm/CreatePostForm';
 import {addPostRequest, resetAddPostStatus} from '../../ducks/posts/actions';
 import {selectAddPostStatus} from '../../ducks/posts/selectors';
@@ -60,14 +60,14 @@ class CreatePostPage extends React.Component {
                         onTitleInputChange={this.handleInputChange}
                         onDescriptionInputChange={this.handleInputChange}
                     />
-                    {addPostStatus === Status.IN_PROGRESS && <Loader/>}
+                    {addPostStatus === Status.IN_PROGRESS && <Loading/>}
                 </Fragment>
             </Page>
         );
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     addPostStatus: selectAddPostStatus(state)
 });
 
