@@ -3,14 +3,12 @@ import PropTypes from 'prop-types';
 import uniqueId from 'lodash.uniqueid';
 
 import {BUTTON, FIELD_LABEL, FIELD_PLACEHOLDER, RULE} from '../../locale';
-import {Button, Col, Container, Form, FormFeedback, FormGroup, Input, Label} from 'reactstrap';
+import {Button, Container, Form, FormFeedback, FormGroup, Input, Label} from 'reactstrap';
 
 import './SignupForm.scss';
 
 function SignupForm(props) {
-    const {nameInvalid, emailInvalid, passwordInvalid, confirmPasswordInvalid} = props;
-    const {nameValid, emailValid, passwordValid, confirmPasswordValid} = props;
-    const {onBlurName, onBlurEmail, onBlurPassword, onBlurConfirmPassword} = props;
+    const {isValid, isInvalid, onFocusLose} = props;
     return (
         <div className={'signup-form__container'}>
             <Container fluid={true}>
@@ -23,9 +21,9 @@ function SignupForm(props) {
                             id={uniqueId('name')}
                             placeholder={FIELD_PLACEHOLDER.NAME}
                             onChange={props.onChange}
-                            invalid={nameInvalid}
-                            valid={nameValid}
-                            onBlur={onBlurName}
+                            invalid={isInvalid.name}
+                            valid={isValid.name}
+                            onBlur={onFocusLose.name}
                         />
                         <FormFeedback>{RULE.NAME}</FormFeedback>
                     </FormGroup>
@@ -37,9 +35,9 @@ function SignupForm(props) {
                             id={uniqueId('email')}
                             placeholder={FIELD_PLACEHOLDER.EMAIL}
                             onChange={props.onChange}
-                            invalid={emailInvalid}
-                            valid={emailValid}
-                            onBlur={onBlurEmail}
+                            invalid={isInvalid.email}
+                            valid={isValid.email}
+                            onBlur={onFocusLose.email}
                         />
                         <FormFeedback>{RULE.EMAIL}</FormFeedback>
                     </FormGroup>
@@ -52,9 +50,9 @@ function SignupForm(props) {
                             id={uniqueId('password')}
                             placeholder={FIELD_PLACEHOLDER.PASSWORD}
                             onChange={props.onChange}
-                            invalid={passwordInvalid}
-                            valid={passwordValid}
-                            onBlur={onBlurPassword}
+                            invalid={isInvalid.password}
+                            valid={isValid.password}
+                            onBlur={onFocusLose.password}
                         />
                         <FormFeedback>{RULE.PASSWORD}</FormFeedback>
                     </FormGroup>
@@ -67,9 +65,9 @@ function SignupForm(props) {
                             id={uniqueId('confirmPassword')}
                             placeholder={FIELD_PLACEHOLDER.CONFIRM_PASSWORD}
                             onChange={props.onChange}
-                            invalid={confirmPasswordInvalid}
-                            valid={confirmPasswordValid}
-                            onBlur={onBlurConfirmPassword}
+                            invalid={isInvalid.confirmPassword}
+                            valid={isValid.confirmPassword}
+                            onBlur={onFocusLose.confirmPassword}
                         />
                         <FormFeedback>{RULE.CONFIRM_PASSWORD}</FormFeedback>
                     </FormGroup>
@@ -91,18 +89,24 @@ SignupForm.propTypes = {
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
     confirmPassword: PropTypes.string.isRequired,
-    nameInvalid: PropTypes.bool.isRequired,
-    emailInvalid: PropTypes.bool.isRequired,
-    passwordInvalid: PropTypes.bool.isRequired,
-    confirmPasswordInvalid: PropTypes.bool.isRequired,
-    nameValid: PropTypes.bool.isRequired,
-    emailValid: PropTypes.bool.isRequired,
-    passwordValid: PropTypes.bool.isRequired,
-    confirmPasswordValid: PropTypes.bool.isRequired,
-    onBlurName: PropTypes.func.isRequired,
-    onBlurEmail: PropTypes.func.isRequired,
-    onBlurPassword: PropTypes.func.isRequired,
-    onBlurConfirmPassword: PropTypes.func.isRequired,
+    isValid: PropTypes.shape({
+        name: PropTypes.bool.isRequired,
+        email: PropTypes.bool.isRequired,
+        password: PropTypes.bool.isRequired,
+        confirmPassword: PropTypes.bool.isRequired
+    }).isRequired,
+    isInvalid: PropTypes.shape({
+        name: PropTypes.bool.isRequired,
+        email: PropTypes.bool.isRequired,
+        password: PropTypes.bool.isRequired,
+        confirmPassword: PropTypes.bool.isRequired
+    }).isRequired,
+    onFocusLose: PropTypes.shape({
+        name: PropTypes.func.isRequired,
+        email: PropTypes.func.isRequired,
+        password: PropTypes.func.isRequired,
+        confirmPassword: PropTypes.func.isRequired
+    }).isRequired,
     onSignupClick: PropTypes.func.isRequired,
     onChange: PropTypes.func.isRequired
 };
