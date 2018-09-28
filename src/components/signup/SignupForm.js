@@ -74,7 +74,8 @@ function SignupForm(props) {
                     <FormGroup className={'button-container'}>
                         <Button
                             className={'signup-form__button'}
-                            onClick={props.onSignupClick}>{BUTTON.SIGN_UP}
+                            onClick={props.onSignupClick}>
+                            {BUTTON.SIGN_UP}
                         </Button>
                     </FormGroup>
                 </Form>

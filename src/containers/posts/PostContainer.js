@@ -40,7 +40,7 @@ class PostContainer extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    isAdmin: selectIsAdmin(state)
+    canAddPosts: selectIsAdmin(state)
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({

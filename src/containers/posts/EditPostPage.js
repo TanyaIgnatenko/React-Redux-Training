@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 
 import Page from '../../components/common/Page/Page';
-import Loader from '../../components/common/Loader/Loader';
+import Loading from '../../components/common/Loading/Loading';
 import {
     selectFetchPostStatus,
     selectPost,
@@ -58,7 +58,7 @@ class EditPostPage extends React.Component {
                 <Fragment>
                     {
                         postNotLoaded ?
-                            <Loader/> :
+                            <Loading/> :
                             <EditPostFormContainer post={post}/>
                     }
                 </Fragment>

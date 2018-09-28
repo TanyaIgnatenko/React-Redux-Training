@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 
 import PostContainer from '../../../containers/posts/PostContainer';
 import PaginationContainer from '../../../containers/posts/PaginationContainer';
@@ -10,32 +9,30 @@ import NewPostButtonContainer from '../../../containers/posts/NewPostButtonConta
 import {PAGE_TITLE} from '../../../locale';
 
 
-export default class PostsPage extends React.Component {
-    static propTypes = {
-        posts: PropTypes.arrayOf(PropTypes.shape({
-            id: PropTypes.number.isRequired,
-            title: PropTypes.string.isRequired,
-            content: PropTypes.string.isRequired,
-            liked: PropTypes.bool.isRequired,
-            totalLikes: PropTypes.number.isRequired
-        })),
-        isAdmin: PropTypes.bool.isRequired
-    };
+const PostsPage = () => {
+    const {canAddPosts} = this.props;
+    const posts = this.props.posts.map(post => <PostContainer key={post.id} post={post}/>);
 
-    render() {
-        const {isAdmin} = this.props;
-        const posts = this.props.posts.map(post => <PostContainer key={post.id} post={post}/>);
-        const elems = isAdmin ? [<NewPostButtonContainer key={0}/>, ...posts] : posts;
+    return (
+        <Page title={PAGE_TITLE.POSTS}>
+            <Fragment>
+                <Grid>
+                    {canAddPosts && NewPostButtonContainer}
+                    {posts}
+                </Grid>
+                <PaginationContainer/>
+            </Fragment>
+        </Page>
+    );
+};
 
-        return (
-            <Page title={PAGE_TITLE.POSTS}>
-                <Fragment>
-                    <Grid>
-                        {elems}
-                    </Grid>
-                    <PaginationContainer/>
-                </Fragment>
-            </Page>
-        );
-    }
-}
+PostsPage.propTypes = {
+    posts: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        title: PropTypes.string.isRequired,
+        content: PropTypes.string.isRequired,
+        liked: PropTypes.bool.isRequired,
+        totalLikes: PropTypes.number.isRequired
+    })),
+    canAddPosts: PropTypes.bool.isRequired,
+};

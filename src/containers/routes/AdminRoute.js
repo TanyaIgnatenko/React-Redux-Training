@@ -12,7 +12,7 @@ const PrivateRoute = ({component: Component, isAdmin, ...rest}) => (
 );
 
 const mapStateToProps = state => ({
-    isAdmin: selectIsAdmin(state)
+    canAddPosts: selectIsAdmin(state)
 });
 
 export default connect(mapStateToProps, null)(PrivateRoute);

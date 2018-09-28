@@ -3,7 +3,7 @@ import {selectFetchPostsStatus, selectPosts, selectSelectedPage} from '../../duc
 import {fetchPostsRequest, resetFetchPostsStatus} from '../../ducks/posts/actions';
 import {selectIsAdmin} from '../../ducks/auth/selectors';
 import PostsPage from '../../components/posts/PostsPage/PostsPage';
-import Loader from '../../components/common/Loader/Loader';
+import Loading from '../../components/common/Loading/Loading';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {Status} from '../../constants';
@@ -60,7 +60,7 @@ class PostsPageContainer extends Component {
             <Fragment>
                 {
                     postsNotLoaded ?
-                        <Loader/> :
+                        <Loading/> :
                         <PostsPage
                             posts={posts}
                             isAdmin={isAdmin}
@@ -75,7 +75,7 @@ const mapStateToProps = state => ({
     posts: selectPosts(state),
     fetchPostsStatus: selectFetchPostsStatus(state),
     selectedPage: selectSelectedPage(state),
-    isAdmin: selectIsAdmin(state)
+    canAddPosts: selectIsAdmin(state)
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -6,7 +6,7 @@ import {push} from 'connected-react-router';
 
 import Page from '../../components/common/Page/Page';
 import LoginForm from '../../components/login/LoginForm';
-import Loader from '../../components/common/Loader/Loader';
+import Loading from '../../components/common/Loading/Loading';
 import {loginRequest, resetLoginStatus} from '../../ducks/auth/actions';
 import {Routes} from '../../config';
 import {selectLoginStatus} from '../../ducks/auth/selectors';
@@ -57,7 +57,7 @@ class LoginPageContainer extends Component {
                         onLoginClick={this.loginHandler}
                         onChange={this.onChange}
                     />
-                    {loginStatus === Status.IN_PROGRESS && <Loader/>}
+                    {loginStatus === Status.IN_PROGRESS && <Loading/>}
                 </Fragment>
             </Page>
         );

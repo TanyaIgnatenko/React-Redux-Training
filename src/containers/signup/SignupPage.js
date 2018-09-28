@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 import Page from '../../components/common/Page/Page';
 import SignupForm from '../../components/signup/SignupForm';
-import Loader from '../../components/common/Loader/Loader';
+import Loading from '../../components/common/Loading/Loading';
 import {registerRequest, resetLoginStatus, resetRegisterStatus} from '../../ducks/auth/actions';
 import {selectRegisterStatus} from '../../ducks/auth/selectors';
 import * as validationHelpers from '../../helpers/validationHelpers';
@@ -135,7 +135,7 @@ class SignupPageContainer extends Component {
                         onChange={this.changeHandler}
                         onSignupClick={this.submitHandler}
                     />
-                    {registerStatus === Status.IN_PROGRESS && <Loader/>}
+                    {registerStatus === Status.IN_PROGRESS && <Loading/>}
                 </Fragment>
             </Page>
         );
