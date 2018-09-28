@@ -67,7 +67,7 @@ class CreatePostPage extends React.Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
     addPostStatus: selectAddPostStatus(state)
 });
 

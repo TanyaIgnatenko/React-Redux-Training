@@ -9,9 +9,9 @@ import NewPostButtonContainer from '../../../containers/posts/NewPostButtonConta
 import {PAGE_TITLE} from '../../../locale';
 
 
-const PostsPage = () => {
-    const {canAddPosts} = this.props;
-    const posts = this.props.posts.map(post => <PostContainer key={post.id} post={post}/>);
+const PostsPage = (props) => {
+    const {canAddPosts} = props;
+    const posts = props.posts.map(post => <PostContainer key={post.id} post={post}/>);
 
     return (
         <Page title={PAGE_TITLE.POSTS}>
@@ -34,5 +34,7 @@ PostsPage.propTypes = {
         liked: PropTypes.bool.isRequired,
         totalLikes: PropTypes.number.isRequired
     })),
-    canAddPosts: PropTypes.bool.isRequired,
+    canAddPosts: PropTypes.bool.isRequired
 };
+
+export default PostsPage;

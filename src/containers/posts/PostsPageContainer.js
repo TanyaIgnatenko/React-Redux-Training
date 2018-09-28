@@ -1,11 +1,12 @@
 import React, {Component, Fragment} from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
+
+import PostsPage from '../../components/posts/PostsPage/PostsPage';
+import Loading from '../../components/common/Loading/Loading';
 import {selectFetchPostsStatus, selectPosts, selectSelectedPage} from '../../ducks/posts/selectors';
 import {fetchPostsRequest, resetFetchPostsStatus} from '../../ducks/posts/actions';
 import {selectIsAdmin} from '../../ducks/auth/selectors';
-import PostsPage from '../../components/posts/PostsPage/PostsPage';
-import Loading from '../../components/common/Loading/Loading';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
 import {Status} from '../../constants';
 
 const adminPostsPerPage = 14;
@@ -63,7 +64,7 @@ class PostsPageContainer extends Component {
                         <Loading/> :
                         <PostsPage
                             posts={posts}
-                            isAdmin={isAdmin}
+                            canAddPosts={isAdmin}
                         />
                 }
             </Fragment>
@@ -75,7 +76,7 @@ const mapStateToProps = state => ({
     posts: selectPosts(state),
     fetchPostsStatus: selectFetchPostsStatus(state),
     selectedPage: selectSelectedPage(state),
-    canAddPosts: selectIsAdmin(state)
+    isAdmin: selectIsAdmin(state)
 });
 
 const mapDispatchToProps = dispatch => ({

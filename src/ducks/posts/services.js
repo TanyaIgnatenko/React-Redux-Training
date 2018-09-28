@@ -1,5 +1,5 @@
 import {instance as API} from 'api';
-import {Routes, SERVER_END_POINT} from '../../config';
+import {SERVER_END_POINT} from '../../config';
 
 const addPost = post => {
     const {title, content} = post;
@@ -8,7 +8,7 @@ const addPost = post => {
 
 const editPost = (id, post) => {
     const {title, content} = post;
-    return API.put(SERVER_END_POINT.EDIT_POST.replace(':id', id), post);
+    return API.put(SERVER_END_POINT.EDIT_POST.replace(':id', id), {title, content});
 };
 
 const deletePost = id => API.delete(SERVER_END_POINT.DELETE_POST.replace(':id', id));

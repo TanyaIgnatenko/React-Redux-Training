@@ -13,7 +13,6 @@ import {
     SELECT_PAGE,
     TOGGLE_LIKE
 } from './actionTypes';
-import {RESET_LOGIN_STATUS} from '../auth/actionTypes';
 
 const addPostRequest = (post) => ({
     type: ADD_POST.REQUEST,

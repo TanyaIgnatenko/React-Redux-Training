@@ -4,7 +4,7 @@ import {Modal, ModalBody} from 'reactstrap';
 
 import './Loading.scss';
 
-const Loading = () => {
+const Loading = (props) => {
     return (
         <div className={'loader__modal-container'}>
             <Modal isOpen={true} fade={false} className={'loader__modal'}>

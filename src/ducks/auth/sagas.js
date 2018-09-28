@@ -1,7 +1,7 @@
 import {all, call, put, takeLatest} from 'redux-saga/effects';
 
 import {loginError, loginSuccess, registerError, registerSuccess, setUser} from './actions';
-import {LOGIN, REGISTER} from './actionTypes';
+import {LOGIN, LOGOUT, REGISTER} from './actionTypes';
 import * as services from './services';
 
 
@@ -36,9 +36,15 @@ function* registerSaga({credentials}) {
     }
 }
 
+function* logoutSaga() {
+    yield call(services.removeApiToken);
+}
+
+
 export function* watchAuthRequests() {
     yield all([
         takeLatest(LOGIN.REQUEST, loginSaga),
-        takeLatest(REGISTER.REQUEST, registerSaga)
+        takeLatest(REGISTER.REQUEST, registerSaga),
+        takeLatest(LOGOUT, logoutSaga)
     ]);
 }
