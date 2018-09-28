@@ -12,13 +12,15 @@ import {PAGE_TITLE} from '../../../locale';
 const PostsPage = (props) => {
     const {canAddPosts} = props;
     const posts = props.posts.map(post => <PostContainer key={post.id} post={post}/>);
-    const elems = canAddPosts ? [<NewPostButtonContainer key={0}/>, ...posts] : posts;
 
     return (
         <Page title={PAGE_TITLE.POSTS}>
             <Fragment>
                 <Grid>
-                    {elems}
+                    <Fragment>
+                        {canAddPosts && <NewPostButtonContainer/>}
+                        {posts}
+                    </Fragment>
                 </Grid>
                 <PaginationContainer/>
             </Fragment>
