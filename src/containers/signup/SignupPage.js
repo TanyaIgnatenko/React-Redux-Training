@@ -78,25 +78,25 @@ class SignupPageContainer extends Component {
 
     focusLoseNameHandler = () => {
         this.validateName();
-        this.setfocusLoseState({name: true});
+        this.setFocusLoseState({name: true});
     };
 
     focusLoseEmailHandler = () => {
         this.validateEmail();
-        this.setfocusLoseState({email: true});
+        this.setFocusLoseState({email: true});
     };
 
     focusLosePasswordHandler = () => {
         this.validatePassword();
-        this.setfocusLoseState({password: true});
+        this.setFocusLoseState({password: true});
     };
 
     focusLoseConfirmPasswordHandler = () => {
         this.validateConfirmPassword();
-        this.setfocusLoseState({confirmPassword: true});
+        this.setFocusLoseState({confirmPassword: true});
     };
 
-    setfocusLoseState = ({name, email, password, confirmPassword}) => {
+    setFocusLoseState = ({name, email, password, confirmPassword}) => {
         name = name === undefined ? this.state.isFocusLost.name : name;
         email = email === undefined ? this.state.isFocusLost.email : email;
         password = password === undefined ? this.state.isFocusLost.password : password;
