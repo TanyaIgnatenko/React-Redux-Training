@@ -10,8 +10,7 @@ import CreatePostForm from '../../components/posts/CreatePostForm/CreatePostForm
 import {addPostRequest, resetAddPostStatus} from '../../ducks/posts/actions';
 import {selectAddPostStatus} from '../../ducks/posts/selectors';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';
-import {Status} from '../../constants';
-import {Routes} from '../../config';
+import {Status, Routes} from '../../constants';
 
 
 class CreatePostPage extends React.Component {

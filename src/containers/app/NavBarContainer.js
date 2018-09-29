@@ -7,7 +7,7 @@ import {withRouter} from 'react-router-dom';
 import NavBar from '../../components/common/NavBar/NavBar';
 import {selectUser} from '../../ducks/auth/selectors';
 import {logout} from '../../ducks/auth/actions';
-import {Routes} from '../../config';
+import {Routes} from '../../constants';
 
 class NavBarContainer extends Component {
     static propTypes = {

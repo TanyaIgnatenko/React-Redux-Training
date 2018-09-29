@@ -7,7 +7,17 @@ const Status = {
     ERROR: 'Status::ERROR'
 };
 
+const Routes = {
+    ROOT: '/',
+    POSTS: '/',
+    CREATE_POST: '/create',
+    EDIT_POST: '/edit/:id',
+    LOGIN: '/login',
+    SIGN_UP: '/register'
+};
+
 export {
     Status,
-    API_TOKEN_LOCAL_STORAGE_KEY
+    API_TOKEN_LOCAL_STORAGE_KEY,
+    Routes
 };

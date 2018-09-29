@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {push} from 'connected-react-router';
 
-import {Routes} from '../../config';
+import {Routes} from '../../constants';
 import {toggleLikeRequest} from '../../ducks/posts/actions';
 import {selectIsAdmin} from '../../ducks/auth/selectors';
 import Post from '../../components/posts/Post/Post';

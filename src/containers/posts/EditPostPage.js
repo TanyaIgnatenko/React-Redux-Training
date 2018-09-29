@@ -5,14 +5,10 @@ import {connect} from 'react-redux';
 
 import Page from '../../components/common/Page/Page';
 import Loading from '../../components/common/Loading/Loading';
-import {
-    selectFetchPostStatus,
-    selectPost,
-    selectSelectedPost
-} from '../../ducks/posts/selectors';
-import {PAGE_TITLE} from '../../locale';
 import EditPostFormContainer from './EditPostFormContainer';
+import {selectFetchPostStatus, selectSelectedPost} from '../../ducks/posts/selectors';
 import {fetchPostRequest, resetFetchPostStatus} from '../../ducks/posts/actions';
+import {PAGE_TITLE} from '../../locale';
 import {Status} from '../../constants';
 
 

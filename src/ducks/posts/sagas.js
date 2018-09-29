@@ -1,5 +1,4 @@
 import {all, call, put, takeEvery, takeLatest} from 'redux-saga/effects';
-import {push} from 'connected-react-router';
 
 import {ADD_POST, EDIT_POST, FETCH_POST, FETCH_POSTS, REMOVE_POST, TOGGLE_LIKE} from './actionTypes';
 import * as services from './services';
@@ -18,17 +17,14 @@ import {
     toggleLikeError,
     toggleLikeSuccess
 } from './actions';
-import {Routes} from '../../config';
 
 
 function* addPostSaga({post}) {
     try {
         const {post: addedPost} = yield call(services.addPost, post);
         yield put(addPostSuccess(addedPost));
-        yield put(push(Routes.POSTS));
     } catch (e) {
         yield put(addPostError(e));
-        yield put(push(Routes.POSTS));
     }
 }
 
@@ -38,8 +34,6 @@ function* editPostSaga({id, post}) {
         yield put(editPostSuccess(id, post));
     } catch (e) {
         yield put(editPostError(e));
-    } finally {
-        yield put(push(Routes.POSTS));
     }
 }
 
@@ -49,8 +43,6 @@ function* removePostSaga({id}) {
         yield put(removePostSuccess(id));
     } catch (e) {
         yield put(removePostError(e));
-    } finally {
-        yield put(push(Routes.POSTS));
     }
 }
 

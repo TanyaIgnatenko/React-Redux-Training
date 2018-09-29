@@ -8,7 +8,7 @@ import Page from '../../components/common/Page/Page';
 import LoginForm from '../../components/login/LoginForm';
 import Loading from '../../components/common/Loading/Loading';
 import {loginRequest, resetLoginStatus} from '../../ducks/auth/actions';
-import {Routes} from '../../config';
+import {Routes} from '../../constants';
 import {selectLoginStatus} from '../../ducks/auth/selectors';
 import {Status} from '../../constants';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';

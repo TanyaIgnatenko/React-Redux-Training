@@ -7,12 +7,12 @@ import {connect} from 'react-redux';
 import Page from '../../components/common/Page/Page';
 import SignupForm from '../../components/signup/SignupForm';
 import Loading from '../../components/common/Loading/Loading';
-import {registerRequest, resetLoginStatus, resetRegisterStatus} from '../../ducks/auth/actions';
+import {registerRequest, resetRegisterStatus} from '../../ducks/auth/actions';
 import {selectRegisterStatus} from '../../ducks/auth/selectors';
 import * as validationHelpers from '../../helpers/validationHelpers';
 import {ERROR_MSG, PAGE_TITLE} from '../../locale';
 import {Status} from '../../constants';
-import {Routes} from '../../config';
+import {Routes} from '../../constants';
 
 class SignupPageContainer extends Component {
     static propTypes = {

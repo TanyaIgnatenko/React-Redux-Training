@@ -13,18 +13,8 @@ const SERVER_END_POINT = {
     TOGGLE_LIKE: '/posts/:id/like'
 };
 
-const Routes = {
-    ROOT: '/',
-    POSTS: '/',
-    CREATE_POST: '/create',
-    EDIT_POST: '/edit/:id',
-    LOGIN: '/login',
-    SIGN_UP: '/register'
-};
-
 export {
     API_URL,
     X_Application_Key,
-    SERVER_END_POINT,
-    Routes
+    SERVER_END_POINT
 };

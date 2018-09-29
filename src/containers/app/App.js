@@ -1,7 +1,7 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {Redirect, Switch} from 'react-router-dom';
-import {Routes} from '../../config';
+import {Routes} from '../../constants';
 import {ConnectedRouter} from 'connected-react-router';
 import {connect} from 'react-redux';
 

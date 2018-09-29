@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from 'reactstrap';
 
 import {APP_NAME, BUTTON} from '../../../locale';
-import {Routes} from '../../../config';
+import {Routes} from '../../../constants';
 
 class NavBar extends React.Component {
     static propTypes = {

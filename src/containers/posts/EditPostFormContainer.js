@@ -11,10 +11,9 @@ import {
 } from '../../ducks/posts/actions';
 import Loading from '../../components/common/Loading/Loading';
 import EditPostForm from '../../components/posts/EditPostForm/EditPostForm';
-import {selectEditPostStatus, selectPost, selectRemovePostStatus} from '../../ducks/posts/selectors';
+import {selectEditPostStatus, selectRemovePostStatus} from '../../ducks/posts/selectors';
 import {ERROR_MSG} from '../../locale';
-import {Status} from '../../constants';
-import {Routes} from '../../config';
+import {Status, Routes} from '../../constants';
 
 
 class EditPostFormContainer extends React.Component {

@@ -4,12 +4,7 @@ import {
     FETCH_POST,
     FETCH_POSTS,
     REMOVE_POST,
-    RESET_ADD_POST_STATUS,
-    RESET_EDIT_POST_STATUS,
-    RESET_FETCH_POST_STATUS,
-    RESET_FETCH_POSTS_STATUS,
-    RESET_REMOVE_POST_STATUS, RESET_STATUS,
-    RESET_TOGGLE_LIKE_STATUS,
+    RESET_STATUS,
     SELECT_PAGE,
     TOGGLE_LIKE
 } from './actionTypes';
@@ -103,18 +98,18 @@ export const posts = (state = initialState, action) => {
         case REMOVE_POST.REQUEST:
             return {
                 ...state,
-                status: changeStatus({status: state.status, removePost: Status.IN_PROGRESS})
+                status: changeStatus({status: state.status, deletePost: Status.IN_PROGRESS})
             };
         case REMOVE_POST.SUCCESS:
             return {
                 ...state,
                 posts: arrayHelpers.removeItem(state.posts, action.id),
-                status: changeStatus({status: state.status, removePost: Status.SUCCESS})
+                status: changeStatus({status: state.status, deletePost: Status.SUCCESS})
             };
         case REMOVE_POST.ERROR:
             return {
                 ...state,
-                status: changeStatus({status: state.status, removePost: Status.ERROR})
+                status: changeStatus({status: state.status, deletePost: Status.ERROR})
             };
         case TOGGLE_LIKE.REQUEST:
             return {
@@ -155,7 +150,7 @@ export const posts = (state = initialState, action) => {
         case RESET_STATUS.REMOVE_POST:
             return {
                 ...state,
-                status: changeStatus({status: state.status, removePost: Status.IDLE})
+                status: changeStatus({status: state.status, deletePost: Status.IDLE})
             };
         case RESET_STATUS.TOGGLE_LIKE:
             return {
